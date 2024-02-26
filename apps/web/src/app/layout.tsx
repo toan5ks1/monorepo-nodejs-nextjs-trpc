@@ -51,13 +51,13 @@ import {
 import { Toaster } from '@foundation-trpc/ui/src/components/ui/toaster'
 import { Analytics } from '@foundation-trpc/ui/src/components/analytics'
 import { ThemeProvider } from '@foundation-trpc/ui/src/components/providers'
-import { TailwindIndicator } from '@foundation-trpc/ui/src/components/tailwind-indicator'
 import { Provider } from '@foundation-trpc/trpc-client/src/Provider'
 import { SessionProvider } from '@foundation-trpc/ui/src/components/molecules/SessionProvider'
 import { cn } from '@foundation-trpc/ui/src/util'
+import { env } from './env.mjs'
 
 export const metadata: Metadata = {
-  // metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
@@ -128,7 +128,6 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
                 disableTransitionOnChange
               >
                 {children}
-                {/* <TailwindIndicator /> */}
                 <Analytics />
               </ThemeProvider>
             </Provider>

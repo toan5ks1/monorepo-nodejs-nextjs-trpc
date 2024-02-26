@@ -1,16 +1,16 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { useSignUp } from "@clerk/nextjs"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { toast } from "sonner"
-import type { z } from "zod"
+import * as React from 'react'
+// import { useRouter } from 'next/navigation'
+// import { useSignUp } from "@clerk/nextjs"
+// import { zodResolver } from "@hookform/resolvers/zod"
+// import { useForm } from 'react-hook-form'
+// import { toast } from 'sonner'
+// import type { z } from "zod"
 
-import { catchClerkError } from "@/lib/utils"
-import { authSchema } from "@/lib/validations/auth"
-import { Button } from "@/components/ui/button"
+// import { catchClerkError } from "@/lib/utils"
+// import { authSchema } from '@/lib/validations/auth'
+import { Button } from '../ui/button'
 import {
   Form,
   FormControl,
@@ -18,48 +18,47 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Icons } from "@/components/icons"
-import { PasswordInput } from "@/components/password-input"
+} from '../ui/form'
+import { Input } from '../ui/input'
+import { Icons } from '../icons'
+import { PasswordInput } from '../password-input'
+import {
+  FormTypeRegister,
+  userFormRegister,
+} from '@foundation-trpc/forms/src/register'
+import { trpcClient } from '@foundation-trpc/trpc-client/src/client'
+import { signIn } from 'next-auth/react'
 
-type Inputs = z.infer<typeof authSchema>
+// type Inputs = z.infer<typeof authSchema>
 
 export function SignUpForm() {
-  const router = useRouter()
-  const { isLoaded, signUp } = useSignUp()
+  // const router = useRouter()
+  // const { isLoaded, signUp } = useSignUp()
   const [isPending, startTransition] = React.useTransition()
 
   // react-hook-form
-  const form = useForm<Inputs>({
-    resolver: zodResolver(authSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  })
+  // const form = useForm<Inputs>({
+  //   resolver: zodResolver(authSchema),
+  //   defaultValues: {
+  //     email: "",
+  //     password: "",
+  //   },
+  // })
 
-  function onSubmit(data: Inputs) {
-    if (!isLoaded) return
+  const form = userFormRegister()
+  const { mutateAsync } = trpcClient.auth.registerWithCredentials.useMutation()
+
+  function onSubmit(data: FormTypeRegister) {
+    // if (!isLoaded) return
 
     startTransition(async () => {
-      try {
-        await signUp.create({
-          emailAddress: data.email,
+      const user = await mutateAsync(data)
+      if (user?.user) {
+        signIn('credentials', {
+          email: data.email,
           password: data.password,
+          callbackUrl: '/',
         })
-
-        // Send email verification code
-        await signUp.prepareEmailAddressVerification({
-          strategy: "email_code",
-        })
-
-        router.push("/signup/verify-email")
-        toast.message("Check your email", {
-          description: "We sent you a 6-digit verification code.",
-        })
-      } catch (err) {
-        catchClerkError(err)
       }
     })
   }

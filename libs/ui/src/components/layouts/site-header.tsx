@@ -26,6 +26,8 @@ export async function SiteHeader() {
   const session = await getServerSession()
   const user = session?.user
 
+  console.log(user)
+
   const categories = await trpc.auth.categories.query()
 
   return (

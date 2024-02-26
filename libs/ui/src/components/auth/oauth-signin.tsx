@@ -1,17 +1,21 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { isClerkAPIResponseError, useSignIn } from "@clerk/nextjs"
-import { type OAuthStrategy } from "@clerk/types"
-import { toast } from "sonner"
+import * as React from 'react'
+// import { isClerkAPIResponseError, useSignIn } from "@clerk/nextjs"
+// import { type OAuthStrategy } from "@clerk/types"
+// import { toast } from 'sonner'
 
-import { Button } from "@/components/ui/button"
-import { Icons } from "@/components/icons"
+import { Button } from '../ui/button'
+import { Icons } from '../icons'
+
+import { signIn } from 'next-auth/react'
+
+export type OAuthStrategy = 'oauth_google' | 'oauth_facebook' | 'oauth_discord'
 
 const oauthProviders = [
-  { name: "Google", strategy: "oauth_google", icon: "google" },
-  { name: "Facebook", strategy: "oauth_facebook", icon: "facebook" },
-  { name: "Discord", strategy: "oauth_discord", icon: "discord" },
+  { name: 'Google', strategy: 'oauth_google', icon: 'google' },
+  { name: 'Facebook', strategy: 'oauth_facebook', icon: 'facebook' },
+  { name: 'Discord', strategy: 'oauth_discord', icon: 'discord' },
 ] satisfies {
   name: string
   icon: keyof typeof Icons
@@ -20,25 +24,20 @@ const oauthProviders = [
 
 export function OAuthSignIn() {
   const [isLoading, setIsLoading] = React.useState<OAuthStrategy | null>(null)
-  const { signIn, isLoaded: signInLoaded } = useSignIn()
+  // const { signIn, isLoaded: signInLoaded } = useSignIn()
 
   async function oauthSignIn(provider: OAuthStrategy) {
-    if (!signInLoaded) return null
     try {
       setIsLoading(provider)
-      await signIn.authenticateWithRedirect({
-        strategy: provider,
-        redirectUrl: "/sso-callback",
-        redirectUrlComplete: "/",
-      })
+      signIn('google', { callbackUrl: '/' })
     } catch (error) {
       setIsLoading(null)
 
-      const unknownError = "Something went wrong, please try again."
+      // const unknownError = 'Something went wrong, please try again.'
 
-      isClerkAPIResponseError(error)
-        ? toast.error(error.errors[0]?.longMessage ?? unknownError)
-        : toast.error(unknownError)
+      // isClerkAPIResponseError(error)
+      //   ? toast.error(error.errors[0]?.longMessage ?? unknownError)
+      //   : toast.error(unknownError)
     }
   }
 

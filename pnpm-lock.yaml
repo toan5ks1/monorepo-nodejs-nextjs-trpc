@@ -69,6 +69,9 @@ importers:
       '@foundation-trpc/util':
         specifier: workspace:^
         version: link:../../libs/util
+      '@t3-oss/env-nextjs':
+        specifier: ^0.7.3
+        version: 0.7.3(typescript@5.3.3)(zod@3.22.4)
       next:
         specifier: 14.1.0
         version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -2781,6 +2784,33 @@ packages:
   /@swc/types@0.1.5:
     resolution: {integrity: sha512-myfUej5naTBWnqOCc/MdVOLVjXUXtIA+NpDrDBKJtLLg2shUjBu3cZmB/85RyitKc55+lUUyl7oRfLOvkr2hsw==}
     dev: true
+
+  /@t3-oss/env-core@0.7.3(typescript@5.3.3)(zod@3.22.4):
+    resolution: {integrity: sha512-hhtj59TKC6TKVdwJ0CcbKsvkr9R8Pc/SNKd4IgGUIC9T9X6moB8EZZ3FTJdABA/h9UABCK4J+KsF8gzmvMvHPg==}
+    peerDependencies:
+      typescript: '>=4.7.2'
+      zod: ^3.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 5.3.3
+      zod: 3.22.4
+    dev: false
+
+  /@t3-oss/env-nextjs@0.7.3(typescript@5.3.3)(zod@3.22.4):
+    resolution: {integrity: sha512-90TNffS17vjkQwfYyMUb4Zw9yqHwFV40f78qFug4JiQa5+N6DydTdlLOpzOcj8Cna/qpAVDwMSypofF/TVQDuA==}
+    peerDependencies:
+      typescript: '>=4.7.2'
+      zod: ^3.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@t3-oss/env-core': 0.7.3(typescript@5.3.3)(zod@3.22.4)
+      typescript: 5.3.3
+      zod: 3.22.4
+    dev: false
 
   /@tanstack/query-core@4.36.1:
     resolution: {integrity: sha512-DJSilV5+ytBP1FbFcEJovv4rnnm/CokuVvrBEtW/Va9DvuJ3HksbXUJEpI0aV1KtuL4ZoO9AVE6PyNLzF7tLeA==}
@@ -6724,7 +6754,6 @@ packages:
     resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   /unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}

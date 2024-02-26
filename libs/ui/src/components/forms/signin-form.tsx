@@ -1,15 +1,14 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { useSignIn } from "@clerk/nextjs"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import type { z } from "zod"
+import * as React from 'react'
+// import { useRouter } from 'next/navigation'
+// import { useSignIn } from "@clerk/nextjs"
+// import { zodResolver } from '@hookform/resolvers/zod'
+// import { useForm } from 'react-hook-form'
+// import type { z } from 'zod'
+import { signIn } from 'next-auth/react'
 
-import { catchClerkError } from "@/lib/utils"
-import { authSchema } from "@/lib/validations/auth"
-import { Button } from "@/components/ui/button"
+import { Button } from '../ui/button'
 import {
   Form,
   FormControl,
@@ -17,48 +16,34 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Icons } from "@/components/icons"
-import { PasswordInput } from "@/components/password-input"
+} from '../ui/form'
+import { Input } from '../ui/input'
+import { Icons } from '../icons'
+import { PasswordInput } from '../password-input'
+import {
+  FormTypeSignIn,
+  userFormSignIn,
+} from '@foundation-trpc/forms/src/signin'
 
-type Inputs = z.infer<typeof authSchema>
+// type Inputs = z.infer<typeof authSchema>
 
 export function SignInForm() {
-  const router = useRouter()
-  const { isLoaded, signIn, setActive } = useSignIn()
+  // const router = useRouter()
+  // const { isLoaded, signIn, setActive } = useSignIn()
   const [isPending, startTransition] = React.useTransition()
 
   // react-hook-form
-  const form = useForm<Inputs>({
-    resolver: zodResolver(authSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  })
+  const form = userFormSignIn()
 
-  function onSubmit(data: Inputs) {
-    if (!isLoaded) return
+  function onSubmit({ email, password }: FormTypeSignIn) {
+    // if (!isLoaded) return
 
     startTransition(async () => {
-      try {
-        const result = await signIn.create({
-          identifier: data.email,
-          password: data.password,
-        })
-
-        if (result.status === "complete") {
-          await setActive({ session: result.createdSessionId })
-
-          router.push(`${window.location.origin}/`)
-        } else {
-          /*Investigate why the login hasn't completed */
-          console.log(result)
-        }
-      } catch (err) {
-        catchClerkError(err)
-      }
+      signIn('credentials', {
+        email,
+        password,
+        callbackUrl: '/',
+      })
     })
   }
 
