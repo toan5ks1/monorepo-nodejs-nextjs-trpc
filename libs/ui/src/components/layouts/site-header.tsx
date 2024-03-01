@@ -21,12 +21,13 @@ import { MobileNav } from '../layouts/mobile-nav'
 import { Button } from '../ui/button'
 import { getServerSession } from 'next-auth/next'
 import { trpc } from '@foundation-trpc/trpc-client/src'
+import { authOptions } from '@foundation-trpc/network/src/auth/authOptions'
 
 export async function SiteHeader() {
-  const session = await getServerSession()
-  const user = session?.user
+  const session = await getServerSession(authOptions)
 
-  console.log(user)
+  console.log(session)
+  const user = session?.user
 
   const categories = await trpc.auth.categories.query()
 

@@ -1,5 +1,5 @@
-import { SiteFooter } from '@foundation-trpc/ui/src/components/layouts/site-footer'
-import { SiteHeader } from '@foundation-trpc/ui/src/components/layouts/site-header'
+import { SiteFooter } from '@cmp/layouts/site-footer'
+import { SiteHeader } from '@cmp/layouts/site-header'
 
 interface LobyLayoutProps
   extends React.PropsWithChildren<{

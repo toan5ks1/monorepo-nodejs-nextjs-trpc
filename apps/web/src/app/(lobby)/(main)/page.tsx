@@ -1,14 +1,14 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { Balancer } from 'react-wrap-balancer'
-import { Icons } from '@foundation-trpc/ui/src/components/icons'
+import { Icons } from '@cmp/icons'
 
-import { buttonVariants } from '@foundation-trpc/ui/src/components/ui/button'
-import { ProductCard } from '@foundation-trpc/ui/src/components/cards/product-card'
-import { StoreCard } from '@foundation-trpc/ui/src/components/cards/store-card'
-import { Shell } from '@foundation-trpc/ui/src/components/shells/shell'
-import { ProductCardSkeleton } from '@foundation-trpc/ui/src/components/skeletons/product-card-skeleton'
-import { StoreCardSkeleton } from '@foundation-trpc/ui/src/components/skeletons/store-card-skeleton'
+import { buttonVariants } from '@cmp/ui/button'
+import { ProductCard } from '@cmp/cards/product-card'
+import { StoreCard } from '@cmp/cards/store-card'
+import { Shell } from '@cmp/shells/shell'
+import { ProductCardSkeleton } from '@cmp/skeletons/product-card-skeleton'
+import { StoreCardSkeleton } from '@cmp/skeletons/store-card-skeleton'
 import { cn } from '@foundation-trpc/ui/src/util'
 
 export default async function IndexPage() {

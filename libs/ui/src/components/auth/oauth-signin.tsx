@@ -9,13 +9,14 @@ import { Button } from '../ui/button'
 import { Icons } from '../icons'
 
 import { signIn } from 'next-auth/react'
+import { toast } from 'sonner'
 
-export type OAuthStrategy = 'oauth_google' | 'oauth_facebook' | 'oauth_discord'
+export type OAuthStrategy = 'google' | 'facebook' | 'discord'
 
 const oauthProviders = [
-  { name: 'Google', strategy: 'oauth_google', icon: 'google' },
-  { name: 'Facebook', strategy: 'oauth_facebook', icon: 'facebook' },
-  { name: 'Discord', strategy: 'oauth_discord', icon: 'discord' },
+  { name: 'Google', strategy: 'google', icon: 'google' },
+  { name: 'Facebook', strategy: 'facebook', icon: 'facebook' },
+  { name: 'Discord', strategy: 'discord', icon: 'discord' },
 ] satisfies {
   name: string
   icon: keyof typeof Icons
@@ -24,16 +25,16 @@ const oauthProviders = [
 
 export function OAuthSignIn() {
   const [isLoading, setIsLoading] = React.useState<OAuthStrategy | null>(null)
-  // const { signIn, isLoaded: signInLoaded } = useSignIn()
 
   async function oauthSignIn(provider: OAuthStrategy) {
     try {
       setIsLoading(provider)
-      signIn('google', { callbackUrl: '/' })
+      signIn(provider, { callbackUrl: '/' })
     } catch (error) {
       setIsLoading(null)
 
-      // const unknownError = 'Something went wrong, please try again.'
+      const unknownError = 'Something went wrong, please try again.'
+      toast.error(unknownError)
 
       // isClerkAPIResponseError(error)
       //   ? toast.error(error.errors[0]?.longMessage ?? unknownError)

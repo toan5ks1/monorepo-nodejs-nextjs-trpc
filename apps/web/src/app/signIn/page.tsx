@@ -1,4 +1,4 @@
-import { SignIn } from '@foundation-trpc/ui/src/components/templates/SignIn'
+import { SignIn } from '@cmp/templates/SignIn'
 
 export default function SignInPage() {
   return <SignIn />

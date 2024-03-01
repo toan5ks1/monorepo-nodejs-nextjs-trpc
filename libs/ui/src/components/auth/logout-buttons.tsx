@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation'
 import { SignOutButton } from '@clerk/nextjs'
 
 import { cn } from '../../util'
-import { useMounted } from '@/hooks/use-mounted'
-import { Button, buttonVariants } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Icons } from '@/components/icons'
+import { useMounted } from '@foundation-trpc/util/hooks/use-mounted'
+import { Button, buttonVariants } from '../ui/button'
+import { Skeleton } from '../ui/skeleton'
+import { Icons } from '../icons'
 
 export function LogOutButtons() {
   const router = useRouter()

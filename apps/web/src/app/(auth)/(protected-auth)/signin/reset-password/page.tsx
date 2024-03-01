@@ -7,9 +7,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@foundation-trpc/ui/src/components/ui/card'
-import { ResetPasswordForm } from '@foundation-trpc/ui/src/components/forms/reset-password-form'
-import { Shell } from '@foundation-trpc/ui/src/components/shells/shell'
+} from '@cmp/ui/card'
+import { ResetPasswordForm } from '@cmp/forms/reset-password-form'
+import { Shell } from '@cmp/shells/shell'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

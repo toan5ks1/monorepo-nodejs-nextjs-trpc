@@ -2,12 +2,12 @@
 
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
-import type { SidebarNavItem } from '@/types'
 import { ChevronLeftIcon } from '@radix-ui/react-icons'
 
 import { cn } from '../../util'
 
 import { Icons } from '../icons'
+import { SidebarNavItem } from '@foundation-trpc/util/types'
 
 export interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {
   items: SidebarNavItem[]

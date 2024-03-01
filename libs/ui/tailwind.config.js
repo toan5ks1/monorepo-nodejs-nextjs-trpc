@@ -1,13 +1,9 @@
+import { fontFamily } from 'tailwindcss/defaultTheme'
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
-  prefix: '',
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     container: {
       center: true,
@@ -17,12 +13,20 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        xs: '480px',
+        xxs: '380px',
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
@@ -47,64 +51,25 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        black: 'hsl(var(--black) / <alpha-value>)',
-        white: 'hsl(var(--white) / <alpha-value>)',
-        gray: {
-          DEFAULT: 'hsl(var(--slate-500) / <alpha-value>)',
-          50: 'hsl(var(--slate-50) / <alpha-value>)',
-          100: 'hsl(var(--slate-100) / <alpha-value>)',
-          200: 'hsl(var(--slate-200) / <alpha-value>)',
-          300: 'hsl(var(--slate-300) / <alpha-value>)',
-          400: 'hsl(var(--slate-400) / <alpha-value>)',
-          500: 'hsl(var(--slate-500) / <alpha-value>)',
-          600: 'hsl(var(--slate-600) / <alpha-value>)',
-          700: 'hsl(var(--slate-700) / <alpha-value>)',
-          800: 'hsl(var(--slate-800) / <alpha-value>)',
-          900: 'hsl(var(--slate-900) / <alpha-value>)',
-          950: 'hsl(var(--slate-950) / <alpha-value>)',
-        },
-        red: {
-          DEFAULT: 'hsl(var(--red-600) / <alpha-value>)',
-          50: 'hsl(var(--red-50) / <alpha-value>)',
-          100: 'hsl(var(--red-100) / <alpha-value>)',
-          200: 'hsl(var(--red-200) / <alpha-value>)',
-          300: 'hsl(var(--red-300) / <alpha-value>)',
-          400: 'hsl(var(--red-400) / <alpha-value>)',
-          500: 'hsl(var(--red-500) / <alpha-value>)',
-          600: 'hsl(var(--red-600) / <alpha-value>)',
-          700: 'hsl(var(--red-700) / <alpha-value>)',
-          800: 'hsl(var(--red-800) / <alpha-value>)',
-          900: 'hsl(var(--red-900) / <alpha-value>)',
-          950: 'hsl(var(--red-950) / <alpha-value>)',
-        },
-        primary: {
-          DEFAULT: 'hsl(var(--blue-600) / <alpha-value>)',
-          50: 'hsl(var(--blue-50) / <alpha-value>)',
-          100: 'hsl(var(--blue-100) / <alpha-value>)',
-          200: 'hsl(var(--blue-200) / <alpha-value>)',
-          300: 'hsl(var(--blue-300) / <alpha-value>)',
-          400: 'hsl(var(--blue-400) / <alpha-value>)',
-          500: 'hsl(var(--blue-500) / <alpha-value>)',
-          600: 'hsl(var(--blue-600) / <alpha-value>)',
-          700: 'hsl(var(--blue-700) / <alpha-value>)',
-          800: 'hsl(var(--blue-800) / <alpha-value>)',
-          900: 'hsl(var(--blue-900) / <alpha-value>)',
-          950: 'hsl(var(--blue-950) / <alpha-value>)',
-        },
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      fontFamily: {
+        sans: ['var(--font-sans)', ...fontFamily.sans],
+        mono: ['var(--font-mono)', ...fontFamily.mono],
+        heading: ['var(--font-heading)', ...fontFamily.sans],
+      },
       keyframes: {
         'accordion-down': {
-          from: { height: '0' },
+          from: { height: 0 },
           to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
+          to: { height: 0 },
         },
       },
       animation: {
@@ -113,5 +78,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 }

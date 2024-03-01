@@ -9,10 +9,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@foundation-trpc/ui/src/components/ui/card'
-import { OAuthSignIn } from '@foundation-trpc/ui/src/components/auth/oauth-signin'
-import { SignUpForm } from '@foundation-trpc/ui/src/components/forms/signup-form'
-import { Shell } from '@foundation-trpc/ui/src/components/shells/shell'
+} from '@cmp/ui/card'
+import { OAuthSignIn } from '@cmp/auth/oauth-signin'
+import { SignUpForm } from '@cmp/forms/signup-form'
+import { Shell } from '@cmp/shells/shell'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

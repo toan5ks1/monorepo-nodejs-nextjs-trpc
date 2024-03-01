@@ -2,10 +2,10 @@
 // import { Inter } from 'next/font/google'
 // import '@foundation-trpc/ui/src/index.css'
 // import { Provider } from '@foundation-trpc/trpc-client/src/Provider'
-// import { SessionProvider } from '@foundation-trpc/ui/src/components/molecules/SessionProvider'
-// import { Container } from '@foundation-trpc/ui/src/components/atoms/container'
-// import { Navbar } from '@foundation-trpc/ui/src/components/organisms/Navbar'
-// import { Toaster } from '@foundation-trpc/ui/src/components/molecules/Toaster/Toaster'
+// import { SessionProvider } from '@cmp/molecules/SessionProvider'
+// import { Container } from '@cmp/atoms/container'
+// import { Navbar } from '@cmp/organisms/Navbar'
+// import { Toaster } from '@cmp/molecules/Toaster/Toaster'
 
 // export const dynamic = !(process.env.NODE_ENV === 'production')
 //   ? 'force-dynamic'
@@ -48,11 +48,11 @@ import {
   fontMono,
   fontSans,
 } from '@foundation-trpc/ui/src/util/fonts'
-import { Toaster } from '@foundation-trpc/ui/src/components/ui/toaster'
-import { Analytics } from '@foundation-trpc/ui/src/components/analytics'
-import { ThemeProvider } from '@foundation-trpc/ui/src/components/providers'
+import { Toaster } from '@cmp/ui/toaster'
+import { Analytics } from '@cmp/analytics'
+import { ThemeProvider } from '@cmp/providers'
 import { Provider } from '@foundation-trpc/trpc-client/src/Provider'
-import { SessionProvider } from '@foundation-trpc/ui/src/components/molecules/SessionProvider'
+import { SessionProvider } from '@cmp/molecules/SessionProvider'
 import { cn } from '@foundation-trpc/ui/src/util'
 import { env } from './env.mjs'
 

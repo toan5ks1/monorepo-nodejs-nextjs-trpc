@@ -1,18 +1,18 @@
-import type { Metadata } from "next"
-import { env } from "@/env.mjs"
+import type { Metadata } from 'next'
 
-import { LogOutButtons } from "@/components/auth/logout-buttons"
+import { LogOutButtons } from '@cmp/auth/logout-buttons'
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@/components/page-header"
-import { Shell } from "@/components/shells/shell"
+} from '@cmp/page-header'
+import { Shell } from '@cmp/shells/shell'
+import { env } from '@web/src/app/env.mjs'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: "Sign out",
-  description: "Sign out of your account",
+  title: 'Sign out',
+  description: 'Sign out of your account',
 }
 
 export default function SignOutPage() {

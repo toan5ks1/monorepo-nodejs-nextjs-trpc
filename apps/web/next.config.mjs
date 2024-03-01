@@ -4,6 +4,14 @@ const nextConfig = {
     remotePatterns: [
       { hostname: 'lh3.googleusercontent.com' },
       { hostname: 'firebasestorage.googleapis.com' },
+      {
+        protocol: 'https',
+        hostname: 'uploadthing.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'utfs.io',
+      },
     ],
   },
 }
