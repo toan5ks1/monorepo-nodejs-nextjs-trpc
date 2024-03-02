@@ -212,9 +212,6 @@ importers:
       '@foundation-trpc/forms':
         specifier: workspace:^
         version: link:../forms
-      '@foundation-trpc/util':
-        specifier: workspace:^
-        version: link:../util
       '@trpc/server':
         specifier: ^10.45.0
         version: 10.45.0
@@ -400,9 +397,6 @@ importers:
 
   libs/util:
     dependencies:
-      '@foundation-trpc/forms':
-        specifier: workspace:^
-        version: link:../forms
       date-fns:
         specifier: ^3.3.1
         version: 3.3.1

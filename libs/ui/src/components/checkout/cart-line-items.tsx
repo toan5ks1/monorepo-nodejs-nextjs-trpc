@@ -6,7 +6,7 @@ import { Separator } from '../ui/separator'
 import { UpdateCart } from '../checkout/update-cart'
 import { Icons } from '../icons'
 import { cn, formatPrice } from '../../util'
-import { CartLineItem } from '@foundation-trpc/util/types'
+import { CartLineItem } from '@foundation-trpc/forms/src'
 
 interface CartLineItemsProps extends React.HTMLAttributes<HTMLDivElement> {
   items: CartLineItem[]

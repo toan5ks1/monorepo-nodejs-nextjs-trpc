@@ -1,7 +1,8 @@
-import { z } from '@foundation-trpc/forms/src'
+import { Categories, z } from '@foundation-trpc/forms/src'
 import { type ClassValue, clsx } from 'clsx'
 import { toast } from 'sonner'
 import { twMerge } from 'tailwind-merge'
+import { MenuItem } from './types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -125,4 +126,29 @@ export function catchError(err: unknown) {
   } else {
     return toast('Something went wrong, please try again later.')
   }
+}
+
+export function generateMenuTree(
+  categories: Categories[],
+  parentId?: number,
+): MenuItem[] {
+  const menuItems: MenuItem[] = []
+
+  for (const category of categories) {
+    if (category.parentId === parentId) {
+      const menuItem: MenuItem = {
+        title: category.title,
+        slug: category.slug,
+      }
+
+      const childItems = generateMenuTree(categories, category.id)
+      if (childItems.length > 0) {
+        menuItem.childItems = childItems
+      }
+
+      menuItems.push(menuItem)
+    }
+  }
+
+  return menuItems
 }

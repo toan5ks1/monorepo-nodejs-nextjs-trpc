@@ -1,10 +1,11 @@
 'use client'
-import { BaseComponent, FormState } from '@foundation-trpc/util/types'
+import { BaseComponent } from '@foundation-trpc/util/types'
 import { useFormState } from 'react-dom'
 import { SubmitButton } from './SubmitButton'
 import { DisplayErrors } from './DisplayError'
 import { useEffect, useRef } from 'react'
 import { useToast } from './Toaster/use-toast'
+import { FormState } from '@foundation-trpc/forms/src'
 
 export interface IFormProps extends BaseComponent {
   action: (prevState: FormState, formData: FormData) => Promise<FormState>

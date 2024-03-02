@@ -15,8 +15,8 @@ export type OAuthStrategy = 'google' | 'facebook' | 'discord'
 
 const oauthProviders = [
   { name: 'Google', strategy: 'google', icon: 'google' },
-  { name: 'Facebook', strategy: 'facebook', icon: 'facebook' },
-  { name: 'Discord', strategy: 'discord', icon: 'discord' },
+  // { name: 'Facebook', strategy: 'facebook', icon: 'facebook' },
+  // { name: 'Discord', strategy: 'discord', icon: 'discord' },
 ] satisfies {
   name: string
   icon: keyof typeof Icons

@@ -1,7 +1,6 @@
 import { prisma } from '@foundation-trpc/db'
-import { MenuItem, Role } from './types'
+import { Role } from './types'
 import { TRPCError } from '@trpc/server'
-import { Categories } from '@foundation-trpc/db/types'
 
 export const getUserRoles = async (uid: string): Promise<Role[]> => {
   const [adminExists, managerExists] = await Promise.all([
@@ -56,29 +55,4 @@ export const checkRowLevelPermission = async (
       message: 'You are not allowed to do this action.',
     })
   }
-}
-
-export function generateMenuTree(
-  categories: Categories[],
-  parentId?: number,
-): MenuItem[] {
-  const menuItems: MenuItem[] = []
-
-  for (const category of categories) {
-    if (category.parentId === parentId) {
-      const menuItem: MenuItem = {
-        title: category.title,
-        slug: category.slug,
-      }
-
-      const childItems = generateMenuTree(categories, category.id)
-      if (childItems.length > 0) {
-        menuItem.childItems = childItems
-      }
-
-      menuItems.push(menuItem)
-    }
-  }
-
-  return menuItems
 }

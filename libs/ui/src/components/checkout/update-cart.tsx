@@ -1,13 +1,13 @@
 'use client'
 
 import * as React from 'react'
-import { CartLineItem } from '@foundation-trpc/util/types'
 import { MinusIcon, PlusIcon, TrashIcon } from '@radix-ui/react-icons'
 
 // import { deleteCartItem, updateCartItem } from "@/lib/actions/cart"
 // import { catchError } from '../../util'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
+import { CartLineItem } from '@foundation-trpc/forms/src'
 
 interface UpdateCartProps {
   cartLineItem: CartLineItem

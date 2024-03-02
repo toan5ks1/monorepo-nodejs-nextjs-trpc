@@ -13,7 +13,6 @@ import * as bcrypt from 'bcryptjs'
 import { v4 as uuid } from 'uuid'
 import { AuthProviderType } from '@foundation-trpc/db/types'
 import { sign } from 'jsonwebtoken'
-import { generateMenuTree } from '../util'
 
 export const authRoutes = router({
   users: publicProcedure.use(isAuthed('admin')).query(() => {
@@ -99,8 +98,6 @@ export const authRoutes = router({
       return { user, token }
     }),
   categories: publicProcedure.query(async () => {
-    const categories = await prisma.categories.findMany()
-
-    return generateMenuTree(categories)
+    return await prisma.categories.findMany()
   }),
 })

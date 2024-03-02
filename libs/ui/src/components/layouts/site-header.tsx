@@ -22,6 +22,7 @@ import { Button } from '../ui/button'
 import { getServerSession } from 'next-auth/next'
 import { trpc } from '@foundation-trpc/trpc-client/src'
 import { authOptions } from '@foundation-trpc/network/src/auth/authOptions'
+import { generateMenuTree } from '../../util'
 
 export async function SiteHeader() {
   const session = await getServerSession(authOptions)
@@ -30,11 +31,12 @@ export async function SiteHeader() {
   const user = session?.user
 
   const categories = await trpc.auth.categories.query()
+  const x = generateMenuTree(categories);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-16 items-center">
-        <MainNav categories={categories} />
+        <MainNav categories={} />
         <MobileNav
           mainNavItems={siteConfig.mainNav}
           sidebarNavItems={dashboardConfig.sidebarNav}
