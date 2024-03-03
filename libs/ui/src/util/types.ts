@@ -6,6 +6,13 @@ export type BaseComponent = {
   className?: string
 }
 
+export interface CategoryItem {
+  id: number
+  title: string
+  slug: string
+  parentId: number | null
+}
+
 export interface MenuItem {
   title: string
   slug: string

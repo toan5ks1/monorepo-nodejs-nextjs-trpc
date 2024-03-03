@@ -3,7 +3,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
-import type { MainNavItem, SidebarNavItem } from '@foundation-trpc/util/types'
+
 import { ViewVerticalIcon } from '@radix-ui/react-icons'
 
 import { siteConfig } from '@foundation-trpc/util/config/site'
@@ -18,6 +18,7 @@ import { Button } from '../ui/button'
 import { ScrollArea } from '../ui/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet'
 import { Icons } from '../icons'
+import { MainNavItem, SidebarNavItem } from '../../util/types'
 
 interface MobileNavProps {
   mainNavItems?: MainNavItem[]

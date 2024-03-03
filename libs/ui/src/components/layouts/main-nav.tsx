@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import Link from 'next/link'
-import { MenuItem } from '@foundation-trpc/util/types'
 
 import { siteConfig } from '@foundation-trpc/util/config/site'
 import {
@@ -15,6 +14,7 @@ import {
 } from '../ui/navigation-menu'
 import { Icons } from '../icons'
 import { cn, slugify } from '../../util'
+import { MenuItem } from '../../util/types'
 
 interface MainNavProps {
   categories?: MenuItem[]

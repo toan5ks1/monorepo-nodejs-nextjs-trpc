@@ -1,5 +1,5 @@
-import { createEnv } from "@t3-oss/env-nextjs"
-import { z } from "zod"
+import { createEnv } from '@t3-oss/env-nextjs'
+import { z } from 'zod'
 
 export const env = createEnv({
   /**
@@ -8,18 +8,18 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z
-      .enum(["development", "test", "production"])
-      .default("development"),
+      .enum(['development', 'test', 'production'])
+      .default('development'),
     DATABASE_URL: z.string().url(),
-    CLERK_SECRET_KEY: z.string().min(1),
-    RESEND_API_KEY: z.string().min(1),
-    EMAIL_FROM_ADDRESS: z.string().email(),
-    UPLOADTHING_SECRET: z.string().min(1),
-    UPLOADTHING_APP_ID: z.string().min(1),
-    STRIPE_API_KEY: z.string().min(1),
-    STRIPE_WEBHOOK_SECRET: z.string().min(1),
-    STRIPE_STD_MONTHLY_PRICE_ID: z.string().min(1),
-    STRIPE_PRO_MONTHLY_PRICE_ID: z.string().min(1),
+    // CLERK_SECRET_KEY: z.string().min(1),
+    // RESEND_API_KEY: z.string().min(1),
+    // EMAIL_FROM_ADDRESS: z.string().email(),
+    // UPLOADTHING_SECRET: z.string().min(1),
+    // UPLOADTHING_APP_ID: z.string().min(1),
+    // STRIPE_API_KEY: z.string().min(1),
+    // STRIPE_WEBHOOK_SECRET: z.string().min(1),
+    // STRIPE_STD_MONTHLY_PRICE_ID: z.string().min(1),
+    // STRIPE_PRO_MONTHLY_PRICE_ID: z.string().min(1),
     OPENAI_API_KEY: z.string().optional(),
   },
 
@@ -30,8 +30,8 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_APP_URL: z.string().url(),
-    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
-    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
+    // NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
+    // NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
   },
 
   /**

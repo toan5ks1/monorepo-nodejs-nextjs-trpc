@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { AuthProviderType } from '@foundation-trpc/db/types'
+import { AreaType } from '.'
 
 export const schemaRegister = z.object({
   email: z.string().email(),
@@ -56,7 +57,7 @@ export const cartLineItemSchema = z.object({
 export const sideSchema = z.object({
   id: z.number().optional(),
   title: z.string().min(1, {
-    message: "Must be at least 1 character",
+    message: 'Must be at least 1 character',
   }),
   description: z.string().optional(),
   subcategoryId: z.number().optional().nullable().default(null),
@@ -66,18 +67,18 @@ export const sideSchema = z.object({
       if (!Array.isArray(val)) return false
       if (val.some((file) => !(file instanceof File))) return false
       return true
-    }, "Must be a File")
+    }, 'Must be a File')
     .optional()
     .nullable()
     .default(null),
-  areaType: z.enum(AreaType).default(sides.areaType.enumValues[0]),
+  areaType: z.enum(AreaType).default('image'),
   areaImage: z
     .unknown()
     .refine((val) => {
       if (!Array.isArray(val)) return false
       if (val.some((file) => !(file instanceof File))) return false
       return true
-    }, "Must be a File")
+    }, 'Must be a File')
     .optional()
     .nullable()
     .default(null),
@@ -92,8 +93,8 @@ export const sideSchema = z.object({
         })
         .refine(
           (val) => (!val.w || val.w >= 0) && (!val.h || val.h >= 0),
-          "Width & height must be greater than or equal to 0"
-        )
+          'Width & height must be greater than or equal to 0',
+        ),
     )
     .optional()
     .nullable()
@@ -102,7 +103,7 @@ export const sideSchema = z.object({
 
 export const categorySchema = z.object({
   title: z.string().min(1, {
-    message: "Must be at least 1 character",
+    message: 'Must be at least 1 character',
   }),
   description: z.string().optional(),
   slug: z.string().optional(),
@@ -112,7 +113,7 @@ export const categorySchema = z.object({
       if (!Array.isArray(val)) return false
       if (val.some((file) => !(file instanceof File))) return false
       return true
-    }, "Must be an array of File")
+    }, 'Must be an array of File')
     .optional()
     .nullable()
     .default(null),

@@ -103,7 +103,7 @@ export const authOptions: NextAuthOptions = {
         session.user = {
           name: token.name,
           email: token.email,
-          image: token.picture,
+          image: (token.image as string) || '',
           uid: (token.uid as string) || '',
         }
       }

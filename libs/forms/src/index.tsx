@@ -20,3 +20,4 @@ export interface FormState {
   data?: string | null
   error?: ValidationError[] | null
 }
+export const AreaType = ['image', 'dimension'] as const

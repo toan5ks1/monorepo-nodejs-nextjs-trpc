@@ -26,17 +26,13 @@ import { generateMenuTree } from '../../util'
 
 export async function SiteHeader() {
   const session = await getServerSession(authOptions)
-
-  console.log(session)
   const user = session?.user
-
   const categories = await trpc.auth.categories.query()
-  const x = generateMenuTree(categories);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-16 items-center">
-        <MainNav categories={} />
+        <MainNav categories={generateMenuTree(categories, null)} />
         <MobileNav
           mainNavItems={siteConfig.mainNav}
           sidebarNavItems={dashboardConfig.sidebarNav}
