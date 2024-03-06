@@ -26,7 +26,7 @@ export function LogOutButtons() {
           onClick={() =>
             startTransition(() => {
               signOut({
-                callbackUrl: `${window.location.origin}/?redirect=false`,
+                callbackUrl: `${window.location.origin}`,
               })
             })
           }

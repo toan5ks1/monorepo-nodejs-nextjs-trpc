@@ -1,18 +1,16 @@
 // import type { FooterItem, MainNavItem } from "@/types"
 
-import { FooterItem, MainNavItem } from '../types'
-
 // import { productCategories } from "@/config/products"
 // import { slugify } from "@/lib/utils"
 
 export type SiteConfig = typeof siteConfig
 
 const links = {
-  twitter: 'https://twitter.com/sadmann17',
-  github: 'https://github.com/sadmann7/skateshop',
-  githubAccount: 'https://github.com/sadmann7',
-  discord: 'https://discord.com/users/sadmann7',
-  calDotCom: 'https://cal.com/sadmann7',
+  twitter: 'https://twitter.com/toan5ks1',
+  github: 'https://github.com/toan5ks1',
+  githubAccount: 'https://github.com/toan5ks1',
+  discord: 'https://discord.com/users/toan5ks1',
+  calDotCom: 'https://cal.com/toan5ks1',
 }
 
 export const siteConfig = {
@@ -46,7 +44,7 @@ export const siteConfig = {
         },
       ],
     },
-  ] satisfies MainNavItem[],
+  ],
   footerNav: [
     {
       title: 'Credits',
@@ -153,5 +151,5 @@ export const siteConfig = {
         },
       ],
     },
-  ] satisfies FooterItem[],
+  ],
 }

@@ -19,13 +19,12 @@ import { Icons } from '../icons'
 import { MainNav } from '../layouts/main-nav'
 import { MobileNav } from '../layouts/mobile-nav'
 import { Button } from '../ui/button'
-import { getServerSession } from 'next-auth/next'
 import { trpc } from '@foundation-trpc/trpc-client/src'
-import { authOptions } from '@foundation-trpc/network/src/auth/authOptions'
+import { getAuth } from '@foundation-trpc/network/src/auth/authOptions'
 import { generateMenuTree } from '../../util'
 
 export async function SiteHeader() {
-  const session = await getServerSession(authOptions)
+  const session = await getAuth()
   const user = session?.user
   const categories = await trpc.auth.categories.query()
 
@@ -50,7 +49,7 @@ export async function SiteHeader() {
                   >
                     <Avatar className="size-8">
                       <AvatarImage
-                        src={user.image ?? undefined}
+                        src={user.image ?? ''}
                         alt={user.name ?? ''}
                       />
                       <AvatarFallback>{user.name}</AvatarFallback>

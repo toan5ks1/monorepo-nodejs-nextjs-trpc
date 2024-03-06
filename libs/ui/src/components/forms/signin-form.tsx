@@ -1,13 +1,7 @@
 'use client'
 
 import * as React from 'react'
-// import { useRouter } from 'next/navigation'
-// import { useSignIn } from "@clerk/nextjs"
-// import { zodResolver } from '@hookform/resolvers/zod'
-// import { useForm } from 'react-hook-form'
-// import type { z } from 'zod'
 import { signIn } from 'next-auth/react'
-
 import { Button } from '../ui/button'
 import {
   Form,
@@ -24,26 +18,33 @@ import {
   FormTypeSignIn,
   userFormSignIn,
 } from '@foundation-trpc/forms/src/signin'
-
-// type Inputs = z.infer<typeof authSchema>
+import { catchError } from '../../util'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
 export function SignInForm() {
-  // const router = useRouter()
-  // const { isLoaded, signIn, setActive } = useSignIn()
+  const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
-
-  // react-hook-form
   const form = userFormSignIn()
 
-  function onSubmit({ email, password }: FormTypeSignIn) {
-    // if (!isLoaded) return
-
+  async function onSubmit({ email, password }: FormTypeSignIn) {
     startTransition(async () => {
-      signIn('credentials', {
-        email,
-        password,
-        callbackUrl: '/',
-      })
+      try {
+        const res = await signIn('credentials', {
+          email,
+          password,
+          redirect: false,
+        })
+
+        if (res?.ok) {
+          router.push('/')
+          router.refresh()
+        } else {
+          toast(res?.error)
+        }
+      } catch (err) {
+        catchError(err)
+      }
     })
   }
 

@@ -1,5 +1,5 @@
 import { type Metadata } from 'next'
-import { env } from '../../../../env.mjs'
+import { env } from '../../../../../env.mjs'
 
 import {
   Card,

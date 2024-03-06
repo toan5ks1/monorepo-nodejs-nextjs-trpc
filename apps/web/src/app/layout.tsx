@@ -54,7 +54,7 @@ import { ThemeProvider } from '@cmp/providers'
 import { Provider } from '@foundation-trpc/trpc-client/src/Provider'
 import { SessionProvider } from '@cmp/molecules/SessionProvider'
 import { cn } from '@foundation-trpc/ui/src/util'
-import { env } from './env.mjs'
+import { env } from '../env.mjs'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -73,11 +73,11 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: 'sadmann7',
-      url: 'https://www.sadmn.com',
+      name: 'toan5ks1',
+      url: 'https://www.github.com/toan5ks1',
     },
   ],
-  creator: 'sadmann7',
+  creator: 'toan5ks1',
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [`${siteConfig.url}/og.jpg`],
-    creator: '@sadmann17',
+    creator: '@toan5ks1',
   },
   icons: {
     icon: '/icon.png',

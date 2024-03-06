@@ -9,4 +9,8 @@ export type FormTypeSignIn = z.infer<typeof schemaSignIn>
 export const userFormSignIn = () =>
   useForm<FormTypeSignIn>({
     resolver: zodResolver(schemaSignIn),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   })
