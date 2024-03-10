@@ -54,7 +54,7 @@ import { ThemeProvider } from '@cmp/providers'
 import { Provider } from '@foundation-trpc/trpc-client/src/Provider'
 import { SessionProvider } from '@cmp/molecules/SessionProvider'
 import { cn } from '@foundation-trpc/ui/src/util'
-import { env } from '../env.mjs'
+import { env } from '@web/src/env.mjs'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

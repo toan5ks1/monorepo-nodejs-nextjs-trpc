@@ -14,10 +14,7 @@ import {
 import { Input } from '../ui/input'
 import { Icons } from '../icons'
 import { PasswordInput } from '../password-input'
-import {
-  FormTypeSignIn,
-  userFormSignIn,
-} from '@foundation-trpc/forms/src/signin'
+import { FormTypeSignIn, useFormSignIn } from '@foundation-trpc/forms/src/form'
 import { catchError } from '../../util'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
@@ -25,7 +22,7 @@ import { useRouter } from 'next/navigation'
 export function SignInForm() {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
-  const form = userFormSignIn()
+  const form = useFormSignIn()
 
   async function onSubmit({ email, password }: FormTypeSignIn) {
     startTransition(async () => {

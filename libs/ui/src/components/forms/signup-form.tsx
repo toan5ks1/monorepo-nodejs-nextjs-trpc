@@ -24,41 +24,37 @@ import { Icons } from '../icons'
 import { PasswordInput } from '../password-input'
 import {
   FormTypeRegister,
-  userFormRegister,
-} from '@foundation-trpc/forms/src/register'
+  useFormRegister,
+} from '@foundation-trpc/forms/src/form'
 import { trpcClient } from '@foundation-trpc/trpc-client/src/client'
-import { signIn } from 'next-auth/react'
-
-// type Inputs = z.infer<typeof authSchema>
+import { useRouter } from 'next/navigation'
+import { catchError } from '../../util'
+import { toast } from 'sonner'
 
 export function SignUpForm() {
-  // const router = useRouter()
-  // const { isLoaded, signUp } = useSignUp()
   const [isPending, startTransition] = React.useTransition()
-
-  // react-hook-form
-  // const form = useForm<Inputs>({
-  //   resolver: zodResolver(authSchema),
-  //   defaultValues: {
-  //     email: "",
-  //     password: "",
-  //   },
-  // })
-
-  const form = userFormRegister()
-  const { mutateAsync } = trpcClient.auth.registerWithCredentials.useMutation()
+  const router = useRouter()
+  const form = useFormRegister()
+  const { mutateAsync: signUp } =
+    trpcClient.auth.registerWithCredentials.useMutation()
+  const { mutateAsync: generateToken } =
+    trpcClient.auth.generateVerificationToken.useMutation()
 
   function onSubmit(data: FormTypeRegister) {
-    // if (!isLoaded) return
-
     startTransition(async () => {
-      const user = await mutateAsync(data)
-      if (user?.user) {
-        signIn('credentials', {
-          email: data.email,
-          password: data.password,
-          callbackUrl: '/',
-        })
+      try {
+        const user = await signUp(data)
+        if (user?.user) {
+          // Send email verification code
+          await generateToken({ email: data.email })
+
+          router.push('/signup/verify-email')
+          toast.message('Check your email', {
+            description: 'We sent you a 6-digit verification code.',
+          })
+        }
+      } catch (err) {
+        catchError(err)
       }
     })
   }

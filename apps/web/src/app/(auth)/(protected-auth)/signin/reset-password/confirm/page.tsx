@@ -1,5 +1,5 @@
-import { type Metadata } from "next"
-import { env } from "@/env.mjs"
+import { type Metadata } from 'next'
+import { env } from '@web/src/env.mjs'
 
 import {
   Card,
@@ -7,14 +7,14 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { ResetPasswordConfirmForm } from "@/components/forms/reset-password-confirm-form"
-import { Shell } from "@/components/shells/shell"
+} from '@cmp/ui/card'
+import { ResetPasswordConfirmForm } from '@cmp/forms/reset-password-confirm-form'
+import { Shell } from '@cmp/shells/shell'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: "Reset Password",
-  description: "Enter your email to reset your password",
+  title: 'Reset Password',
+  description: 'Enter your email to reset your password',
 }
 
 export default function ResetPasswordConfirmPage() {

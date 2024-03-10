@@ -26,7 +26,7 @@ import { generateMenuTree } from '../../util'
 export async function SiteHeader() {
   const session = await getAuth()
   const user = session?.user
-  const categories = await trpc.auth.categories.query()
+  const categories = await trpc.resource.categories.query()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
@@ -49,7 +49,7 @@ export async function SiteHeader() {
                   >
                     <Avatar className="size-8">
                       <AvatarImage
-                        src={user.image ?? ''}
+                        src={user.image ?? '/user.jpg'}
                         alt={user.name ?? ''}
                       />
                       <AvatarFallback>{user.name}</AvatarFallback>

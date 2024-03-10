@@ -1,9 +1,8 @@
 require('dotenv').config()
 
+import { trpcExpress } from '@foundation-trpc/trpc-server'
 import cors from 'cors'
 import express from 'express'
-
-import { trpcExpress } from '@foundation-trpc/trpc-server'
 
 const app = express()
 app.use(express.json())

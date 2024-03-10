@@ -1,6 +1,5 @@
 import { z } from 'zod'
-import { AuthProviderType } from '@foundation-trpc/db/types'
-import { AreaType } from '.'
+import { AreaType, AuthProviderType } from '.'
 
 export const schemaRegister = z.object({
   email: z.string().email({
@@ -20,13 +19,19 @@ export const schemaRegister = z.object({
   image: z.string().optional(),
 })
 
-export const schemaUser = z.object({
-  uid: z.string(),
-})
-
 export const schemaSignIn = schemaRegister.pick({
   email: true,
   password: true,
+})
+
+export const schemaEmail = z.object({
+  email: z.string().email({
+    message: 'Please enter a valid email address.',
+  }),
+})
+
+export const schemaUser = z.object({
+  uid: z.string(),
 })
 
 export const schemaRegisterWithProvider = z.object({
@@ -36,10 +41,23 @@ export const schemaRegisterWithProvider = z.object({
   type: z.nativeEnum(AuthProviderType),
 })
 
-export const emailSchema = z.object({
-  email: z.string().email({
-    message: 'Please enter a valid email address.',
-  }),
+export const schemaSendMail = z.object({
+  userEmail: z.array(z.string()),
+  subject: z.string(),
+  content: z.string(),
+})
+
+export const schemaToken = z.object({
+  token: z.string(),
+})
+
+export const verifyEmailSchema = z.object({
+  code: z
+    .string()
+    .min(6, {
+      message: 'Verification code must be 6 characters long',
+    })
+    .max(6),
 })
 
 export const cartLineItemSchema = z.object({

@@ -7,7 +7,7 @@ import {
   PageHeaderHeading,
 } from '@cmp/page-header'
 import { Shell } from '@cmp/shells/shell'
-import { env } from '@websrc/env.mjs'
+import { env } from '@web/src/env.mjs'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

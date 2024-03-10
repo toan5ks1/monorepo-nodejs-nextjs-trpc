@@ -3,9 +3,9 @@ import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { trpc } from '@foundation-trpc/trpc-client/src'
 import { JWT } from 'next-auth/jwt'
-export const MAX_AGE = 1 * 24 * 60 * 60
 import { sign, verify } from 'jsonwebtoken'
-import { AuthProviderType } from '@foundation-trpc/db/types'
+
+export const MAX_AGE = 1 * 24 * 60 * 60
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -88,9 +88,9 @@ export const authOptions: NextAuthOptions = {
 
         if (!existingUser) {
           const user = await trpc.auth.registerWithProvider.mutate({
-            type: AuthProviderType.GOOGLE,
+            type: 'GOOGLE',
             uid: id,
-            image: image || '',
+            image: image || undefined,
             name: name || '',
           })
         }
@@ -103,7 +103,7 @@ export const authOptions: NextAuthOptions = {
         session.user = {
           name: token.name,
           email: token.email,
-          image: (token.image as string) || '',
+          image: token.image as string,
           uid: (token.uid as string) || '',
         }
       }

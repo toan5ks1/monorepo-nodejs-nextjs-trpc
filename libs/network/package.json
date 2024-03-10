@@ -19,10 +19,7 @@
     "next-auth": "^4.24.5"
   },
   "dependencies": {
-    "@foundation-trpc/db": "workspace:^",
-    "@foundation-trpc/forms": "workspace:^",
     "@foundation-trpc/trpc-client": "workspace:^",
-    "@foundation-trpc/util": "workspace:^",
     "jsonwebtoken": "^9.0.2"
   }
 }

@@ -1,6 +1,5 @@
 import { ZodIssue, z } from 'zod'
-import { cartLineItemSchema } from './schemas'
-export { Categories } from '@foundation-trpc/db/types'
+import { cartLineItemSchema, schemaSendMail } from './schemas'
 
 export {
   useFormContext,
@@ -14,6 +13,8 @@ export { type ZodIssue } from 'zod'
 
 export type CartLineItem = z.infer<typeof cartLineItemSchema>
 
+export type FormTypeSendMail = z.infer<typeof schemaSendMail>
+
 export type ValidationError = Partial<Pick<ZodIssue, 'path' | 'message'>>
 
 export interface FormState {
@@ -21,3 +22,8 @@ export interface FormState {
   error?: ValidationError[] | null
 }
 export const AreaType = ['image', 'dimension'] as const
+
+export const AuthProviderType = {
+  GOOGLE: 'GOOGLE',
+  CREDENTIALS: 'CREDENTIALS',
+} as const

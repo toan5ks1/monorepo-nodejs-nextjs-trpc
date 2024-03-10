@@ -12,13 +12,16 @@
     "@foundation-trpc/db": "workspace:^",
     "@foundation-trpc/forms": "workspace:^",
     "@trpc/server": "^10.45.0",
+    "aws-sdk": "^2.1574.0",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.10",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.5",
-    "@types/uuid": "^9.0.8"
+    "@types/uuid": "^9.0.8",
+    "@types/nodemailer": "^6.4.14"
   }
 }

@@ -1,9 +1,10 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../../../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": ".",
-    "jsx": "react-jsx",
     "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
   },
 }

@@ -1,10 +1,11 @@
 import { isAuthed } from '../middleware'
-import { publicProcedure, router, t } from '../trpc'
+import { publicProcedure, router } from '../trpc'
 import {
   schemaRegister,
   schemaSignIn,
   schemaUser,
   schemaRegisterWithProvider,
+  schemaEmail,
 } from '@foundation-trpc/forms/src/schemas'
 
 import { prisma } from '@foundation-trpc/db'
@@ -97,7 +98,55 @@ export const authRoutes = router({
       const token = sign({ uid: user.uid }, process.env.NEXTAUTH_SECRET || '')
       return { user, token }
     }),
-  categories: publicProcedure.query(async () => {
-    return await prisma.categories.findMany()
-  }),
+  generatePasswordResetToken: publicProcedure
+    .input(schemaEmail)
+    .mutation(async ({ input: { email } }) => {
+      const token = uuid()
+      const expires = new Date(new Date().getTime() + 3600 * 1000)
+
+      const existingToken = await prisma.passwordResetToken.findFirst({
+        where: { email },
+      })
+
+      if (existingToken) {
+        await prisma.passwordResetToken.delete({
+          where: { id: existingToken.id },
+        })
+      }
+
+      return await prisma.passwordResetToken.create({
+        data: {
+          email,
+          token,
+          expires,
+        },
+      })
+    }),
+  generateVerificationToken: publicProcedure
+    .input(schemaEmail)
+    .mutation(async ({ input: { email } }) => {
+      const token = uuid()
+      const expires = new Date(new Date().getTime() + 3600 * 1000)
+      console.log(expires)
+
+      const existingToken = await prisma.verificationToken.findFirst({
+        where: { email },
+      })
+
+      if (existingToken) {
+        await prisma.verificationToken.delete({
+          where: {
+            id: existingToken.id,
+          },
+        })
+      }
+
+      return await prisma.verificationToken.create({
+        data: {
+          email,
+          token,
+          expires,
+        },
+      })
+    }),
 })
