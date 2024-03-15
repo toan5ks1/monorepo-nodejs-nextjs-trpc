@@ -1,57 +1,49 @@
-import * as aws from 'aws-sdk'
-import * as nodemailer from 'nodemailer'
-
 import { publicProcedure, router } from '../trpc'
 
 import { prisma } from '@foundation-trpc/db'
-import { FormTypeSendMail } from '@foundation-trpc/forms/src'
-import { schemaSendMail } from '@foundation-trpc/forms/src/schemas'
-
-aws.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_KEY_ID,
-  region: 'us-east-1',
-})
-
-aws.config.getCredentials(function (error) {
-  if (error) {
-    console.log(error.stack)
-  }
-})
-
-const ses = new aws.SES({ apiVersion: '2010-12-01' })
-
-const adminMail = 'support@becodemy.com'
-
-// Create a transporter of nodemailer
-const transporter = nodemailer.createTransport({
-  SES: ses,
-})
+import {
+  FormTypeEmailToken,
+  FormTypeSendMail,
+} from '@foundation-trpc/forms/src'
+import { schemaEmailToken } from '@foundation-trpc/forms/src/schemas'
+import { adminMail, transporter, webUrl } from '../libs/sesClient'
 
 export const sendEmail = async ({
-  userEmail,
+  receiver,
   subject,
   content,
 }: FormTypeSendMail) => {
   try {
-    const response = await transporter.sendMail({
+    return transporter.sendMail({
       from: adminMail,
-      to: userEmail,
+      to: receiver,
       subject: subject,
       html: content,
+      // attachments: [{ content: 'Hello World!', filename: 'hello.txt' }],
     })
-
-    return response
-  } catch (error) {
-    console.log(error)
-    throw error
+  } catch (err) {
+    console.log(err)
+    throw err
   }
 }
 
+export const sendVerificationEmail = async ({
+  email,
+  token,
+}: FormTypeEmailToken) => {
+  const confirmLink = `${webUrl}/signup/verify-email?token=${token}`
+
+  return sendEmail({
+    receiver: email,
+    subject: 'Confirm your email',
+    content: `<p>Click <a href="${confirmLink}">here</a> to confirm email.</p>`,
+  })
+}
+
 export const emailRoutes = router({
-  // user: publicProcedure
-  //   .input(schemaSendMail)
-  //   .query(({ input: { uid }, ctx }) => {
-  //     return prisma.user.findUnique({ where: { uid } })
-  //   }),
+  sendVerificationEmail: publicProcedure
+    .input(schemaEmailToken)
+    .mutation(async ({ input: { email, token } }) => {
+      return await sendVerificationEmail({ email, token })
+    }),
 })

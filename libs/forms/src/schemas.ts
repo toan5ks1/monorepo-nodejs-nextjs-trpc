@@ -42,13 +42,20 @@ export const schemaRegisterWithProvider = z.object({
 })
 
 export const schemaSendMail = z.object({
-  userEmail: z.array(z.string()),
+  receiver: z.string(),
   subject: z.string(),
   content: z.string(),
 })
 
 export const schemaToken = z.object({
   token: z.string(),
+})
+
+export const schemaEmailToken = z.object({
+  token: z.string(),
+  email: z.string().email({
+    message: 'Please enter a valid email address.',
+  }),
 })
 
 export const verifyEmailSchema = z.object({

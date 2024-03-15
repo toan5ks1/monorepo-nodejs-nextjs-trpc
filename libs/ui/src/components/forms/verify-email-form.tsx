@@ -1,89 +1,41 @@
 'use client'
 
-import * as React from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '../ui/button'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form'
-import { Input } from '../ui/input'
-import { Icons } from '../icons'
-import {
-  FormTypeVerifyEmail,
-  useFormVerifyEmail,
-} from '@foundation-trpc/forms/src/form'
-import { catchError } from '../../util'
+import { BarLoader } from 'react-spinners'
+import Link from 'next/link'
+import { InfoCard } from '../cards/info-card'
+import { trpcClient } from '@foundation-trpc/trpc-client/src/client'
 
 export function VerifyEmailForm() {
   const router = useRouter()
-  // const { isLoaded, signUp, setActive } = useSignUp()
-  const [isPending, startTransition] = React.useTransition()
+  const searchParams = useSearchParams()
+  const token = searchParams.get('token')
+  const { data: verifyResult } = trpcClient.auth.verifyEmailToken.useQuery({
+    token: token ?? '',
+  })
 
-  // react-hook-form
-  const form = useFormVerifyEmail()
-
-  function onSubmit(data: FormTypeVerifyEmail) {
-    // if (!isLoaded) return
-
-    startTransition(async () => {
-      try {
-        // const completeSignUp = await signUp.attemptEmailAddressVerification({
-        //   code: data.code,
-        // })
-        // if (completeSignUp.status !== "complete") {
-        //   /*  investigate the response, to see if there was an error
-        //      or if the user needs to complete more steps.*/
-        //   console.log(JSON.stringify(completeSignUp, null, 2))
-        // }
-        // if (completeSignUp.status === "complete") {
-        //   await setActive({ session: completeSignUp.createdSessionId })
-        //   router.push(`${window.location.origin}/`)
-        // }
-      } catch (err) {
-        catchError(err)
-      }
-    })
+  if (verifyResult?.success) {
+    router.push('/')
   }
 
   return (
-    <Form {...form}>
-      <form className="grid gap-4" onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="code"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Verification Code</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="169420"
-                  {...field}
-                  onChange={(e) => {
-                    e.target.value = e.target.value.trim()
-                    field.onChange(e)
-                  }}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+    <div className="flex flex-col items-left w-full justify-center space-y-8">
+      {!token ? (
+        <InfoCard
+          type={{ success: true, message: 'Confirmation email sent!' }}
         />
-        <Button disabled={isPending}>
-          {isPending && (
-            <Icons.spinner
-              className="mr-2 h-4 w-4 animate-spin"
-              aria-hidden="true"
-            />
-          )}
-          Create account
-          <span className="sr-only">Create account</span>
-        </Button>
-      </form>
-    </Form>
+      ) : !verifyResult ? (
+        <BarLoader width={'100%'} />
+      ) : (
+        <InfoCard type={verifyResult} />
+      )}
+
+      <Button className="w-full">
+        <Link aria-label="Back to login" href="/">
+          Back to login
+        </Link>
+      </Button>
+    </div>
   )
 }

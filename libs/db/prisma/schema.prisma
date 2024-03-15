@@ -35,6 +35,7 @@ model Manager {
 model Credentials {
     uid          String   @id
     email        String   @unique
+    emailVerified DateTime?
     user         User     @relation(fields: [uid], references: [uid])
     passwordHash String
     createdAt    DateTime @default(now())

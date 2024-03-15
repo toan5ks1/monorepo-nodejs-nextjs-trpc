@@ -1,15 +1,6 @@
 'use client'
 
 import * as React from 'react'
-// import { useRouter } from 'next/navigation'
-// import { useSignUp } from "@clerk/nextjs"
-// import { zodResolver } from "@hookform/resolvers/zod"
-// import { useForm } from 'react-hook-form'
-// import { toast } from 'sonner'
-// import type { z } from "zod"
-
-// import { catchClerkError } from "@/lib/utils"
-// import { authSchema } from '@/lib/validations/auth'
 import { Button } from '../ui/button'
 import {
   Form,
@@ -37,20 +28,21 @@ export function SignUpForm() {
   const form = useFormRegister()
   const { mutateAsync: signUp } =
     trpcClient.auth.registerWithCredentials.useMutation()
-  const { mutateAsync: generateToken } =
+  const { mutateAsync: sendMailVerification } =
     trpcClient.auth.generateVerificationToken.useMutation()
 
   function onSubmit(data: FormTypeRegister) {
     startTransition(async () => {
       try {
         const user = await signUp(data)
+
         if (user?.user) {
-          // Send email verification code
-          await generateToken({ email: data.email })
+          await sendMailVerification({ email: data.email })
 
           router.push('/signup/verify-email')
+
           toast.message('Check your email', {
-            description: 'We sent you a 6-digit verification code.',
+            description: 'We sent you a verification link.',
           })
         }
       } catch (err) {

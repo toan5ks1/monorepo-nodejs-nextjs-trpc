@@ -27,7 +27,7 @@ export default function VerifyEmailPage() {
             Verify your email address to complete your account creation
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4">
+        <CardContent>
           <VerifyEmailForm />
         </CardContent>
       </Card>

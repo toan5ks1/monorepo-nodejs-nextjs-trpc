@@ -6,6 +6,8 @@ import {
   schemaUser,
   schemaRegisterWithProvider,
   schemaEmail,
+  schemaEmailToken,
+  schemaToken,
 } from '@foundation-trpc/forms/src/schemas'
 
 import { prisma } from '@foundation-trpc/db'
@@ -14,6 +16,8 @@ import * as bcrypt from 'bcryptjs'
 import { v4 as uuid } from 'uuid'
 import { AuthProviderType } from '@foundation-trpc/db/types'
 import { sign } from 'jsonwebtoken'
+import { sendVerificationEmail } from './email'
+import { type Result } from '../types'
 
 export const authRoutes = router({
   users: publicProcedure.use(isAuthed('admin')).query(() => {
@@ -64,11 +68,9 @@ export const authRoutes = router({
       const salt = bcrypt.genSaltSync()
       const passwordHash = bcrypt.hashSync(password, salt)
 
-      const uid = uuid()
-
       const user = await prisma.user.create({
         data: {
-          uid,
+          uid: uuid(),
           name,
           image,
           Credentials: { create: { email, passwordHash } },
@@ -125,10 +127,6 @@ export const authRoutes = router({
   generateVerificationToken: publicProcedure
     .input(schemaEmail)
     .mutation(async ({ input: { email } }) => {
-      const token = uuid()
-      const expires = new Date(new Date().getTime() + 3600 * 1000)
-      console.log(expires)
-
       const existingToken = await prisma.verificationToken.findFirst({
         where: { email },
       })
@@ -141,12 +139,53 @@ export const authRoutes = router({
         })
       }
 
-      return await prisma.verificationToken.create({
+      const verificationToken = await prisma.verificationToken.create({
         data: {
           email,
-          token,
-          expires,
+          token: uuid(),
+          expires: new Date(new Date().getTime() + 3600 * 1000),
         },
       })
+
+      return await sendVerificationEmail({
+        email: verificationToken.email,
+        token: verificationToken.token,
+      })
+    }),
+  verifyEmailToken: publicProcedure
+    .input(schemaToken)
+    .query(async ({ input: { token } }) => {
+      try {
+        const existingToken = await prisma.verificationToken.findUnique({
+          where: { token },
+        })
+
+        if (!existingToken) {
+          return { success: false, message: 'Token does not exist!' }
+        }
+
+        const hasExpired = new Date(existingToken.expires) < new Date()
+
+        if (hasExpired) {
+          return { success: false, message: 'Token has expired!' }
+        }
+
+        await prisma.credentials.update({
+          where: { email: existingToken.email },
+          data: {
+            emailVerified: new Date(),
+            email: existingToken.email,
+          },
+        })
+
+        await prisma.verificationToken.delete({
+          where: { id: existingToken.id },
+        })
+      } catch (err) {
+        console.log(err)
+        return { success: false, message: 'Something went wrong!' }
+      }
+
+      return { success: true, message: 'Email is verified!' }
     }),
 })

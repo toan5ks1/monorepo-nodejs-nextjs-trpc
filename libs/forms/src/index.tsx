@@ -1,5 +1,5 @@
 import { ZodIssue, z } from 'zod'
-import { cartLineItemSchema, schemaSendMail } from './schemas'
+import { cartLineItemSchema, schemaSendMail, schemaEmailToken } from './schemas'
 
 export {
   useFormContext,
@@ -14,6 +14,8 @@ export { type ZodIssue } from 'zod'
 export type CartLineItem = z.infer<typeof cartLineItemSchema>
 
 export type FormTypeSendMail = z.infer<typeof schemaSendMail>
+
+export type FormTypeEmailToken = z.infer<typeof schemaEmailToken>
 
 export type ValidationError = Partial<Pick<ZodIssue, 'path' | 'message'>>
 
