@@ -54,16 +54,6 @@ enum AuthProviderType {
     CREDENTIALS
 }
 
-model Categories {
-  id         Int       @id @default(autoincrement())
-  title      String    @db.VarChar(191)
-  description String?
-  images     Json?
-  slug       String
-  parentId   Int?
-  createdAt  DateTime  @default(now())
-}
-
 model VerificationToken {
   id String @id @default(cuid())
   email String

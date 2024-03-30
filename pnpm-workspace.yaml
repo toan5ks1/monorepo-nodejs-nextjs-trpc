@@ -1,5 +1,7 @@
 packages:
   - 'apps/api/identity-service/*'
+  - 'apps/api/resource-service/*'
   - 'apps/*'
   - 'libs/trpc-client/identity-service*'
+  - 'libs/trpc-client/resource-service*'
   - 'libs/*'

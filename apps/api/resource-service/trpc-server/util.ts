@@ -1,4 +1,4 @@
-import { prisma } from '@pod-platform/db-identity'
+import { prisma } from '@pod-platform/db-resource'
 import { Role } from './types'
 import { TRPCError } from '@trpc/server'
 

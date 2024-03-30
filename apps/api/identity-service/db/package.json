@@ -1,5 +1,5 @@
 {
-  "name": "@pod-platform/db",
+  "name": "@pod-platform/db-identity",
   "version": "1.0.0",
   "description": "",
   "scripts": {

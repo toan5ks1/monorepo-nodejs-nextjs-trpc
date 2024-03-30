@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { Button } from '../ui/button'
 import Link from 'next/link'
 import { InfoCard } from '../cards/info-card'
-import { trpcClient } from '@pod-platform/trpc-client/src/client'
+import { trpcClient } from '@pod-platform/trpc-client-identity/src/client'
 import { BarLoader } from '../loader/bar-loader'
 
 interface VerifyResult {

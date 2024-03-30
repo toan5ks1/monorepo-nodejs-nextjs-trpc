@@ -1,5 +1,5 @@
 {
-  "name": "@pod-platform/trpc-server-identity",
+  "name": "@pod-platform/trpc-server-resource",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@pod-platform/db-identity": "workspace:^",
+    "@pod-platform/db-resource": "workspace:^",
     "@pod-platform/forms": "workspace:^",
     "@trpc/server": "^10.45.0",
     "@aws-sdk/client-ses": "^3.215.0",

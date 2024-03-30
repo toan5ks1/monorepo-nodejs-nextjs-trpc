@@ -10,11 +10,11 @@ import {
   schemaToken,
 } from '@pod-platform/forms/src/validations/auth'
 
-import { prisma } from '@pod-platform/db'
+import { prisma } from '@pod-platform/db-identity'
 import { TRPCError } from '@trpc/server'
 import * as bcrypt from 'bcryptjs'
 import { v4 as uuid } from 'uuid'
-import { AuthProviderType } from '@pod-platform/db/types'
+import { AuthProviderType } from '@pod-platform/db-identity/types'
 import { sign } from 'jsonwebtoken'
 import { sendVerificationEmail } from './email'
 import { type Result } from '../types'

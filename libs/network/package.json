@@ -19,7 +19,7 @@
     "next-auth": "^4.24.5"
   },
   "dependencies": {
-    "@pod-platform/trpc-client": "workspace:^",
+    "@pod-platform/trpc-client-identity": "workspace:^",
     "jsonwebtoken": "^9.0.2"
   }
 }

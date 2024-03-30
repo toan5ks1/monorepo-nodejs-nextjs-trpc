@@ -49,3 +49,11 @@ export interface FooterItem {
 export type MainNavItem = NavItemWithOptionalChildren
 
 export type SidebarNavItem = NavItemWithChildren
+
+export type User = {
+  name?: string | null | undefined
+  email?: string | null | undefined
+  image?: string | null | undefined
+} & {
+  uid: string
+}

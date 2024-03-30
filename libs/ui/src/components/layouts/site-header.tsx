@@ -19,13 +19,15 @@ import { Icons } from '../icons'
 import { MainNav } from '../layouts/main-nav'
 import { MobileNav } from '../layouts/mobile-nav'
 import { Button } from '../ui/button'
-import { trpc } from '@pod-platform/trpc-client/src'
-import { getAuth } from '@pod-platform/network/src/auth/authOptions'
+import { trpc } from '@pod-platform/trpc-client-resource/src'
 import { generateMenuTree } from '../../util'
+import { User } from '../../util/types'
 
-export async function SiteHeader() {
-  const session = await getAuth()
-  const user = session?.user
+interface SiteHeaderProps {
+  user: User
+}
+
+export async function SiteHeader({ user }: SiteHeaderProps) {
   const categories = await trpc.resource.categories.query()
 
   return (

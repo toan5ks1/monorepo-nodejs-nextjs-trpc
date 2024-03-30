@@ -1,5 +1,6 @@
 import { SiteFooter } from '@cmp/layouts/site-footer'
 import { SiteHeader } from '@cmp/layouts/site-header'
+import { getAuth } from '@pod-platform/network/src/auth/authOptions'
 
 interface LobyLayoutProps
   extends React.PropsWithChildren<{
@@ -7,9 +8,11 @@ interface LobyLayoutProps
   }> {}
 
 export default async function LobyLayout({ children, modal }: LobyLayoutProps) {
+  const session = await getAuth()
+
   return (
     <div className="relative flex min-h-screen flex-col">
-      <SiteHeader />
+      <SiteHeader user={session?.user} />
       <main className="flex-1">
         {children}
         {modal}
