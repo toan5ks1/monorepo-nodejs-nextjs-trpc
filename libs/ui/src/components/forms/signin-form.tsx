@@ -44,7 +44,7 @@ export function SignInForm() {
       }
     })
   }
-  console.log('signup')
+
   return (
     <Form {...form}>
       <form

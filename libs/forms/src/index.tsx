@@ -1,5 +1,9 @@
 import { ZodIssue, z } from 'zod'
-import { cartLineItemSchema, schemaSendMail, schemaEmailToken } from './schemas'
+import {
+  cartLineItemSchema,
+  schemaSendMail,
+  schemaEmailToken,
+} from './validations/auth'
 
 export {
   useFormContext,

@@ -1,16 +1,11 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { useSignIn } from "@clerk/nextjs"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { toast } from "sonner"
-import type { z } from "zod"
+import * as React from 'react'
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
-import { catchClerkError } from "@/lib/utils"
-import { checkEmailSchema } from "@/lib/validations/auth"
-import { Button } from "@/components/ui/button"
+// import { catchClerkError } from '@/lib/utils'
+import { Button } from '../ui/button'
 import {
   Form,
   FormControl,
@@ -18,45 +13,38 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Icons } from "@/components/icons"
-
-type Inputs = z.infer<typeof checkEmailSchema>
+} from '../ui/form'
+import { Input } from '../ui/input'
+import { Icons } from '../icons'
+import {
+  type FormTypeResetPassword,
+  useFormResetPassword,
+} from '@foundation-trpc/forms/src/form'
 
 export function ResetPasswordForm() {
   const router = useRouter()
-  const { isLoaded, signIn } = useSignIn()
   const [isPending, startTransition] = React.useTransition()
 
   // react-hook-form
-  const form = useForm<Inputs>({
-    resolver: zodResolver(checkEmailSchema),
-    defaultValues: {
-      email: "",
-    },
-  })
+  const form = useFormResetPassword()
 
-  function onSubmit(data: Inputs) {
-    if (!isLoaded) return
-
-    startTransition(async () => {
-      try {
-        const firstFactor = await signIn.create({
-          strategy: "reset_password_email_code",
-          identifier: data.email,
-        })
-
-        if (firstFactor.status === "needs_first_factor") {
-          router.push("/signin/reset-password/confirm")
-          toast.message("Check your email", {
-            description: "We sent you a 6-digit verification code.",
-          })
-        }
-      } catch (err) {
-        catchClerkError(err)
-      }
-    })
+  function onSubmit(data: FormTypeResetPassword) {
+    // startTransition(async () => {
+    //   try {
+    //     const firstFactor = await signIn.create({
+    //       strategy: 'reset_password_email_code',
+    //       identifier: data.email,
+    //     })
+    //     if (firstFactor.status === 'needs_first_factor') {
+    //       router.push('/signin/reset-password/confirm')
+    //       toast.message('Check your email', {
+    //         description: 'We sent you a 6-digit verification code.',
+    //       })
+    //     }
+    //   } catch (err) {
+    //     catchClerkError(err)
+    //   }
+    // })
   }
 
   return (

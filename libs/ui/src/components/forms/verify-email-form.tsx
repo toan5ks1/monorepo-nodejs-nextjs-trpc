@@ -1,22 +1,47 @@
 'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { Button } from '../ui/button'
-import { BarLoader } from 'react-spinners'
 import Link from 'next/link'
 import { InfoCard } from '../cards/info-card'
 import { trpcClient } from '@foundation-trpc/trpc-client/src/client'
+import { BarLoader } from '../loader/bar-loader'
+
+interface VerifyResult {
+  message: string
+  success: boolean
+}
 
 export function VerifyEmailForm() {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
   const { data: verifyResult } = trpcClient.auth.verifyEmailToken.useQuery({
     token: token ?? '',
   })
 
-  if (verifyResult?.success) {
-    router.push('/')
+  // if (verifyResult?.success) {
+  //   setTimeout(() => router.push('/signin'), 2500)
+  // }
+
+  const renderResult = (result?: VerifyResult) => {
+    switch (result?.success) {
+      case undefined:
+        return <BarLoader width={'100%'} />
+      case true:
+        return (
+          <>
+            <InfoCard type={verifyResult!} />
+            {/* <span className="bg-background text-muted-foreground">
+              Redirecting to login...
+            </span>
+            <BarLoader width={'100%'} cssOverride={{ marginTop: 8 }} /> */}
+          </>
+        )
+      case false:
+        return <InfoCard type={verifyResult!} />
+      default:
+        return
+    }
   }
 
   return (
@@ -25,14 +50,12 @@ export function VerifyEmailForm() {
         <InfoCard
           type={{ success: true, message: 'Confirmation email sent!' }}
         />
-      ) : !verifyResult ? (
-        <BarLoader width={'100%'} />
       ) : (
-        <InfoCard type={verifyResult} />
+        renderResult(verifyResult)
       )}
 
       <Button className="w-full">
-        <Link aria-label="Back to login" href="/">
+        <Link aria-label="Back to login" href="/signin">
           Back to login
         </Link>
       </Button>

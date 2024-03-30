@@ -7,7 +7,8 @@ import {
   schemaRegister,
   schemaSignIn,
   verifyEmailSchema,
-} from './schemas'
+  checkEmailSchema,
+} from './validations/auth'
 
 export type InputNewsletterForm = z.infer<typeof schemaEmail>
 
@@ -48,5 +49,15 @@ export const useFormVerifyEmail = () =>
     resolver: zodResolver(verifyEmailSchema),
     defaultValues: {
       code: '',
+    },
+  })
+
+export type FormTypeResetPassword = z.infer<typeof checkEmailSchema>
+
+export const useFormResetPassword = () =>
+  useForm<FormTypeResetPassword>({
+    resolver: zodResolver(checkEmailSchema),
+    defaultValues: {
+      email: '',
     },
   })

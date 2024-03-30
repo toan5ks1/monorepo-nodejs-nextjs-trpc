@@ -8,7 +8,7 @@ import {
   schemaEmail,
   schemaEmailToken,
   schemaToken,
-} from '@foundation-trpc/forms/src/schemas'
+} from '@foundation-trpc/forms/src/validations/auth'
 
 import { prisma } from '@foundation-trpc/db'
 import { TRPCError } from '@trpc/server'
