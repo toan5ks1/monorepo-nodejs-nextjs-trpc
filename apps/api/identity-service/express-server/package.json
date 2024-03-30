@@ -1,5 +1,5 @@
 {
-  "name": "@foundation-trpc/api",
+  "name": "@pod-platform/api-identity",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@foundation-trpc/trpc-server": "workspace:^",
+    "@pod-platform/trpc-server-identity": "workspace:^",
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
     "express": "^4.18.2"

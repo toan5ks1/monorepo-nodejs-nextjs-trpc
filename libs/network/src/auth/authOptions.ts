@@ -1,7 +1,7 @@
 import { NextAuthOptions, getServerSession } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { trpc } from '@foundation-trpc/trpc-client/src'
+import { trpc } from '@pod-platform/trpc-client/src'
 import { JWT } from 'next-auth/jwt'
 import { sign, verify } from 'jsonwebtoken'
 

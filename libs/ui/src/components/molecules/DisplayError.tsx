@@ -1,5 +1,5 @@
-import { ValidationError } from '@foundation-trpc/util/types'
-import { focusOnErrorPath } from '@foundation-trpc/util/functions'
+import { ValidationError } from '@pod-platform/util/types'
+import { focusOnErrorPath } from '@pod-platform/util/functions'
 
 export const DisplayErrors = ({ errors }: { errors: ValidationError[] }) => {
   return (

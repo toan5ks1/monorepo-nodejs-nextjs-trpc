@@ -1,10 +1,7 @@
 import { publicProcedure, router } from '../trpc'
 
-import {
-  FormTypeEmailToken,
-  FormTypeSendMail,
-} from '@foundation-trpc/forms/src'
-import { schemaEmailToken } from '@foundation-trpc/forms/src/validations/auth'
+import { FormTypeEmailToken, FormTypeSendMail } from '@pod-platform/forms/src'
+import { schemaEmailToken } from '@pod-platform/forms/src/validations/auth'
 import { adminMail, transporter, webUrl } from '../libs/sesClient'
 
 export const sendEmail = async ({

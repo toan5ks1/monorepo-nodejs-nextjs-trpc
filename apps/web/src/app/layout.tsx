@@ -1,7 +1,7 @@
 // import type { Metadata } from 'next'
 // import { Inter } from 'next/font/google'
-// import '@foundation-trpc/ui/src/index.css'
-// import { Provider } from '@foundation-trpc/trpc-client/src/Provider'
+// import '@pod-platform/ui/src/index.css'
+// import { Provider } from '@pod-platform/trpc-client/src/Provider'
 // import { SessionProvider } from '@cmp/molecules/SessionProvider'
 // import { Container } from '@cmp/atoms/container'
 // import { Navbar } from '@cmp/organisms/Navbar'
@@ -40,20 +40,20 @@
 
 import type { Metadata, Viewport } from 'next'
 
-import '@foundation-trpc/ui/src/index.css'
+import '@pod-platform/ui/src/index.css'
 
-import { siteConfig } from '@foundation-trpc/util/config/site'
+import { siteConfig } from '@pod-platform/util/config/site'
 import {
   fontHeading,
   fontMono,
   fontSans,
-} from '@foundation-trpc/ui/src/util/fonts'
+} from '@pod-platform/ui/src/util/fonts'
 import { Toaster } from '@cmp/ui/toaster'
 import { Analytics } from '@cmp/analytics'
 import { ThemeProvider } from '@cmp/providers'
-import { Provider } from '@foundation-trpc/trpc-client/src/Provider'
+import { Provider } from '@pod-platform/trpc-client/src/Provider'
 import { SessionProvider } from '@cmp/molecules/SessionProvider'
-import { cn } from '@foundation-trpc/ui/src/util'
+import { cn } from '@pod-platform/ui/src/util'
 import { env } from '@web/src/env.mjs'
 
 export const metadata: Metadata = {

@@ -24,9 +24,9 @@ importers:
         specifier: ^5
         version: 5.3.3
 
-  apps/api/common-service/express-server:
+  apps/api/identity-service/express-server:
     dependencies:
-      '@foundation-trpc/trpc-server':
+      '@pod-platform/trpc-server-identity':
         specifier: workspace:^
         version: link:../trpc-server
       cors:
@@ -52,15 +52,15 @@ importers:
         specifier: ^5
         version: 5.3.3
 
-  apps/api/common-service/trpc-server:
+  apps/api/identity-service/trpc-server:
     dependencies:
       '@aws-sdk/client-ses':
         specifier: ^3.215.0
         version: 3.529.1
-      '@foundation-trpc/db':
+      '@pod-platform/db':
         specifier: workspace:^
         version: link:../../../../libs/db
-      '@foundation-trpc/forms':
+      '@pod-platform/forms':
         specifier: workspace:^
         version: link:../../../../libs/forms
       '@trpc/server':
@@ -97,19 +97,19 @@ importers:
 
   apps/web:
     dependencies:
-      '@foundation-trpc/forms':
+      '@pod-platform/forms':
         specifier: workspace:^
         version: link:../../libs/forms
-      '@foundation-trpc/network':
+      '@pod-platform/network':
         specifier: workspace:^
         version: link:../../libs/network
-      '@foundation-trpc/trpc-client':
+      '@pod-platform/trpc-client':
         specifier: workspace:^
-        version: link:../../libs/trpc-client
-      '@foundation-trpc/ui':
+        version: link:../../libs/trpc-client/identity-service
+      '@pod-platform/ui':
         specifier: workspace:^
         version: link:../../libs/ui
-      '@foundation-trpc/util':
+      '@pod-platform/util':
         specifier: workspace:^
         version: link:../../libs/util
       '@t3-oss/env-nextjs':
@@ -190,9 +190,9 @@ importers:
 
   libs/network:
     dependencies:
-      '@foundation-trpc/trpc-client':
+      '@pod-platform/trpc-client':
         specifier: workspace:^
-        version: link:../trpc-client
+        version: link:../trpc-client/identity-service
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
@@ -207,11 +207,11 @@ importers:
         specifier: ^4.24.5
         version: 4.24.5(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)
 
-  libs/trpc-client:
+  libs/trpc-client/identity-service:
     dependencies:
-      '@foundation-trpc/trpc-server':
+      '@pod-platform/trpc-server-identity':
         specifier: workspace:^
-        version: link:../../apps/api/common-service/trpc-server
+        version: link:../../../apps/api/identity-service/trpc-server
       '@tanstack/react-query':
         specifier: 4.36.1
         version: 4.36.1(react-dom@18.2.0)(react@18.2.0)
@@ -224,7 +224,7 @@ importers:
     devDependencies:
       '@types/react':
         specifier: ^18
-        version: 18.2.48
+        version: 18.2.55
       next:
         specifier: 14.1.0
         version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -234,21 +234,21 @@ importers:
 
   libs/ui:
     dependencies:
-      '@foundation-trpc/forms':
-        specifier: workspace:^
-        version: link:../forms
-      '@foundation-trpc/network':
-        specifier: workspace:^
-        version: link:../network
-      '@foundation-trpc/trpc-client':
-        specifier: workspace:^
-        version: link:../trpc-client
-      '@foundation-trpc/util':
-        specifier: workspace:^
-        version: link:../util
       '@loglib/tracker':
         specifier: ^0.8.0
         version: 0.8.0(react@18.2.0)
+      '@pod-platform/forms':
+        specifier: workspace:^
+        version: link:../forms
+      '@pod-platform/network':
+        specifier: workspace:^
+        version: link:../network
+      '@pod-platform/trpc-client':
+        specifier: workspace:^
+        version: link:../trpc-client/identity-service
+      '@pod-platform/util':
+        specifier: workspace:^
+        version: link:../util
       '@radix-ui/react-accordion':
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)

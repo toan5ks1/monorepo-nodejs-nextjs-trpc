@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { siteConfig } from '@foundation-trpc/util/config/site'
+import { siteConfig } from '@pod-platform/util/config/site'
 import { cn } from '../../util'
 import { buttonVariants } from '../ui/button'
 import { Shell } from '../shells/shell'

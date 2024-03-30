@@ -1,5 +1,5 @@
 {
-  "name": "@foundation-trpc/web",
+  "name": "@pod-platform/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,11 +10,11 @@
     "tsc": "tsc --noEmit"
   },
   "dependencies": {
-    "@foundation-trpc/forms": "workspace:^",
-    "@foundation-trpc/network": "workspace:^",
-    "@foundation-trpc/trpc-client": "workspace:^",
-    "@foundation-trpc/ui": "workspace:^",
-    "@foundation-trpc/util": "workspace:^",
+    "@pod-platform/forms": "workspace:^",
+    "@pod-platform/network": "workspace:^",
+    "@pod-platform/trpc-client": "workspace:^",
+    "@pod-platform/ui": "workspace:^",
+    "@pod-platform/util": "workspace:^",
     "@t3-oss/env-nextjs": "^0.7.3",
     "next": "14.1.0",
     "next-auth": "^4.24.5",

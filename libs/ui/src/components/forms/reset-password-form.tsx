@@ -19,7 +19,7 @@ import { Icons } from '../icons'
 import {
   type FormTypeResetPassword,
   useFormResetPassword,
-} from '@foundation-trpc/forms/src/form'
+} from '@pod-platform/forms/src/form'
 
 export function ResetPasswordForm() {
   const router = useRouter()

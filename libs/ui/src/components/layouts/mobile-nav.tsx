@@ -6,7 +6,7 @@ import { useSelectedLayoutSegment } from 'next/navigation'
 
 import { ViewVerticalIcon } from '@radix-ui/react-icons'
 
-import { siteConfig } from '@foundation-trpc/util/config/site'
+import { siteConfig } from '@pod-platform/util/config/site'
 import { cn } from '../../util'
 import {
   Accordion,

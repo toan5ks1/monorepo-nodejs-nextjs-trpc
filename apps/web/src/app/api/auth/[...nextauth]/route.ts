@@ -1,5 +1,5 @@
 import NextAuth from 'next-auth'
-import { authOptions } from '@foundation-trpc/network/src/auth/authOptions'
+import { authOptions } from '@pod-platform/network/src/auth/authOptions'
 
 const handler = NextAuth(authOptions)
 

@@ -1,5 +1,5 @@
 {
-  "name": "@foundation-trpc/network",
+  "name": "@pod-platform/network",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,7 +19,7 @@
     "next-auth": "^4.24.5"
   },
   "dependencies": {
-    "@foundation-trpc/trpc-client": "workspace:^",
+    "@pod-platform/trpc-client": "workspace:^",
     "jsonwebtoken": "^9.0.2"
   }
 }

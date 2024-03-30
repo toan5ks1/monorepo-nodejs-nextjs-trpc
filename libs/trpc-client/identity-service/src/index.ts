@@ -1,5 +1,5 @@
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
-import { AppRouter } from '@foundation-trpc/trpc-server/routers'
+import { AppRouter } from '@pod-platform/trpc-server-identity/routers'
 import { cookies } from 'next/headers'
 
 export const trpc = createTRPCProxyClient<AppRouter>({

@@ -1,1 +1,1 @@
-import '@foundation-trpc/network/next-auth'
+import '@pod-platform/network/next-auth'

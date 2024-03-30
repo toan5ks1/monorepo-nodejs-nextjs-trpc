@@ -9,7 +9,7 @@ import { StoreCard } from '@cmp/cards/store-card'
 import { Shell } from '@cmp/shells/shell'
 import { ProductCardSkeleton } from '@cmp/skeletons/product-card-skeleton'
 import { StoreCardSkeleton } from '@cmp/skeletons/store-card-skeleton'
-import { cn } from '@foundation-trpc/ui/src/util'
+import { cn } from '@pod-platform/ui/src/util'
 
 export default async function IndexPage() {
   return (

@@ -17,7 +17,7 @@ import { Icons } from '../icons'
 import {
   InputNewsletterForm,
   useFormNewsletter,
-} from '@foundation-trpc/forms/src/form'
+} from '@pod-platform/forms/src/form'
 import { Button } from '../ui/button'
 
 export function JoinNewsletterForm() {

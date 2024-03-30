@@ -14,7 +14,7 @@ import {
 import { Input } from '../ui/input'
 import { Icons } from '../icons'
 import { PasswordInput } from '../password-input'
-import { FormTypeSignIn, useFormSignIn } from '@foundation-trpc/forms/src/form'
+import { FormTypeSignIn, useFormSignIn } from '@pod-platform/forms/src/form'
 import { catchError } from '../../util'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'

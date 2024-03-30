@@ -7,7 +7,7 @@ import { MinusIcon, PlusIcon, TrashIcon } from '@radix-ui/react-icons'
 // import { catchError } from '../../util'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
-import { CartLineItem } from '@foundation-trpc/forms/src'
+import { CartLineItem } from '@pod-platform/forms/src'
 
 interface UpdateCartProps {
   cartLineItem: CartLineItem

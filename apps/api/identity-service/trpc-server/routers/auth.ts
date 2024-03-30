@@ -8,13 +8,13 @@ import {
   schemaEmail,
   schemaEmailToken,
   schemaToken,
-} from '@foundation-trpc/forms/src/validations/auth'
+} from '@pod-platform/forms/src/validations/auth'
 
-import { prisma } from '@foundation-trpc/db'
+import { prisma } from '@pod-platform/db'
 import { TRPCError } from '@trpc/server'
 import * as bcrypt from 'bcryptjs'
 import { v4 as uuid } from 'uuid'
-import { AuthProviderType } from '@foundation-trpc/db/types'
+import { AuthProviderType } from '@pod-platform/db/types'
 import { sign } from 'jsonwebtoken'
 import { sendVerificationEmail } from './email'
 import { type Result } from '../types'

@@ -13,11 +13,8 @@ import {
 import { Input } from '../ui/input'
 import { Icons } from '../icons'
 import { PasswordInput } from '../password-input'
-import {
-  FormTypeRegister,
-  useFormRegister,
-} from '@foundation-trpc/forms/src/form'
-import { trpcClient } from '@foundation-trpc/trpc-client/src/client'
+import { FormTypeRegister, useFormRegister } from '@pod-platform/forms/src/form'
+import { trpcClient } from '@pod-platform/trpc-client/src/client'
 import { useRouter } from 'next/navigation'
 import { catchError } from '../../util'
 import { toast } from 'sonner'

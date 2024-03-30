@@ -1,5 +1,5 @@
 {
-  "name": "@foundation-trpc/ui",
+  "name": "@pod-platform/ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@foundation-trpc/forms": "workspace:^",
-    "@foundation-trpc/network": "workspace:^",
-    "@foundation-trpc/trpc-client": "workspace:^",
-    "@foundation-trpc/util": "workspace:^",
+    "@pod-platform/forms": "workspace:^",
+    "@pod-platform/network": "workspace:^",
+    "@pod-platform/trpc-client": "workspace:^",
+    "@pod-platform/util": "workspace:^",
     "@loglib/tracker": "^0.8.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-alert-dialog": "^1.0.5",

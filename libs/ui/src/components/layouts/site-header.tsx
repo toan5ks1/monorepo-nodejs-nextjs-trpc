@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { DashboardIcon, ExitIcon, GearIcon } from '@radix-ui/react-icons'
 
-import { dashboardConfig } from '@foundation-trpc/util/config/dashboard'
-import { siteConfig } from '@foundation-trpc/util/config/site'
+import { dashboardConfig } from '@pod-platform/util/config/dashboard'
+import { siteConfig } from '@pod-platform/util/config/site'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
   DropdownMenu,
@@ -19,8 +19,8 @@ import { Icons } from '../icons'
 import { MainNav } from '../layouts/main-nav'
 import { MobileNav } from '../layouts/mobile-nav'
 import { Button } from '../ui/button'
-import { trpc } from '@foundation-trpc/trpc-client/src'
-import { getAuth } from '@foundation-trpc/network/src/auth/authOptions'
+import { trpc } from '@pod-platform/trpc-client/src'
+import { getAuth } from '@pod-platform/network/src/auth/authOptions'
 import { generateMenuTree } from '../../util'
 
 export async function SiteHeader() {

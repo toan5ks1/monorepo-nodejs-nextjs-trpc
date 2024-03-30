@@ -1,6 +1,6 @@
 import { publicProcedure, router } from '../trpc'
 
-import { prisma } from '@foundation-trpc/db'
+import { prisma } from '@pod-platform/db'
 
 export const resourceRoutes = router({
   categories: publicProcedure.query(async () => {

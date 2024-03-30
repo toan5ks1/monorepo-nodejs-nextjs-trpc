@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-import { trpcExpress } from '@foundation-trpc/trpc-server'
+import { trpcExpress } from '@pod-platform/trpc-server-identity'
 import cors from 'cors'
 import express from 'express'
 
