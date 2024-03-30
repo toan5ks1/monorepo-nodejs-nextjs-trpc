@@ -17,7 +17,7 @@ import {
 import { Button } from '../ui/button'
 import { ScrollArea } from '../ui/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet'
-import { Icons } from '../icons'
+import { Icons } from '../molecules/icons'
 import { MainNavItem, SidebarNavItem } from '../../util/types'
 
 interface MobileNavProps {

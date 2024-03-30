@@ -11,8 +11,8 @@ import {
   FormMessage,
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { Icons } from '../icons'
-import { PasswordInput } from '../password-input'
+import { Icons } from '../molecules/icons'
+import { PasswordInput } from '../molecules/password-input'
 import { FormTypeRegister, useFormRegister } from '@pod-platform/forms/src/form'
 import { trpcClient } from '@pod-platform/trpc-client-identity/src/client'
 import { useRouter } from 'next/navigation'

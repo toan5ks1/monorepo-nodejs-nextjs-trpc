@@ -7,7 +7,7 @@ import { cn } from '../../util'
 import { useMounted } from '@pod-platform/util/hooks/use-mounted'
 import { Button, buttonVariants } from '../ui/button'
 import { Skeleton } from '../ui/skeleton'
-import { Icons } from '../icons'
+import { Icons } from '../molecules/icons'
 import { signOut } from 'next-auth/react'
 
 export function LogOutButtons() {

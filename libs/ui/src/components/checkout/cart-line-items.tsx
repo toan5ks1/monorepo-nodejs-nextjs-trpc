@@ -4,7 +4,7 @@ import { Slot } from '@radix-ui/react-slot'
 import { ScrollArea } from '../ui/scroll-area'
 import { Separator } from '../ui/separator'
 import { UpdateCart } from '../checkout/update-cart'
-import { Icons } from '../icons'
+import { Icons } from '../molecules/icons'
 import { cn, formatPrice } from '../../util'
 import { CartLineItem } from '@pod-platform/forms/src'
 

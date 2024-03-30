@@ -12,7 +12,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '../ui/navigation-menu'
-import { Icons } from '../icons'
+import { Icons } from '../molecules/icons'
 import { cn, slugify } from '../../util'
 import { MenuItem } from '../../util/types'
 

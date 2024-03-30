@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Icons } from '../components/icons'
+import { Icons } from '../components/molecules/icons'
 
 export type BaseComponent = {
   children?: ReactNode

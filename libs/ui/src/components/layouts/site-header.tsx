@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
 import { CartSheet } from '../checkout/cart-sheet'
-import { Icons } from '../icons'
+import { Icons } from '../molecules/icons'
 import { MainNav } from '../layouts/main-nav'
 import { MobileNav } from '../layouts/mobile-nav'
 import { Button } from '../ui/button'

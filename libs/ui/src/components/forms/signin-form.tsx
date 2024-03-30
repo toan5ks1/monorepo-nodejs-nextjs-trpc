@@ -12,8 +12,8 @@ import {
   FormMessage,
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { Icons } from '../icons'
-import { PasswordInput } from '../password-input'
+import { Icons } from '../molecules/icons'
+import { PasswordInput } from '../molecules/password-input'
 import { FormTypeSignIn, useFormSignIn } from '@pod-platform/forms/src/form'
 import { catchError } from '../../util'
 import { toast } from 'sonner'

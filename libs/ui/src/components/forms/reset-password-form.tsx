@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from '../ui/form'
 import { Input } from '../ui/input'
-import { Icons } from '../icons'
+import { Icons } from '../molecules/icons'
 import {
   type FormTypeResetPassword,
   useFormResetPassword,

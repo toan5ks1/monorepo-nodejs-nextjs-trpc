@@ -13,7 +13,7 @@ import {
   SheetTrigger,
 } from '../ui/sheet'
 import { CartLineItems } from '../checkout/cart-line-items'
-import { Icons } from '../icons'
+import { Icons } from '../molecules/icons'
 import { cn, formatPrice } from '../../util'
 
 export async function CartSheet() {

@@ -52,7 +52,7 @@ import { Toaster } from '@cmp/ui/toaster'
 import { Analytics } from '@cmp/analytics'
 import { ThemeProvider } from '@cmp/providers'
 import { Provider } from '@pod-platform/trpc-client/src/Provider'
-import { SessionProvider } from '@cmp/molecules/SessionProvider'
+import { SessionProvider } from '@cmp/molecules/session-provider'
 import { cn } from '@pod-platform/ui/src/util'
 import { env } from '@web/src/env.mjs'
 

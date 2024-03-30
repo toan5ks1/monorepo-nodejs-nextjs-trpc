@@ -6,7 +6,7 @@ import * as React from 'react'
 // import { toast } from 'sonner'
 
 import { Button } from '../ui/button'
-import { Icons } from '../icons'
+import { Icons } from '../molecules/icons'
 
 import { signIn } from 'next-auth/react'
 import { toast } from 'sonner'

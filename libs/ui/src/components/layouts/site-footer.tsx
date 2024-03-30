@@ -4,7 +4,7 @@ import { siteConfig } from '@pod-platform/util/config/site'
 import { cn } from '../../util'
 import { buttonVariants } from '../ui/button'
 import { Shell } from '../shells/shell'
-import { Icons } from '../icons'
+import { Icons } from '../molecules/icons'
 import { ModeToggle } from './mode-toggle'
 import { JoinNewsletterForm } from '../forms/join-newsletter-form'
 

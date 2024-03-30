@@ -7,7 +7,7 @@ import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
 import { cn } from '../../util'
 import { Card, CardDescription, CardTitle } from '../ui/card'
 import { buttonVariants } from '../ui/button'
-import { ClientButton } from '../client-button'
+import { ClientButton } from '../molecules/client-button'
 
 interface ErrorCardProps extends React.ComponentPropsWithoutRef<typeof Card> {
   icon?: React.ComponentType<{ className?: string }>
