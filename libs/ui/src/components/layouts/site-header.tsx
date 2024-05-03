@@ -19,21 +19,18 @@ import { Icons } from '../molecules/icons'
 import { MainNav } from '../layouts/main-nav'
 import { MobileNav } from '../layouts/mobile-nav'
 import { Button } from '../ui/button'
-import { trpc } from '@pod-platform/trpc-client-resource/src'
-import { generateMenuTree } from '../../util'
+// import { generateMenuTree } from '../../util'
 import { User } from '../../util/types'
 
 interface SiteHeaderProps {
-  user: User
+  user?: User
 }
 
 export async function SiteHeader({ user }: SiteHeaderProps) {
-  const categories = await trpc.resource.categories.query()
-
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-16 items-center">
-        <MainNav categories={generateMenuTree(categories, null)} />
+        <MainNav />
         <MobileNav
           mainNavItems={siteConfig.mainNav}
           sidebarNavItems={dashboardConfig.sidebarNav}

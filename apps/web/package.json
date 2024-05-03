@@ -14,14 +14,13 @@
     "@pod-platform/network": "workspace:^",
     "@pod-platform/ui": "workspace:^",
     "@pod-platform/util": "workspace:^",
-    "@pod-platform/trpc-client-identity": "workspace:^",
-    "@pod-platform/trpc-client-resource": "workspace:^",
     "@t3-oss/env-nextjs": "^0.7.3",
     "next": "14.1.0",
     "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
-    "react-wrap-balancer": "^1.1.0"
+    "react-wrap-balancer": "^1.1.0",
+    "sonner": "^0.6.2"
   },
   "devDependencies": {
     "@types/node": "^20",

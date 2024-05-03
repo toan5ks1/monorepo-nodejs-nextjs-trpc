@@ -1,7 +1,7 @@
 import { NextAuthOptions, getServerSession } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { trpc } from '@pod-platform/trpc-client-identity/src'
+// import { trpc } from '@pod-platform/trpc-client/src'
 import { JWT } from 'next-auth/jwt'
 import { sign, verify } from 'jsonwebtoken'
 
@@ -13,31 +13,31 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
-    CredentialsProvider({
-      name: 'Credentials',
-      credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize(credentials) {
-        if (!credentials) return null
-        const { email, password } = credentials
-        if (!email || !password) {
-          throw new Error('Email and password are required')
-        }
+    // CredentialsProvider({
+    //   name: 'Credentials',
+    //   credentials: {
+    //     email: { label: 'Email', type: 'email' },
+    //     password: { label: 'Password', type: 'password' },
+    //   },
+    //   async authorize(credentials) {
+    //     if (!credentials) return null
+    //     const { email, password } = credentials
+    //     if (!email || !password) {
+    //       throw new Error('Email and password are required')
+    //     }
 
-        const data = await trpc.auth.signIn.mutate({ email, password })
-        if (!data?.user) {
-          throw new Error('Authentication failed')
-        }
-        return {
-          id: data.user.uid,
-          name: data.user.name,
-          image: data.user.image,
-          email,
-        }
-      },
-    }),
+    //     const data = await trpc.auth.signIn.mutate({ email, password })
+    //     if (!data?.user) {
+    //       throw new Error('Authentication failed')
+    //     }
+    //     return {
+    //       id: data.user.uid,
+    //       name: data.user.name,
+    //       image: data.user.image,
+    //       email,
+    //     }
+    //   },
+    // }),
   ],
   debug: true,
   session: {
@@ -79,24 +79,24 @@ export const authOptions: NextAuthOptions = {
     },
   },
   callbacks: {
-    async signIn({ user, account }) {
-      if (account?.provider === 'google') {
-        const { id, name, image } = user
-        const existingUser = await trpc.auth.user.query({
-          uid: id,
-        })
+    // async signIn({ user, account }) {
+    //   if (account?.provider === 'google') {
+    //     const { id, name, image } = user
+    //     const existingUser = await trpc.auth.user.query({
+    //       uid: id,
+    //     })
 
-        if (!existingUser) {
-          const user = await trpc.auth.registerWithProvider.mutate({
-            type: 'GOOGLE',
-            uid: id,
-            image: image || undefined,
-            name: name || '',
-          })
-        }
-      }
-      return true
-    },
+    //     if (!existingUser) {
+    //       const user = await trpc.auth.registerWithProvider.mutate({
+    //         type: 'GOOGLE',
+    //         uid: id,
+    //         image: image || undefined,
+    //         name: name || '',
+    //       })
+    //     }
+    //   }
+    //   return true
+    // },
 
     async session({ token, session }) {
       if (token) {

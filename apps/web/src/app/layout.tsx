@@ -2,10 +2,10 @@
 // import { Inter } from 'next/font/google'
 // import '@pod-platform/ui/src/index.css'
 // import { Provider } from '@pod-platform/trpc-client/src/Provider'
-// import { SessionProvider } from '@cmp/molecules/SessionProvider'
-// import { Container } from '@cmp/atoms/container'
-// import { Navbar } from '@cmp/organisms/Navbar'
-// import { Toaster } from '@cmp/molecules/Toaster/Toaster'
+// import { SessionProvider } from '@ui/molecules/SessionProvider'
+// import { Container } from '@ui/atoms/container'
+// import { Navbar } from '@ui/organisms/Navbar'
+// import { Toaster } from '@ui/molecules/Toaster/Toaster'
 
 // export const dynamic = !(process.env.NODE_ENV === 'production')
 //   ? 'force-dynamic'
@@ -48,13 +48,13 @@ import {
   fontMono,
   fontSans,
 } from '@pod-platform/ui/src/util/fonts'
-import { Toaster } from '@cmp/ui/toaster'
-import { Analytics } from '@cmp/analytics'
-import { ThemeProvider } from '@cmp/providers'
-import { Provider } from '@pod-platform/trpc-client/src/Provider'
-import { SessionProvider } from '@cmp/molecules/session-provider'
+import { Toaster } from '@ui/ui/toaster'
+import { Analytics } from '@ui/molecules/analytics'
+import { ThemeProvider } from '@ui/molecules/providers'
+// import { Provider } from '@pod-platform/trpc-client/src/Provider'
+import { SessionProvider } from '@ui/molecules/session-provider'
 import { cn } from '@pod-platform/ui/src/util'
-import { env } from '@web/src/env.mjs'
+import { env } from '@/env.mjs'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -120,17 +120,17 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           )}
         >
           <SessionProvider>
-            <Provider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-              >
-                {children}
-                <Analytics />
-              </ThemeProvider>
-            </Provider>
+            {/* <Provider> */}
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+              <Analytics />
+            </ThemeProvider>
+            {/* </Provider> */}
           </SessionProvider>
           <Toaster />
         </body>

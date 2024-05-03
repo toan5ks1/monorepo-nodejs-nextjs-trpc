@@ -6,7 +6,6 @@ import { buttonVariants } from '../ui/button'
 import { Shell } from '../shells/shell'
 import { Icons } from '../molecules/icons'
 import { ModeToggle } from './mode-toggle'
-import { JoinNewsletterForm } from '../forms/join-newsletter-form'
 
 export function SiteFooter() {
   return (
@@ -52,16 +51,6 @@ export function SiteFooter() {
                 </ul>
               </div>
             ))}
-          </section>
-          <section
-            id="newsletter"
-            aria-labelledby="newsletter-heading"
-            className="space-y-3"
-          >
-            <h4 className="text-base font-medium">
-              Subscribe to our newsletter
-            </h4>
-            <JoinNewsletterForm />
           </section>
         </section>
         <section

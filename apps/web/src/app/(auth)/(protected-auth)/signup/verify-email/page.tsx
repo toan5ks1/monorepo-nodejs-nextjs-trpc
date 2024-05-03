@@ -6,10 +6,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@cmp/ui/card'
-import { VerifyEmailForm } from '@cmp/forms/verify-email-form'
-import { Shell } from '@cmp/shells/shell'
-import { env } from '@web/src/env.mjs'
+} from '@ui/ui/card'
+// import { VerifyEmailForm } from '@/components/forms/verify-email-form'
+import { Shell } from '@ui/shells/shell'
+import { env } from '@/env.mjs'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -27,9 +27,7 @@ export default function VerifyEmailPage() {
             Verify your email address to complete your account creation
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <VerifyEmailForm />
-        </CardContent>
+        <CardContent>{/* <VerifyEmailForm /> */}</CardContent>
       </Card>
     </Shell>
   )

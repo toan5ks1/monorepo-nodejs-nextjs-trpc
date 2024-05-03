@@ -1,14 +1,14 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { Balancer } from 'react-wrap-balancer'
-import { Icons } from '@cmp/icons'
+import { Icons } from '@ui/molecules/icons'
 
-import { buttonVariants } from '@cmp/ui/button'
-import { ProductCard } from '@cmp/cards/product-card'
-import { StoreCard } from '@cmp/cards/store-card'
-import { Shell } from '@cmp/shells/shell'
-import { ProductCardSkeleton } from '@cmp/skeletons/product-card-skeleton'
-import { StoreCardSkeleton } from '@cmp/skeletons/store-card-skeleton'
+import { buttonVariants } from '@ui/ui/button'
+import { ProductCard } from '@ui/cards/product-card'
+import { StoreCard } from '@ui/cards/store-card'
+import { Shell } from '@ui/shells/shell'
+import { ProductCardSkeleton } from '@ui/skeletons/product-card-skeleton'
+import { StoreCardSkeleton } from '@ui/skeletons/store-card-skeleton'
 import { cn } from '@pod-platform/ui/src/util'
 
 export default async function IndexPage() {

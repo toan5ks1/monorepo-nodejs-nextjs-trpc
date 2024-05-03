@@ -12,10 +12,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "../../",
+    "baseUrl": ".",
     "paths": {
-      "@web*": ["./apps/web/*"],
-      "@cmp*": ["./libs/ui/src/components/*"],
+      "@/*": ["./src/*"],
+      "@ui/*": ["../../libs/ui/src/components/*"],
     },
     "plugins": [
       {

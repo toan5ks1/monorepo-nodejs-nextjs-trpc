@@ -1,5 +1,5 @@
 import { type Metadata } from 'next'
-import { env } from '@web/src/env.mjs'
+import { env } from '@/env.mjs'
 
 import {
   Card,
@@ -7,9 +7,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@cmp/ui/card'
-import { ResetPasswordForm } from '@cmp/forms/reset-password-form'
-import { Shell } from '@cmp/shells/shell'
+} from '@ui/ui/card'
+import { ResetPasswordForm } from '@/components/forms/reset-password-form'
+import { Shell } from '@ui/shells/shell'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
