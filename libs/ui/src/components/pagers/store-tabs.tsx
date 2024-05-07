@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter, useSelectedLayoutSegment } from 'next/navigation'
 import { Tabs, TabsList, TabsTrigger } from '@radix-ui/react-tabs'
 
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 

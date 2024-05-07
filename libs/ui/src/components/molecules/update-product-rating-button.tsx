@@ -1,13 +1,13 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { HeartIcon } from "@radix-ui/react-icons"
-import { toast } from "sonner"
+import * as React from 'react'
+import { HeartIcon } from '@radix-ui/react-icons'
+import { toast } from 'sonner'
 
-import { updateProductRating } from "@/lib/actions/product"
-import { catchError, cn } from "@/lib/utils"
-import { Button, type ButtonProps } from "@/components/ui/button"
-import { Icons } from "@/components/icons"
+import { updateProductRating } from '@/lib/actions/product'
+import { catchError, cn } from '@/lib/utils'
+import { Button, type ButtonProps } from '@/components/ui/button'
+import { Icons } from '@/components/icons'
 
 interface UpdateProductRatingButtonProps extends ButtonProps {
   productId: number
@@ -27,7 +27,7 @@ export function UpdateProductRatingButton({
       title="Favorite"
       variant="secondary"
       size="icon"
-      className={cn("h-8 w-8 shrink-0", className)}
+      className={cn('h-8 w-8 shrink-0', className)}
       onClick={() => {
         startFavoriting(async () => {
           try {
@@ -35,7 +35,7 @@ export function UpdateProductRatingButton({
               id: productId,
               rating: rating + 1,
             })
-            toast.success("Favorited product.")
+            toast.success('Favorited product.')
           } catch (err) {
             catchError(err)
           }

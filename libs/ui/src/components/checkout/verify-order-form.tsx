@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import type { z } from 'zod'
 
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { verifyOrderSchema } from '@/lib/validations/order'
 import { Button } from '@/components/ui/button'
 import {

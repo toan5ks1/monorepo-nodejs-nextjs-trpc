@@ -1,35 +1,35 @@
-import * as React from "react"
-import type { FileWithPreview } from "@/types"
-import Cropper, { type ReactCropperElement } from "react-cropper"
+import * as React from 'react'
+import type { FileWithPreview } from '@/types'
+import Cropper, { type ReactCropperElement } from 'react-cropper'
 import {
   useDropzone,
   type Accept,
   type FileRejection,
   type FileWithPath,
-} from "react-dropzone"
+} from 'react-dropzone'
 import type {
   FieldPath,
   FieldValues,
   Path,
   PathValue,
   UseFormSetValue,
-} from "react-hook-form"
-import { toast } from "sonner"
+} from 'react-hook-form'
+import { toast } from 'sonner'
 
-import "cropperjs/dist/cropper.css"
+import 'cropperjs/dist/cropper.css'
 
-import Image from "next/image"
+import Image from 'next/image'
 import {
   CropIcon,
   Cross2Icon,
   ResetIcon,
   TrashIcon,
   UploadIcon,
-} from "@radix-ui/react-icons"
+} from '@radix-ui/react-icons'
 
-import { cn, formatBytes } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { cn, formatBytes } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 
 // FIXME Your proposed upload exceeds the maximum allowed size, this should trigger toast.error too
 
@@ -52,7 +52,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
   name,
   setValue,
   accept = {
-    "image/*": [],
+    'image/*': [],
   },
   maxSize = 1024 * 1024 * 2,
   maxFiles = 1,
@@ -74,9 +74,9 @@ export function FileDialog<TFieldValues extends FieldValues>({
 
       if (rejectedFiles.length > 0) {
         rejectedFiles.forEach(({ errors }) => {
-          if (errors[0]?.code === "file-too-large") {
+          if (errors[0]?.code === 'file-too-large') {
             toast.error(
-              `File is too large. Max size is ${formatBytes(maxSize)}`
+              `File is too large. Max size is ${formatBytes(maxSize)}`,
             )
             return
           }
@@ -85,7 +85,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
       }
     },
 
-    [maxSize, setFiles]
+    [maxSize, setFiles],
   )
 
   // Register files to react-hook-form
@@ -127,11 +127,11 @@ export function FileDialog<TFieldValues extends FieldValues>({
         <div
           {...getRootProps()}
           className={cn(
-            "group relative mt-8 grid h-48 w-full cursor-pointer place-items-center rounded-lg border-2 border-dashed border-muted-foreground/25 px-5 py-2.5 text-center transition hover:bg-muted/25",
-            "ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-            isDragActive && "border-muted-foreground/50",
-            disabled && "pointer-events-none opacity-60",
-            className
+            'group relative mt-8 grid h-48 w-full cursor-pointer place-items-center rounded-lg border-2 border-dashed border-muted-foreground/25 px-5 py-2.5 text-center transition hover:bg-muted/25',
+            'ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+            isDragActive && 'border-muted-foreground/50',
+            disabled && 'pointer-events-none opacity-60',
+            className,
           )}
           {...props}
         >
@@ -146,7 +146,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
           ) : isDragActive ? (
             <div className="grid place-items-center gap-2 text-muted-foreground sm:px-5">
               <UploadIcon
-                className={cn("h-8 w-8", isDragActive && "animate-bounce")}
+                className={cn('h-8 w-8', isDragActive && 'animate-bounce')}
                 aria-hidden="true"
               />
               <p className="text-base font-medium">Drop the file here</p>
@@ -167,7 +167,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
           )}
         </div>
         <p className="text-center text-sm font-medium text-muted-foreground">
-          You can upload up to {maxFiles} {maxFiles === 1 ? "file" : "files"}
+          You can upload up to {maxFiles} {maxFiles === 1 ? 'file' : 'files'}
         </p>
         {files?.length ? (
           <div className="grid gap-5">
@@ -220,7 +220,7 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
 
     croppedCanvas.toBlob((blob) => {
       if (!blob) {
-        console.error("Blob creation failed")
+        console.error('Blob creation failed')
         return
       }
       const croppedImage = new File([blob], file.name, {
@@ -234,7 +234,7 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
       }) satisfies FileWithPreview
 
       const newFiles = files.map((file, j) =>
-        j === i ? croppedFileWithPathAndPreview : file
+        j === i ? croppedFileWithPathAndPreview : file,
       )
       setFiles(newFiles)
     })
@@ -242,13 +242,13 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
 
   React.useEffect(() => {
     function handleKeydown(e: KeyboardEvent) {
-      if (e.key === "Enter") {
+      if (e.key === 'Enter') {
         onCrop()
         setIsOpen(false)
       }
     }
-    document.addEventListener("keydown", handleKeydown)
-    return () => document.removeEventListener("keydown", handleKeydown)
+    document.addEventListener('keydown', handleKeydown)
+    return () => document.removeEventListener('keydown', handleKeydown)
   }, [onCrop])
 
   return (
@@ -272,7 +272,7 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
         </div>
       </div>
       <div className="flex items-center gap-2">
-        {file.type.startsWith("image") && (
+        {file.type.startsWith('image') && (
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
               <Button

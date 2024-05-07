@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { type CuratedStore } from '@/types'
 
 import { getRandomPatternStyle } from '@/lib/generate-pattern'
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Badge } from '@/components/ui/badge'
 import {

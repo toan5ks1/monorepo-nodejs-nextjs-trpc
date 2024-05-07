@@ -4,7 +4,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { useFormStatus } from 'react-dom'
 
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { useMounted } from '@/hooks/use-mounted'
 import {
   Button,

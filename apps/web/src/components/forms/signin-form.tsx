@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { signIn } from 'next-auth/react'
-import { Button } from '@ui/ui/button'
+import { Button, buttonVariants } from '@ui/components/ui/button'
 import {
   Form,
   FormControl,
@@ -10,15 +10,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@ui/ui/form'
-import { Input } from '@ui/ui/input'
-import { Icons } from '@ui/molecules/icons'
-import { PasswordInput } from '@ui/molecules/password-input'
+} from '@ui/components/ui/form'
+import { Input } from '@ui/components/ui/input'
+import { Icons } from '@ui/components/molecules/icons'
+import { PasswordInput } from '@ui/components/molecules/password-input'
 import { FormTypeSignIn, useFormSignIn } from '@pod-platform/forms/src/form'
 // import { catchError } from '../../utils'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { catchError } from '@/utils'
+
+import { Label } from '@ui/components/ui/label'
+import { RadioGroup, RadioGroupItem } from '@ui/components/ui/radio-group'
+import { OtpDialog } from './otp-form'
+import { Checkbox } from '@ui/components/ui/checkbox'
 
 export function SignInForm() {
   const router = useRouter()
@@ -26,26 +31,29 @@ export function SignInForm() {
   const form = useFormSignIn()
 
   async function onSubmit({ email, password }: FormTypeSignIn) {
+    toast.message('Check your email', {
+      description: 'We sent you a verification link.',
+    })
     startTransition(async () => {
       try {
-        const res = await signIn('credentials', {
-          email,
-          password,
-          redirect: false,
-        })
+        // const res = await signIn('credentials', {
+        //   email,
+        //   password,
+        //   redirect: false,
+        // })
 
-        if (res?.ok) {
-          router.push('/')
+        if (true) {
+          toast('Verify code successfully!')
+          router.push('/verify-id')
           router.refresh()
         } else {
-          toast(res?.error)
+          toast('error')
         }
       } catch (err) {
         catchError(err)
       }
     })
   }
-
   return (
     <Form {...form}>
       <form
@@ -54,14 +62,15 @@ export function SignInForm() {
       >
         <FormField
           control={form.control}
-          name="email"
+          name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Số điện thoại</FormLabel>
               <FormControl>
                 <Input
+                  // type="number"
                   type="text"
-                  placeholder="rodneymullen180@gmail.com"
+                  placeholder="Nhập số điện thoại"
                   {...field}
                 />
               </FormControl>
@@ -71,27 +80,60 @@ export function SignInForm() {
         />
         <FormField
           control={form.control}
-          name="password"
+          name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="**********" {...field} />
+                <Input type="text" placeholder="Nhập email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isPending}>
-          {isPending && (
-            <Icons.spinner
-              className="mr-2 h-4 w-4 animate-spin"
-              aria-hidden="true"
-            />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Gói dịch vụ quản lý tài khoản</FormLabel>
+              <FormControl>
+                <RadioGroup defaultValue="comfortable">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="default" id="r1" />
+                    <Label htmlFor="r1">Khách hàng tự giao dịch</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="compact" id="r3" />
+                    <Label htmlFor="r3">Khách hàng có chuyên viên tư vấn</Label>
+                  </div>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
           )}
-          Sign in
-          <span className="sr-only">Sign in</span>
-        </Button>
+        />
+        <div className="flex items-center space-x-2 my-4">
+          <Checkbox id="terms" />
+          <label
+            htmlFor="terms"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Accept terms and conditions
+          </label>
+        </div>
+        <OtpDialog>
+          <Button type="submit">
+            {isPending && (
+              <Icons.spinner
+                className="mr-2 h-4 w-4 animate-spin"
+                aria-hidden="true"
+              />
+            )}
+            Tiếp tục
+            <span className="sr-only">Tiếp tục</span>
+          </Button>
+        </OtpDialog>
       </form>
     </Form>
   )

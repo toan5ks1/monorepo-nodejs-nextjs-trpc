@@ -1,5 +1,5 @@
-import { SiteFooter } from '@ui/layouts/site-footer'
-import { SiteHeader } from '@ui/layouts/site-header'
+import { SiteFooter } from '@ui/components/layouts/site-footer'
+import { SiteHeader } from '@ui/components/layouts/site-header'
 import { getAuth } from '@pod-platform/network/src/auth/authOptions'
 
 interface LobyLayoutProps
@@ -17,7 +17,7 @@ export default async function LobyLayout({ children, modal }: LobyLayoutProps) {
         {children}
         {modal}
       </main>
-      <SiteFooter />
+      {/* <SiteFooter /> */}
     </div>
   )
 }

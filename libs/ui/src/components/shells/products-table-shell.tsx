@@ -1,17 +1,17 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import Link from "next/link"
-import { products, type Product } from "@/db/schema"
-import { DotsHorizontalIcon } from "@radix-ui/react-icons"
-import { type ColumnDef } from "@tanstack/react-table"
-import { toast } from "sonner"
+import * as React from 'react'
+import Link from 'next/link'
+import { products, type Product } from '@/db/schema'
+import { DotsHorizontalIcon } from '@radix-ui/react-icons'
+import { type ColumnDef } from '@tanstack/react-table'
+import { toast } from 'sonner'
 
-import { deleteProduct } from "@/lib/actions/product"
-import { catchError, formatDate, formatPrice } from "@/lib/utils"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+import { deleteProduct } from '@/lib/actions/product'
+import { catchError, formatDate, formatPrice } from '@/lib/utils'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,13 +19,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { DataTable } from "@/components/data-table/data-table"
-import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header"
+} from '@/components/ui/dropdown-menu'
+import { DataTable } from '@/components/data-table/data-table'
+import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header'
 
 type AwaitedProduct = Pick<
   Product,
-  "id" | "name" | "price" | "inventory" | "rating" | "createdAt"
+  'id' | 'name' | 'price' | 'inventory' | 'rating' | 'createdAt'
 >
 
 interface ProductsTableShellProps {
@@ -49,14 +49,14 @@ export function ProductsTableShell({
   const columns = React.useMemo<ColumnDef<AwaitedProduct, unknown>[]>(
     () => [
       {
-        id: "select",
+        id: 'select',
         header: ({ table }) => (
           <Checkbox
             checked={table.getIsAllPageRowsSelected()}
             onCheckedChange={(value) => {
               table.toggleAllPageRowsSelected(!!value)
               setSelectedRowIds((prev) =>
-                prev.length === data.length ? [] : data.map((row) => row.id)
+                prev.length === data.length ? [] : data.map((row) => row.id),
               )
             }}
             aria-label="Select all"
@@ -71,7 +71,7 @@ export function ProductsTableShell({
               setSelectedRowIds((prev) =>
                 value
                   ? [...prev, row.original.id]
-                  : prev.filter((id) => id !== row.original.id)
+                  : prev.filter((id) => id !== row.original.id),
               )
             }}
             aria-label="Select row"
@@ -82,7 +82,7 @@ export function ProductsTableShell({
         enableHiding: false,
       },
       {
-        accessorKey: "name",
+        accessorKey: 'name',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Name" />
         ),
@@ -106,26 +106,26 @@ export function ProductsTableShell({
       //   },
       // },
       {
-        accessorKey: "price",
+        accessorKey: 'price',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Price" />
         ),
         cell: ({ cell }) => formatPrice(cell.getValue() as number),
       },
       {
-        accessorKey: "inventory",
+        accessorKey: 'inventory',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Inventory" />
         ),
       },
       {
-        accessorKey: "rating",
+        accessorKey: 'rating',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Rating" />
         ),
       },
       {
-        accessorKey: "createdAt",
+        accessorKey: 'createdAt',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Created At" />
         ),
@@ -133,7 +133,7 @@ export function ProductsTableShell({
         enableColumnFilter: false,
       },
       {
-        id: "actions",
+        id: 'actions',
         cell: ({ row }) => (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -168,10 +168,10 @@ export function ProductsTableShell({
                         storeId,
                       }),
                       {
-                        loading: "Deleting...",
-                        success: () => "Product deleted successfully.",
+                        loading: 'Deleting...',
+                        success: () => 'Product deleted successfully.',
                         error: (err: unknown) => catchError(err),
-                      }
+                      },
                     )
                   })
                 }}
@@ -185,7 +185,7 @@ export function ProductsTableShell({
         ),
       },
     ],
-    [data, isPending, storeId]
+    [data, isPending, storeId],
   )
 
   function deleteSelectedRows() {
@@ -195,20 +195,20 @@ export function ProductsTableShell({
           deleteProduct({
             id,
             storeId,
-          })
-        )
+          }),
+        ),
       ),
       {
-        loading: "Deleting...",
+        loading: 'Deleting...',
         success: () => {
           setSelectedRowIds([])
-          return "Products deleted successfully."
+          return 'Products deleted successfully.'
         },
         error: (err: unknown) => {
           setSelectedRowIds([])
           return catchError(err)
         },
-      }
+      },
     )
   }
 
@@ -229,8 +229,8 @@ export function ProductsTableShell({
       // ]}
       searchableColumns={[
         {
-          id: "name",
-          title: "names",
+          id: 'name',
+          title: 'names',
         },
       ]}
       newRowLink={`/dashboard/stores/${storeId}/products/new`}

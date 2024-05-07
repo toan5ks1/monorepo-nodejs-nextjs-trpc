@@ -1,15 +1,15 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { type Product } from "@/db/schema"
-import { CircleIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons"
+import * as React from 'react'
+import { useRouter } from 'next/navigation'
+import { type Product } from '@/db/schema'
+import { CircleIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons'
 
-import { productCategories } from "@/config/products"
-import { filterProducts } from "@/lib/actions/product"
-import { catchError, cn, isMacOs } from "@/lib/utils"
-import { useDebounce } from "@/hooks/use-debounce"
-import { Button } from "@/components/ui/button"
+import { productCategories } from '@/config/products'
+import { filterProducts } from '@/lib/actions/product'
+import { catchError, cn, isMacOs } from '@/lib/utils'
+import { useDebounce } from '@/hooks/use-debounce'
+import { Button } from '@/components/ui/button'
 import {
   CommandDialog,
   CommandEmpty,
@@ -17,18 +17,18 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
-import { Skeleton } from "@/components/ui/skeleton"
+} from '@/components/ui/command'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface ProductGroup {
-  category: Product["category"]
-  products: Pick<Product, "id" | "name" | "category">[]
+  category: Product['category']
+  products: Pick<Product, 'id' | 'name' | 'category'>[]
 }
 
 export function ProductsCommandMenu() {
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
-  const [query, setQuery] = React.useState("")
+  const [query, setQuery] = React.useState('')
   const debouncedQuery = useDebounce(query, 300)
   const [data, setData] = React.useState<ProductGroup[] | null>(null)
   const [isPending, startTransition] = React.useTransition()
@@ -55,13 +55,13 @@ export function ProductsCommandMenu() {
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault()
         setOpen((open) => !open)
       }
     }
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
   const handleSelect = React.useCallback((callback: () => unknown) => {
@@ -81,10 +81,10 @@ export function ProductsCommandMenu() {
         <span className="sr-only">Search products</span>
         <kbd className="pointer-events-none absolute right-1.5 top-2 hidden h-6 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium opacity-100 xl:flex">
           <abbr
-            title={isMacOs() ? "Command" : "Control"}
+            title={isMacOs() ? 'Command' : 'Control'}
             className="no-underline"
           >
-            {isMacOs() ? "⌘" : "Ctrl"}
+            {isMacOs() ? '⌘' : 'Ctrl'}
           </abbr>
           K
         </kbd>
@@ -95,7 +95,7 @@ export function ProductsCommandMenu() {
         onOpenChange={(open) => {
           setOpen(open)
           if (!open) {
-            setQuery("")
+            setQuery('')
           }
         }}
       >
@@ -106,7 +106,7 @@ export function ProductsCommandMenu() {
         />
         <CommandList>
           <CommandEmpty
-            className={cn(isPending ? "hidden" : "py-6 text-center text-sm")}
+            className={cn(isPending ? 'hidden' : 'py-6 text-center text-sm')}
           >
             No products found.
           </CommandEmpty>
@@ -126,7 +126,7 @@ export function ProductsCommandMenu() {
                 {group.products.map((item) => {
                   const CategoryIcon =
                     productCategories.find(
-                      (category) => category.title === group.category
+                      (category) => category.title === group.category,
                     )?.icon ?? CircleIcon
 
                   return (

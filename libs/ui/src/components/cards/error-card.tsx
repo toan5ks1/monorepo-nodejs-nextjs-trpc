@@ -4,7 +4,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
 
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { Card, CardDescription, CardTitle } from '../ui/card'
 import { buttonVariants } from '../ui/button'
 import { ClientButton } from '../molecules/client-button'

@@ -1,10 +1,10 @@
-import * as React from "react"
-import Link from "next/link"
-import { ChevronRightIcon } from "@radix-ui/react-icons"
+import * as React from 'react'
+import Link from 'next/link'
+import { ChevronRightIcon } from '@radix-ui/react-icons'
 
-import { cn, truncate } from "@/lib/utils"
+import { cn, truncate } from '@/lib/utils'
 
-interface BreadcrumbsProps extends React.ComponentPropsWithoutRef<"nav"> {
+interface BreadcrumbsProps extends React.ComponentPropsWithoutRef<'nav'> {
   segments: {
     title: string
     href: string
@@ -26,8 +26,8 @@ export function Breadcrumbs({
     <nav
       aria-label="breadcrumbs"
       className={cn(
-        "flex w-full items-center overflow-auto text-sm font-medium text-muted-foreground",
-        className
+        'flex w-full items-center overflow-auto text-sm font-medium text-muted-foreground',
+        className,
       )}
       {...props}
     >
@@ -37,11 +37,11 @@ export function Breadcrumbs({
         return (
           <React.Fragment key={segment.href}>
             <Link
-              aria-current={isLastSegment ? "page" : undefined}
+              aria-current={isLastSegment ? 'page' : undefined}
               href={segment.href}
               className={cn(
-                "truncate transition-colors hover:text-foreground",
-                isLastSegment ? "text-foreground" : "text-muted-foreground"
+                'truncate transition-colors hover:text-foreground',
+                isLastSegment ? 'text-foreground' : 'text-muted-foreground',
               )}
             >
               {truncationLength > 0 && segment.title

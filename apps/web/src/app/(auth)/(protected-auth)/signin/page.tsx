@@ -9,10 +9,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@ui/ui/card'
-import { OAuthSignIn } from '@ui/auth/oauth-signin'
+} from '@ui/components/ui/card'
+import { OAuthSignIn } from '@ui/components/auth/oauth-signin'
 import { SignInForm } from '@/components/forms/signin-form'
-import { Shell } from '@ui/shells/shell'
+import { Shell } from '@ui/components/shells/shell'
+import { Checkbox } from '@ui/components/ui/checkbox'
+import { Icons } from '@ui/components/molecules/icons'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -25,46 +27,16 @@ export default function SignInPage() {
     <Shell className="max-w-lg">
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Sign in</CardTitle>
-          <CardDescription>
-            Choose your preferred sign in method
+          <CardTitle className="text-2xl">Mở tài khoản trực tuyến</CardTitle>
+          <CardDescription className="flex items-center">
+            <Icons.info className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
+            Dành cho khách hàng trong nước
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <OAuthSignIn />
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
-                Or continue with
-              </span>
-            </div>
-          </div>
           <SignInForm />
         </CardContent>
-        <CardFooter className="flex flex-wrap items-center justify-between gap-2">
-          <div className="text-sm text-muted-foreground">
-            <span className="mr-1 hidden sm:inline-block">
-              Don&apos;t have an account?
-            </span>
-            <Link
-              aria-label="Sign up"
-              href="/signup"
-              className="text-primary underline-offset-4 transition-colors hover:underline"
-            >
-              Sign up
-            </Link>
-          </div>
-          <Link
-            aria-label="Reset password"
-            href="/signin/reset-password"
-            className="text-sm text-primary underline-offset-4 transition-colors hover:underline"
-          >
-            Reset password
-          </Link>
-        </CardFooter>
+        {/* <CardFooter className="flex flex-wrap items-center justify-between gap-2"></CardFooter> */}
       </Card>
     </Shell>
   )

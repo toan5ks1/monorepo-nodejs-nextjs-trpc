@@ -14,7 +14,7 @@ import {
 } from '../ui/sheet'
 import { CartLineItems } from '../checkout/cart-line-items'
 import { Icons } from '../molecules/icons'
-import { cn, formatPrice } from '../../util'
+import { cn, formatPrice } from '../../lib/utils'
 
 export async function CartSheet() {
   // const cartLineItems = await getCart()

@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
 import { ChevronLeftIcon } from '@radix-ui/react-icons'
 
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 
 import { Icons } from '../molecules/icons'
-import { SidebarNavItem } from '../../util/types'
+import { SidebarNavItem } from '@ui/lib/utils/types'
 
 export interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {
   items: SidebarNavItem[]

@@ -1,17 +1,17 @@
-import Link from "next/link"
+import Link from 'next/link'
 
-import { getCart } from "@/lib/fetchers/cart"
-import { cn, formatPrice } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { getCart } from '@/lib/fetchers/cart'
+import { cn, formatPrice } from '@/lib/utils'
+import { buttonVariants } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { CartLineItems } from "@/components/checkout/cart-line-items"
+} from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+import { CartLineItems } from '@/components/checkout/cart-line-items'
 
 interface CheckoutCardProps {
   storeId: number
@@ -28,8 +28,8 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
       aria-labelledby={`checkout-store-${storeId}-heading`}
       className={cn(
         cartLineItems[0]?.storeStripeAccountId
-          ? "border-green-500"
-          : "border-destructive"
+          ? 'border-green-500'
+          : 'border-destructive',
       )}
     >
       <CardHeader className="flex flex-row items-center space-x-4 py-4">
@@ -41,8 +41,8 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
           href={`/checkout/${storeId}`}
           className={cn(
             buttonVariants({
-              size: "sm",
-            })
+              size: 'sm',
+            }),
           )}
         >
           Checkout
@@ -61,8 +61,8 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
           {formatPrice(
             cartLineItems.reduce(
               (acc, item) => acc + Number(item.price) * item.quantity,
-              0
-            )
+              0,
+            ),
           )}
         </span>
       </CardFooter>

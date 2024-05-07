@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ArrowRightIcon } from '@radix-ui/react-icons'
 import Balancer from 'react-wrap-balancer'
 
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 
 interface ContentSectionProps extends React.HTMLAttributes<HTMLDivElement> {

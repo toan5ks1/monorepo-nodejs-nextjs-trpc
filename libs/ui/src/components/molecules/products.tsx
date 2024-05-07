@@ -1,21 +1,21 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { type Product, type Store } from "@/db/schema"
-import type { Option } from "@/types"
+import * as React from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { type Product, type Store } from '@/db/schema'
+import type { Option } from '@/types'
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-} from "@radix-ui/react-icons"
+} from '@radix-ui/react-icons'
 
-import { getSubcategories, sortOptions } from "@/config/products"
-import { cn, toTitleCase, truncate } from "@/lib/utils"
-import { useDebounce } from "@/hooks/use-debounce"
-import { Button } from "@/components/ui/button"
-import { Card, CardDescription } from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
+import { getSubcategories, sortOptions } from '@/config/products'
+import { cn, toTitleCase, truncate } from '@/lib/utils'
+import { useDebounce } from '@/hooks/use-debounce'
+import { Button } from '@/components/ui/button'
+import { Card, CardDescription } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,11 +23,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
+} from '@/components/ui/dropdown-menu'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Separator } from '@/components/ui/separator'
 import {
   Sheet,
   SheetContent,
@@ -35,21 +35,21 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-import { Slider } from "@/components/ui/slider"
-import { Switch } from "@/components/ui/switch"
-import { ProductCard } from "@/components/cards/product-card"
-import { MultiSelect } from "@/components/multi-select"
-import { PaginationButton } from "@/components/pagers/pagination-button"
+} from '@/components/ui/sheet'
+import { Slider } from '@/components/ui/slider'
+import { Switch } from '@/components/ui/switch'
+import { ProductCard } from '@/components/cards/product-card'
+import { MultiSelect } from '@/components/multi-select'
+import { PaginationButton } from '@/components/pagers/pagination-button'
 
 interface ProductsProps {
   products: Product[]
   pageCount: number
-  category?: Product["category"]
-  categories?: Product["category"][]
+  category?: Product['category']
+  categories?: Product['category'][]
   stores?: Pick<
     Store & { productCount: number },
-    "id" | "name" | "productCount"
+    'id' | 'name' | 'productCount'
   >[]
   storePageCount?: number
 }
@@ -69,14 +69,14 @@ export function Products({
   const [isPending, startTransition] = React.useTransition()
 
   // Search params
-  const page = searchParams?.get("page") ?? "1"
-  const per_page = searchParams?.get("per_page") ?? "8"
-  const sort = searchParams?.get("sort") ?? "createdAt.desc"
-  const store_ids = searchParams?.get("store_ids")
-  const store_page = searchParams?.get("store_page") ?? "1"
-  const categoriesParam = searchParams?.get("categories")
-  const subcategoriesParam = searchParams?.get("subcategories")
-  const active = searchParams?.get("active") ?? "true"
+  const page = searchParams?.get('page') ?? '1'
+  const per_page = searchParams?.get('per_page') ?? '8'
+  const sort = searchParams?.get('sort') ?? 'createdAt.desc'
+  const store_ids = searchParams?.get('store_ids')
+  const store_page = searchParams?.get('store_page') ?? '1'
+  const categoriesParam = searchParams?.get('categories')
+  const subcategoriesParam = searchParams?.get('subcategories')
+  const active = searchParams?.get('active') ?? 'true'
 
   // Create query string
   const createQueryString = React.useCallback(
@@ -93,7 +93,7 @@ export function Products({
 
       return newSearchParams.toString()
     },
-    [searchParams]
+    [searchParams],
   )
 
   // Price filter
@@ -119,11 +119,11 @@ export function Products({
     Option[] | null
   >(
     categoriesParam
-      ? categoriesParam.split(".").map((c) => ({
+      ? categoriesParam.split('.').map((c) => ({
           label: toTitleCase(c),
           value: c,
         }))
-      : null
+      : null,
   )
 
   React.useEffect(() => {
@@ -131,7 +131,7 @@ export function Products({
       const newQueryString = createQueryString({
         categories: selectedCategories?.length
           ? // Join categories with a dot to make search params prettier
-            selectedCategories.map((c) => c.value).join(".")
+            selectedCategories.map((c) => c.value).join('.')
           : null,
       })
 
@@ -147,11 +147,11 @@ export function Products({
     Option[] | null
   >(
     subcategoriesParam
-      ? subcategoriesParam.split(".").map((c) => ({
+      ? subcategoriesParam.split('.').map((c) => ({
           label: toTitleCase(c),
           value: c,
         }))
-      : null
+      : null,
   )
   const subcategories = getSubcategories(category)
 
@@ -159,7 +159,7 @@ export function Products({
     startTransition(() => {
       const newQueryString = createQueryString({
         subcategories: selectedSubcategories?.length
-          ? selectedSubcategories.map((s) => s.value).join(".")
+          ? selectedSubcategories.map((s) => s.value).join('.')
           : null,
       })
 
@@ -172,13 +172,13 @@ export function Products({
 
   // Store filter
   const [storeIds, setStoreIds] = React.useState<number[] | null>(
-    store_ids ? store_ids?.split(".").map(Number) : null
+    store_ids ? store_ids?.split('.').map(Number) : null,
   )
 
   React.useEffect(() => {
     startTransition(() => {
       const newQueryString = createQueryString({
-        store_ids: storeIds?.length ? storeIds.join(".") : null,
+        store_ids: storeIds?.length ? storeIds.join('.') : null,
       })
 
       router.push(`${pathname}?${newQueryString}`, {
@@ -212,16 +212,16 @@ export function Products({
                 </div>
                 <Switch
                   id={`active-${id}`}
-                  checked={active === "true"}
+                  checked={active === 'true'}
                   onCheckedChange={(value) =>
                     startTransition(() => {
                       router.push(
                         `${pathname}?${createQueryString({
-                          active: value ? "true" : "false",
+                          active: value ? 'true' : 'false',
                         })}`,
                         {
                           scroll: false,
-                        }
+                        },
                       )
                     })
                   }
@@ -317,7 +317,7 @@ export function Products({
                               })}`,
                               {
                                 scroll: false,
-                              }
+                              },
                             )
                           })
                         }}
@@ -341,7 +341,7 @@ export function Products({
                               })}`,
                               {
                                 scroll: false,
-                              }
+                              },
                             )
                           })
                         }}
@@ -373,7 +373,7 @@ export function Products({
                               } else {
                                 setStoreIds(
                                   storeIds?.filter((id) => id !== store.id) ??
-                                    null
+                                    null,
                                 )
                               }
                             }}
@@ -408,11 +408,11 @@ export function Products({
                           store_ids: null,
                           categories: null,
                           subcategories: null,
-                          active: "true",
+                          active: 'true',
                         })}`,
                         {
                           scroll: false,
-                        }
+                        },
                       )
 
                       setPriceRange([0, 100])
@@ -442,7 +442,7 @@ export function Products({
             {sortOptions.map((option) => (
               <DropdownMenuItem
                 key={option.label}
-                className={cn(option.value === sort && "bg-accent font-bold")}
+                className={cn(option.value === sort && 'bg-accent font-bold')}
                 onClick={() => {
                   startTransition(() => {
                     router.push(
@@ -451,7 +451,7 @@ export function Products({
                       })}`,
                       {
                         scroll: false,
-                      }
+                      },
                     )
                   })
                 }}

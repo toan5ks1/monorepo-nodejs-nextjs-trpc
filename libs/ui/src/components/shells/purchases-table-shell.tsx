@@ -1,35 +1,35 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import Link from "next/link"
-import { type Order } from "@/db/schema"
-import type { StripePaymentStatus } from "@/types"
-import { DotsHorizontalIcon } from "@radix-ui/react-icons"
-import { type ColumnDef } from "@tanstack/react-table"
-import { z } from "zod"
+import * as React from 'react'
+import Link from 'next/link'
+import { type Order } from '@/db/schema'
+import type { StripePaymentStatus } from '@/types'
+import { DotsHorizontalIcon } from '@radix-ui/react-icons'
+import { type ColumnDef } from '@tanstack/react-table'
+import { z } from 'zod'
 
 import {
   getStripePaymentStatusColor,
   stripePaymentStatuses,
-} from "@/lib/checkout"
-import { cn, formatDate, formatId, formatPrice } from "@/lib/utils"
-import { checkoutItemSchema } from "@/lib/validations/cart"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+} from '@/lib/checkout'
+import { cn, formatDate, formatId, formatPrice } from '@/lib/utils'
+import { checkoutItemSchema } from '@/lib/validations/cart'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { DataTable } from "@/components/data-table/data-table"
-import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header"
+} from '@/components/ui/dropdown-menu'
+import { DataTable } from '@/components/data-table/data-table'
+import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header'
 
 export type AwaitedOrder = Pick<
   Order,
-  "id" | "email" | "items" | "amount" | "createdAt" | "storeId"
+  'id' | 'email' | 'items' | 'amount' | 'createdAt' | 'storeId'
 > & {
-  status: Order["stripePaymentIntentStatus"]
+  status: Order['stripePaymentIntentStatus']
   store: string | null
 }
 
@@ -47,7 +47,7 @@ export function PurchasesTableShell({ promise }: PurchasesTableShellProps) {
   const columns = React.useMemo<ColumnDef<AwaitedOrder, unknown>[]>(
     () => [
       {
-        accessorKey: "id",
+        accessorKey: 'id',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Order ID" />
         ),
@@ -56,7 +56,7 @@ export function PurchasesTableShell({ promise }: PurchasesTableShellProps) {
         },
       },
       {
-        accessorKey: "status",
+        accessorKey: 'status',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Payment Status" />
         ),
@@ -65,11 +65,11 @@ export function PurchasesTableShell({ promise }: PurchasesTableShellProps) {
             <Badge
               variant="outline"
               className={cn(
-                "pointer-events-none text-sm capitalize text-white",
+                'pointer-events-none text-sm capitalize text-white',
                 getStripePaymentStatusColor({
                   status: cell.getValue() as StripePaymentStatus,
                   shade: 600,
-                })
+                }),
               )}
             >
               {String(cell.getValue())}
@@ -78,13 +78,13 @@ export function PurchasesTableShell({ promise }: PurchasesTableShellProps) {
         },
       },
       {
-        accessorKey: "store",
+        accessorKey: 'store',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Store Name" />
         ),
       },
       {
-        accessorKey: "items",
+        accessorKey: 'items',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Quantity" />
         ),
@@ -98,7 +98,7 @@ export function PurchasesTableShell({ promise }: PurchasesTableShellProps) {
               {safeParsedItems.success
                 ? safeParsedItems.data.reduce(
                     (acc, item) => acc + item.quantity,
-                    0
+                    0,
                   )
                 : 0}
             </span>
@@ -106,7 +106,7 @@ export function PurchasesTableShell({ promise }: PurchasesTableShellProps) {
         },
       },
       {
-        accessorKey: "amount",
+        accessorKey: 'amount',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Amount" />
         ),
@@ -114,7 +114,7 @@ export function PurchasesTableShell({ promise }: PurchasesTableShellProps) {
       },
 
       {
-        accessorKey: "createdAt",
+        accessorKey: 'createdAt',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Created At" />
         ),
@@ -122,7 +122,7 @@ export function PurchasesTableShell({ promise }: PurchasesTableShellProps) {
         enableColumnFilter: false,
       },
       {
-        id: "actions",
+        id: 'actions',
         cell: ({ row }) => (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -150,7 +150,7 @@ export function PurchasesTableShell({ promise }: PurchasesTableShellProps) {
         ),
       },
     ],
-    []
+    [],
   )
 
   return (
@@ -160,14 +160,14 @@ export function PurchasesTableShell({ promise }: PurchasesTableShellProps) {
       pageCount={pageCount}
       searchableColumns={[
         {
-          id: "store",
-          title: "stores",
+          id: 'store',
+          title: 'stores',
         },
       ]}
       filterableColumns={[
         {
-          id: "status",
-          title: "Status",
+          id: 'status',
+          title: 'Status',
           options: stripePaymentStatuses,
         },
       ]}

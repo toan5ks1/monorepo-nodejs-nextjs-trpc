@@ -1,10 +1,10 @@
-import { Skeleton } from '@ui/ui/skeleton'
+import { Skeleton } from '@ui/components/ui/skeleton'
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from '@ui/page-header'
-import { Shell } from '@ui/shells/shell'
+} from '@ui/components/page-header'
+import { Shell } from '@ui/components/shells/shell'
 
 export default function SignOutLoading() {
   return (

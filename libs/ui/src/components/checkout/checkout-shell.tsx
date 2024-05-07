@@ -5,7 +5,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import { type StripeElementsOptions } from '@stripe/stripe-js'
 
 import { getStripe } from '@/lib/get-stripe'
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 
 // Docs: https://stripe.com/docs/payments/quickstart
 

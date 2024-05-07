@@ -6,7 +6,7 @@ import type { CuratedStore } from '@/types'
 import { ChevronDownIcon, Cross2Icon } from '@radix-ui/react-icons'
 
 import { storeSortOptions, storeStatusOptions } from '@/config/stores'
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,

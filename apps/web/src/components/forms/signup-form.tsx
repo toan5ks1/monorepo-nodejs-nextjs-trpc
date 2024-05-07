@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Button } from '@ui/ui/button'
+import { Button } from '@ui/components/ui/button'
 import {
   Form,
   FormControl,
@@ -9,10 +9,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@ui/ui/form'
-import { Input } from '@ui/ui/input'
-import { Icons } from '@ui/molecules/icons'
-import { PasswordInput } from '@ui/molecules/password-input'
+} from '@ui/components/ui/form'
+import { Input } from '@ui/components/ui/input'
+import { Icons } from '@ui/components/molecules/icons'
+import { PasswordInput } from '@ui/components/molecules/password-input'
 import { FormTypeRegister, useFormRegister } from '@pod-platform/forms/src/form'
 // import { trpcClient } from '@pod-platform/trpc-client/src/client'
 import { useRouter } from 'next/navigation'

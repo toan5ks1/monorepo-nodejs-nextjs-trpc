@@ -1,16 +1,16 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { type Product } from "@/db/schema"
-import { CheckIcon, EyeOpenIcon, PlusIcon } from "@radix-ui/react-icons"
-import { toast } from "sonner"
+import * as React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { type Product } from '@/db/schema'
+import { CheckIcon, EyeOpenIcon, PlusIcon } from '@radix-ui/react-icons'
+import { toast } from 'sonner'
 
-import { addToCart } from "@/lib/actions/cart"
-import { catchError, cn, formatPrice } from "@/lib/utils"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { addToCart } from '@/lib/actions/cart'
+import { catchError, cn, formatPrice } from '@/lib/utils'
+import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { Button, buttonVariants } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -18,23 +18,23 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Icons } from "@/components/icons"
-import { PlaceholderImage } from "@/components/placeholder-image"
+} from '@/components/ui/card'
+import { Icons } from '@/components/icons'
+import { PlaceholderImage } from '@/components/placeholder-image'
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Pick<
     Product,
-    "id" | "name" | "price" | "images" | "categoryId" | "inventory"
+    'id' | 'name' | 'price' | 'images' | 'categoryId' | 'inventory'
   >
-  variant?: "default" | "switchable"
+  variant?: 'default' | 'switchable'
   isAddedToCart?: boolean
   onSwitch?: () => Promise<void>
 }
 
 export function ProductCard({
   product,
-  variant = "default",
+  variant = 'default',
   isAddedToCart = false,
   onSwitch,
   className,
@@ -44,7 +44,7 @@ export function ProductCard({
 
   return (
     <Card
-      className={cn("h-full w-full overflow-hidden rounded-sm", className)}
+      className={cn('h-full w-full overflow-hidden rounded-sm', className)}
       {...props}
     >
       <Link aria-label={product.name} href={`/product/${product.id}`}>
@@ -53,7 +53,7 @@ export function ProductCard({
             {product.images?.length ? (
               <Image
                 src={
-                  product.images[0]?.url ?? "/images/product-placeholder.webp"
+                  product.images[0]?.url ?? '/images/product-placeholder.webp'
                 }
                 alt={product.images[0]?.name ?? product.name}
                 className="object-cover"
@@ -77,7 +77,7 @@ export function ProductCard({
         </CardContent>
       </Link>
       <CardFooter className="p-4 pt-1">
-        {variant === "default" ? (
+        {variant === 'default' ? (
           <div className="flex w-full items-center space-x-2">
             <Button
               aria-label="Add to cart"
@@ -90,7 +90,7 @@ export function ProductCard({
                       productId: product.id,
                       quantity: 1,
                     })
-                    toast.success("Added to cart.")
+                    toast.success('Added to cart.')
                   } catch (err) {
                     catchError(err)
                   }
@@ -111,10 +111,10 @@ export function ProductCard({
               title="Preview"
               className={cn(
                 buttonVariants({
-                  variant: "secondary",
-                  size: "icon",
-                  className: "h-8 w-8 shrink-0",
-                })
+                  variant: 'secondary',
+                  size: 'icon',
+                  className: 'h-8 w-8 shrink-0',
+                }),
               )}
             >
               <EyeOpenIcon className="h-4 w-4" aria-hidden="true" />
@@ -123,7 +123,7 @@ export function ProductCard({
           </div>
         ) : (
           <Button
-            aria-label={isAddedToCart ? "Remove from cart" : "Add to cart"}
+            aria-label={isAddedToCart ? 'Remove from cart' : 'Add to cart'}
             size="sm"
             className="h-8 w-full rounded-sm"
             onClick={() => {
@@ -143,7 +143,7 @@ export function ProductCard({
             ) : (
               <PlusIcon className="mr-2 h-4 w-4" aria-hidden="true" />
             )}
-            {isAddedToCart ? "Added" : "Add to cart"}
+            {isAddedToCart ? 'Added' : 'Add to cart'}
           </Button>
         )}
       </CardFooter>

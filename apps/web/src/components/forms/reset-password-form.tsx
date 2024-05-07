@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
 // import { catchClerkError } from '@/lib/utils'
-import { Button } from '@ui/ui/button'
+import { Button } from '@ui/components/ui/button'
 import {
   Form,
   FormControl,
@@ -13,9 +13,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@ui/ui/form'
-import { Input } from '@ui/ui/input'
-import { Icons } from '@ui/molecules/icons'
+} from '@ui/components/ui/form'
+import { Input } from '@ui/components/ui/input'
+import { Icons } from '@ui/components/molecules/icons'
 import {
   type FormTypeResetPassword,
   useFormResetPassword,

@@ -72,6 +72,10 @@ export const schemaSignIn = schemaRegister.pick({
   password: true,
 })
 
+export const schemaOtp = z.object({
+  otp: z.string(),
+})
+
 export const schemaEmail = z.object({
   email: z.string().email({
     message: 'Please enter a valid email address.',

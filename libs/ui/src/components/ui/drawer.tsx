@@ -4,7 +4,7 @@
 import * as React from 'react'
 import { Drawer as DrawerPrimitive } from 'vaul'
 
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 
 const Drawer = DrawerPrimitive.Root
 

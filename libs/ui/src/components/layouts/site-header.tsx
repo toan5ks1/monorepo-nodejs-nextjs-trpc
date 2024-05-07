@@ -20,7 +20,7 @@ import { MainNav } from '../layouts/main-nav'
 import { MobileNav } from '../layouts/mobile-nav'
 import { Button } from '../ui/button'
 // import { generateMenuTree } from '../../util'
-import { User } from '../../util/types'
+import { User } from '@ui/lib/utils/types'
 
 interface SiteHeaderProps {
   user?: User

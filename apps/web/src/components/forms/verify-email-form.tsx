@@ -1,11 +1,11 @@
 // 'use client'
 
 // import { useSearchParams } from 'next/navigation'
-// import { Button } from '@ui/ui/button'
+// import { Button } from '@ui/components/ui/button'
 // import Link from 'next/link'
-// import { InfoCard } from '@ui/cards/info-card'
+// import { InfoCard } from '@ui/components/cards/info-card'
 // import { trpcClient } from '@pod-platform/trpc-client/src/client'
-// import { BarLoader } from '@ui/loader/bar-loader'
+// import { BarLoader } from '@ui/components/loader/bar-loader'
 
 // interface VerifyResult {
 //   message: string

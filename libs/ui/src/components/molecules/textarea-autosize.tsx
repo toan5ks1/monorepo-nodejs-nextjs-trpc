@@ -5,7 +5,7 @@ import ReactTextareaAutosize, {
   type TextareaAutosizeProps,
 } from 'react-textarea-autosize'
 
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 
 const TextareaAutosize = React.forwardRef<
   HTMLTextAreaElement,

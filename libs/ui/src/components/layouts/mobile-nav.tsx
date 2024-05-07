@@ -7,7 +7,7 @@ import { useSelectedLayoutSegment } from 'next/navigation'
 import { ViewVerticalIcon } from '@radix-ui/react-icons'
 
 import { siteConfig } from '@pod-platform/util/config/site'
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import {
   Accordion,
   AccordionContent,
@@ -18,7 +18,7 @@ import { Button } from '../ui/button'
 import { ScrollArea } from '../ui/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet'
 import { Icons } from '../molecules/icons'
-import { MainNavItem, SidebarNavItem } from '../../util/types'
+import { MainNavItem, SidebarNavItem } from '@ui/lib/utils/types'
 
 interface MobileNavProps {
   mainNavItems?: MainNavItem[]

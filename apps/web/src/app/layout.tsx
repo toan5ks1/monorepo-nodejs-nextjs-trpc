@@ -2,10 +2,10 @@
 // import { Inter } from 'next/font/google'
 // import '@pod-platform/ui/src/index.css'
 // import { Provider } from '@pod-platform/trpc-client/src/Provider'
-// import { SessionProvider } from '@ui/molecules/SessionProvider'
-// import { Container } from '@ui/atoms/container'
-// import { Navbar } from '@ui/organisms/Navbar'
-// import { Toaster } from '@ui/molecules/Toaster/Toaster'
+// import { SessionProvider } from '@ui/components/molecules/SessionProvider'
+// import { Container } from '@ui/components/atoms/container'
+// import { Navbar } from '@ui/components/organisms/Navbar'
+// import { Toaster } from '@ui/components/molecules/Toaster/Toaster'
 
 // export const dynamic = !(process.env.NODE_ENV === 'production')
 //   ? 'force-dynamic'
@@ -43,17 +43,13 @@ import type { Metadata, Viewport } from 'next'
 import '@pod-platform/ui/src/index.css'
 
 import { siteConfig } from '@pod-platform/util/config/site'
-import {
-  fontHeading,
-  fontMono,
-  fontSans,
-} from '@pod-platform/ui/src/util/fonts'
-import { Toaster } from '@ui/ui/toaster'
-import { Analytics } from '@ui/molecules/analytics'
-import { ThemeProvider } from '@ui/molecules/providers'
+import { fontHeading, fontMono, fontSans } from '@ui/lib/utils/fonts'
+import { Toaster } from '@ui/components/ui/toaster'
+import { Analytics } from '@ui/components/molecules/analytics'
+import { ThemeProvider } from '@ui/components/molecules/providers'
 // import { Provider } from '@pod-platform/trpc-client/src/Provider'
-import { SessionProvider } from '@ui/molecules/session-provider'
-import { cn } from '@pod-platform/ui/src/util'
+import { SessionProvider } from '@ui/components/molecules/session-provider'
+import { cn } from '@ui/lib/utils'
 import { env } from '@/env.mjs'
 
 export const metadata: Metadata = {
@@ -130,9 +126,9 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
               {children}
               <Analytics />
             </ThemeProvider>
+            <Toaster />
             {/* </Provider> */}
           </SessionProvider>
-          <Toaster />
         </body>
       </html>
     </>

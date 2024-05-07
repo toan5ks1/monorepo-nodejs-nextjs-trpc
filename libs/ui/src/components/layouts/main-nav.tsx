@@ -13,8 +13,8 @@ import {
   NavigationMenuTrigger,
 } from '../ui/navigation-menu'
 import { Icons } from '../molecules/icons'
-import { cn, slugify } from '../../util'
-import { MenuItem } from '../../util/types'
+import { cn, slugify } from '@ui/lib/utils'
+import { MenuItem } from '@ui/lib/utils/types'
 
 interface MainNavProps {
   categories?: MenuItem[]

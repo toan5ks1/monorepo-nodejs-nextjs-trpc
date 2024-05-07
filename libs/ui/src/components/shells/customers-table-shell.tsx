@@ -1,20 +1,20 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import Link from "next/link"
-import { DotsHorizontalIcon } from "@radix-ui/react-icons"
-import { type ColumnDef } from "@tanstack/react-table"
+import * as React from 'react'
+import Link from 'next/link'
+import { DotsHorizontalIcon } from '@radix-ui/react-icons'
+import { type ColumnDef } from '@tanstack/react-table'
 
-import { formatDate, formatPrice } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { formatDate, formatPrice } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { DataTable } from "@/components/data-table/data-table"
-import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header"
+} from '@/components/ui/dropdown-menu'
+import { DataTable } from '@/components/data-table/data-table'
+import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header'
 
 interface AwaitedCustomer {
   email: string | null
@@ -42,35 +42,35 @@ export function CustomersTableShell({
   const columns = React.useMemo<ColumnDef<AwaitedCustomer, unknown>[]>(
     () => [
       {
-        accessorKey: "name",
+        accessorKey: 'name',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Name" />
         ),
       },
       {
-        accessorKey: "email",
+        accessorKey: 'email',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Email" />
         ),
       },
       {
-        accessorKey: "totalSpent",
+        accessorKey: 'totalSpent',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Total Spent" />
         ),
         cell: ({ cell }) =>
           formatPrice(cell.getValue() as number, {
-            notation: "standard",
+            notation: 'standard',
           }),
       },
       {
-        accessorKey: "orderPlaced",
+        accessorKey: 'orderPlaced',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Order Placed" />
         ),
       },
       {
-        accessorKey: "createdAt",
+        accessorKey: 'createdAt',
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Created At" />
         ),
@@ -78,11 +78,11 @@ export function CustomersTableShell({
         enableColumnFilter: false,
       },
       {
-        id: "actions",
+        id: 'actions',
         cell: ({ row }) => {
           const slug = row.original.email
-            ?.replace("@", `-${Math.random().toString(36).substring(2, 10)}-`)
-            .replace(".com", "")
+            ?.replace('@', `-${Math.random().toString(36).substring(2, 10)}-`)
+            .replace('.com', '')
 
           return (
             <DropdownMenu>
@@ -107,7 +107,7 @@ export function CustomersTableShell({
         },
       },
     ],
-    [storeId]
+    [storeId],
   )
 
   return (
@@ -117,8 +117,8 @@ export function CustomersTableShell({
       pageCount={pageCount}
       searchableColumns={[
         {
-          id: "email",
-          title: "emails",
+          id: 'email',
+          title: 'emails',
         },
       ]}
     />

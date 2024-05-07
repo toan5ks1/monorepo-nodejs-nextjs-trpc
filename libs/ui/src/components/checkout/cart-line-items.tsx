@@ -5,7 +5,7 @@ import { ScrollArea } from '../ui/scroll-area'
 import { Separator } from '../ui/separator'
 import { UpdateCart } from '../checkout/update-cart'
 import { Icons } from '../molecules/icons'
-import { cn, formatPrice } from '../../util'
+import { cn, formatPrice } from '../../lib/utils'
 import { CartLineItem } from '@pod-platform/forms/src'
 
 interface CartLineItemsProps extends React.HTMLAttributes<HTMLDivElement> {

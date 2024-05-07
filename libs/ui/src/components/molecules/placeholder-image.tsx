@@ -1,6 +1,6 @@
 import { Slot } from '@radix-ui/react-slot'
 
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Icons } from '@/components/icons'

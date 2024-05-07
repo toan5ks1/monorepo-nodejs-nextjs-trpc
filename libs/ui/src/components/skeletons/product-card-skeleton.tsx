@@ -1,4 +1,4 @@
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'

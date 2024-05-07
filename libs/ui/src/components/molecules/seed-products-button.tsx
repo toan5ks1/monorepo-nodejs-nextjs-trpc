@@ -4,7 +4,7 @@ import * as React from 'react'
 import { toast } from 'sonner'
 
 import { seedProducts } from '@/lib/actions/product'
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { Button, type ButtonProps } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
 

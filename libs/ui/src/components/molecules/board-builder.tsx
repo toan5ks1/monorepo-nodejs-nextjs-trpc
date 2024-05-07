@@ -1,18 +1,18 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { type Product } from "@/db/schema"
-import type { CartItem } from "@/types"
-import { ChevronDownIcon } from "@radix-ui/react-icons"
-import { toast } from "sonner"
+import * as React from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { type Product } from '@/db/schema'
+import type { CartItem } from '@/types'
+import { ChevronDownIcon } from '@radix-ui/react-icons'
+import { toast } from 'sonner'
 
-import { sortOptions } from "@/config/products"
-import { addToCart, deleteCartItem } from "@/lib/actions/cart"
-import { catchError, cn } from "@/lib/utils"
-import { useDebounce } from "@/hooks/use-debounce"
-import { Button } from "@/components/ui/button"
-import { Card, CardDescription } from "@/components/ui/card"
+import { sortOptions } from '@/config/products'
+import { addToCart, deleteCartItem } from '@/lib/actions/cart'
+import { catchError, cn } from '@/lib/utils'
+import { useDebounce } from '@/hooks/use-debounce'
+import { Button } from '@/components/ui/button'
+import { Card, CardDescription } from '@/components/ui/card'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,10 +20,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
+} from '@/components/ui/dropdown-menu'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Separator } from '@/components/ui/separator'
 import {
   Sheet,
   SheetContent,
@@ -31,11 +31,11 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-import { Slider } from "@/components/ui/slider"
-import { Switch } from "@/components/ui/switch"
-import { ProductCard } from "@/components/cards/product-card"
-import { PaginationButton } from "@/components/pagers/pagination-button"
+} from '@/components/ui/sheet'
+import { Slider } from '@/components/ui/slider'
+import { Switch } from '@/components/ui/switch'
+import { ProductCard } from '@/components/cards/product-card'
+import { PaginationButton } from '@/components/pagers/pagination-button'
 
 interface BoardBuilderProps {
   products: Product[]
@@ -57,10 +57,10 @@ export function BoardBuilder({
   const [isPending, startTransition] = React.useTransition()
 
   // Search params
-  const page = searchParams?.get("page") ?? "1"
-  const per_page = searchParams?.get("per_page") ?? "8"
-  const sort = searchParams?.get("sort") ?? "createdAt.desc"
-  const active = searchParams?.get("active") ?? "true"
+  const page = searchParams?.get('page') ?? '1'
+  const per_page = searchParams?.get('per_page') ?? '8'
+  const sort = searchParams?.get('sort') ?? 'createdAt.desc'
+  const active = searchParams?.get('active') ?? 'true'
 
   // Create query string
   const createQueryString = React.useCallback(
@@ -77,7 +77,7 @@ export function BoardBuilder({
 
       return newSearchParams.toString()
     },
-    [searchParams]
+    [searchParams],
   )
 
   // Price filter
@@ -93,7 +93,7 @@ export function BoardBuilder({
         })}`,
         {
           scroll: false,
-        }
+        },
       )
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -104,13 +104,13 @@ export function BoardBuilder({
     async (product: Product) => {
       try {
         const hasProductInCart = cartItems.some(
-          (item) => item.productId === product.id
+          (item) => item.productId === product.id,
         )
 
         // Only allow one product per subcategory in cart
         if (!hasProductInCart) {
           const productWithSameSubcategory = cartItems.find(
-            (item) => item.subcategory === product.subcategory
+            (item) => item.subcategory === product.subcategory,
           )
 
           if (productWithSameSubcategory) {
@@ -125,19 +125,19 @@ export function BoardBuilder({
             subcategory: product.subcategory ?? subcategory,
           })
 
-          toast.success("Added to cart.")
+          toast.success('Added to cart.')
           return
         }
 
         await deleteCartItem({
           productId: product.id,
         })
-        toast.success("Removed from cart.")
+        toast.success('Removed from cart.')
       } catch (err) {
         catchError(err)
       }
     },
-    [subcategory, cartItems]
+    [subcategory, cartItems],
   )
 
   return (
@@ -164,13 +164,13 @@ export function BoardBuilder({
                 </div>
                 <Switch
                   id={`active-${id}`}
-                  checked={active === "true"}
+                  checked={active === 'true'}
                   onCheckedChange={(value) =>
                     startTransition(() => {
                       router.push(
                         `${pathname}?${createQueryString({
-                          active: value ? "true" : "false",
-                        })}`
+                          active: value ? 'true' : 'false',
+                        })}`,
                       ),
                         {
                           scroll: false,
@@ -236,11 +236,11 @@ export function BoardBuilder({
                       router.push(
                         `${pathname}?${createQueryString({
                           price_range: 0 - 100,
-                          active: "true",
+                          active: 'true',
                         })}`,
                         {
                           scroll: false,
-                        }
+                        },
                       )
                       setPriceRange([0, 100])
                     })
@@ -266,7 +266,7 @@ export function BoardBuilder({
             {sortOptions.map((option) => (
               <DropdownMenuItem
                 key={option.label}
-                className={cn(option.value === sort && "font-bold")}
+                className={cn(option.value === sort && 'font-bold')}
                 onClick={() => {
                   startTransition(() => {
                     router.push(
@@ -275,7 +275,7 @@ export function BoardBuilder({
                       })}`,
                       {
                         scroll: false,
-                      }
+                      },
                     )
                   })
                 }}

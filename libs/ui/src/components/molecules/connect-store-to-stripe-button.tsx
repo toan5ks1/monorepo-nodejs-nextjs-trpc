@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
-import * as React from "react"
+import * as React from 'react'
 
-import { createAccountLink } from "@/lib/actions/stripe"
-import { catchError } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Icons } from "@/components/icons"
+import { createAccountLink } from '@/lib/actions/stripe'
+import { catchError } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
+import { Icons } from '@/components/icons'
 
 interface ConnectToStripeButtonProps {
   storeId: number

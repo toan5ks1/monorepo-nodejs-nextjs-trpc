@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { siteConfig } from '@pod-platform/util/config/site'
-import { cn } from '../../util'
+import { cn } from '@ui/lib/utils'
 import { buttonVariants } from '../ui/button'
 import { Shell } from '../shells/shell'
 import { Icons } from '../molecules/icons'

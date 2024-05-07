@@ -6,9 +6,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@ui/ui/card'
+} from '@ui/components/ui/card'
 // import { VerifyEmailForm } from '@/components/forms/verify-email-form'
-import { Shell } from '@ui/shells/shell'
+import { Shell } from '@ui/components/shells/shell'
 import { env } from '@/env.mjs'
 
 export const metadata: Metadata = {
