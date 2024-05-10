@@ -19,6 +19,7 @@
     "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
+    "react-webcam": "^7.2.0",
     "react-wrap-balancer": "^1.1.0",
     "sonner": "^0.6.2"
   },

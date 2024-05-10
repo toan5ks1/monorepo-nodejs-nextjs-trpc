@@ -21,6 +21,7 @@ import { MobileNav } from '../layouts/mobile-nav'
 import { Button } from '../ui/button'
 // import { generateMenuTree } from '../../util'
 import { User } from '@ui/lib/utils/types'
+import { ModeToggle } from './mode-toggle'
 
 interface SiteHeaderProps {
   user?: User
@@ -114,6 +115,7 @@ export async function SiteHeader({ user }: SiteHeaderProps) {
                 </Link>
               </Button>
             )}
+            <ModeToggle />
           </nav>
         </div>
       </div>

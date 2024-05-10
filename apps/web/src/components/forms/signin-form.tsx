@@ -31,9 +31,6 @@ export function SignInForm() {
   const form = useFormSignIn()
 
   async function onSubmit({ email, password }: FormTypeSignIn) {
-    toast.message('Check your email', {
-      description: 'We sent you a verification link.',
-    })
     startTransition(async () => {
       try {
         // const res = await signIn('credentials', {
@@ -98,13 +95,13 @@ export function SignInForm() {
             <FormItem>
               <FormLabel>Gói dịch vụ quản lý tài khoản</FormLabel>
               <FormControl>
-                <RadioGroup defaultValue="comfortable">
+                <RadioGroup defaultValue="0">
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="default" id="r1" />
+                    <RadioGroupItem value="0" id="r1" />
                     <Label htmlFor="r1">Khách hàng tự giao dịch</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="compact" id="r3" />
+                    <RadioGroupItem value="1" id="r3" />
                     <Label htmlFor="r3">Khách hàng có chuyên viên tư vấn</Label>
                   </div>
                 </RadioGroup>
@@ -113,14 +110,25 @@ export function SignInForm() {
             </FormItem>
           )}
         />
-        <div className="flex items-center space-x-2 my-4">
-          <Checkbox id="terms" />
-          <label
-            htmlFor="terms"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            Accept terms and conditions
-          </label>
+        <div className="flex items-start space-x-2 my-4">
+          <Checkbox id="terms" className="mt-1" />
+          <div>
+            <label
+              htmlFor="terms"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Tôi cam kết thông tin cung cấp là chính xác, hợp pháp và hoàn toàn
+              chịu trách nhiệm. <br />
+            </label>
+            <label
+              htmlFor="terms"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Tôi đồng ý nhận các thông tin từ Maybank gửi đến số điện thoại,
+              email, địa chỉ đã đăng ký và cho phép sử dụng hoặc cung cấp các
+              thông tin của tôi.
+            </label>
+          </div>
         </div>
         <OtpDialog>
           <Button type="submit">
@@ -130,8 +138,8 @@ export function SignInForm() {
                 aria-hidden="true"
               />
             )}
-            Tiếp tục
-            <span className="sr-only">Tiếp tục</span>
+            Đăng ký mở tài khoản
+            <span className="sr-only">Đăng ký mở tài khoản</span>
           </Button>
         </OtpDialog>
       </form>

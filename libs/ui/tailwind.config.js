@@ -16,6 +16,7 @@ module.exports = {
       screens: {
         xs: '480px',
         xxs: '380px',
+        plg: '1028px',
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -75,6 +76,13 @@ module.exports = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      boxShadow: {
+        full: '0 0 0 1000px rgba(0, 0, 0, 0.8)',
+      },
+      aspectRatio: {
+        '15/9': '15 / 9',
+        '16/9': '16 / 9',
       },
     },
   },

@@ -13,18 +13,14 @@ import {
   NavigationMenuTrigger,
 } from '../ui/navigation-menu'
 import { Icons } from '../molecules/icons'
-import { cn, slugify } from '@ui/lib/utils'
-import { MenuItem } from '@ui/lib/utils/types'
+import { cn } from '@ui/lib/utils'
+// import { MenuItem } from '@ui/lib/utils/types'
 
-interface MainNavProps {
-  categories?: MenuItem[]
-}
-
-export function MainNav({ categories }: MainNavProps) {
-  const mainNav = {
-    title: 'Catalog',
-    items: categories,
-  }
+export function MainNav() {
+  // const mainNav = {
+  //   title: 'Catalog',
+  //   items: categories,
+  // }
 
   const lobby = siteConfig.mainNav[0]!
 
@@ -40,7 +36,7 @@ export function MainNav({ categories }: MainNavProps) {
       <NavigationMenu>
         <NavigationMenuList>
           {/* Catalog */}
-          <NavigationMenuItem key={mainNav.title}>
+          {/* <NavigationMenuItem key={mainNav.title}>
             <NavigationMenuTrigger className="h-auto capitalize">
               {mainNav.title}
             </NavigationMenuTrigger>
@@ -68,7 +64,7 @@ export function MainNav({ categories }: MainNavProps) {
                 ))}
               </ul>
             </NavigationMenuContent>
-          </NavigationMenuItem>
+          </NavigationMenuItem> */}
           {/* Lobby */}
           <NavigationMenuItem>
             <NavigationMenuTrigger className="h-auto">

@@ -1,44 +1,60 @@
+'use client'
+
 import { type Metadata } from 'next'
 import Link from 'next/link'
 import { env } from '@/env.mjs'
 
+import { CardHeader, CardTitle } from '@ui/components/ui/card'
+import { Progress } from '@ui/components/ui/progress'
+import { useGlobalState } from '@/components/providers/global-context'
+import { useCallback, useEffect, useState } from 'react'
+import { StepTitle } from '@/utils/config'
+import dynamic from 'next/dynamic'
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@ui/components/ui/card'
-import { OAuthSignIn } from '@ui/components/auth/oauth-signin'
-import { SignInForm } from '@/components/forms/signin-form'
-import { Shell } from '@ui/components/shells/shell'
-import { Checkbox } from '@ui/components/ui/checkbox'
-import { Icons } from '@ui/components/molecules/icons'
-import { IdVerifyDrawer } from '@/components/modals/verify-id-drawer'
+  PageHeader,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from '@ui/components/ui/page-header'
 
-export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: 'Sign In',
-  description: 'Sign in to your account',
-}
+// export const metadata: Metadata = {
+//   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+//   title: 'Sign Up',
+//   description: 'Register your trading account',
+// }
 
-export default function SignInPage() {
+const WebcamCapture = dynamic(
+  () => import('@/components/steps/(step-1)/verify-id'),
+  {
+    ssr: false,
+  },
+)
+const VerifyIDResult = dynamic(
+  () => import('@/components/steps/(step-2)/verify-id-result'),
+  {
+    ssr: false,
+  },
+)
+
+export default function VerificationPage() {
+  const { step, title } = useGlobalState()
+  const totalStep = StepTitle.__LENGTH
+
+  const renderStep = useCallback(() => {
+    switch (step) {
+      case 0:
+        return <WebcamCapture />
+      case 1:
+        return <VerifyIDResult />
+    }
+  }, [step])
+
   return (
-    <Shell className="max-w-lg">
-      <Card>
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Mở tài khoản trực tuyến</CardTitle>
-          <CardDescription className="flex items-center">
-            <Icons.info className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
-            Dành cho khách hàng trong nước
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-4">
-          <IdVerifyDrawer />
-        </CardContent>
-        {/* <CardFooter className="flex flex-wrap items-center justify-between gap-2"></CardFooter> */}
-      </Card>
-    </Shell>
+    <div className="flex justify-start items-center flex-col pt-0 pb-6 xl:w-3/5 plg:w-3/4 sm:w-3/4 w-full">
+      <CardHeader className="w-full px-0">
+        <CardTitle className="text-2xl text-left">{title}</CardTitle>
+        <Progress className="h-1" value={(step / totalStep) * 100} />
+      </CardHeader>
+      {renderStep()}
+    </div>
   )
 }

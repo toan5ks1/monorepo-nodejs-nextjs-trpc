@@ -73,7 +73,7 @@ export function OtpDialog({ children }: OtpDialogProps) {
           toast.message('Check your email', {
             description: 'We sent you a verification link.',
           })
-          // router.push('/verify-id')
+          router.push('/verify-id')
           // router.refresh()
         } else {
           toast('error')
@@ -98,7 +98,7 @@ export function OtpDialog({ children }: OtpDialogProps) {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="w-2/3 space-y-6"
+              className="w-full space-y-6 flex flex-col items-center"
             >
               <FormField
                 control={form.control}
@@ -122,16 +122,15 @@ export function OtpDialog({ children }: OtpDialogProps) {
                 )}
               />
               <div className="flex justify-between items-center w-full">
-                <Button variant="ghost" className="">
+                <Button variant="link" className="">
                   Lấy lại mã
                   <Icons.reload className="mx-2 h-4 w-4" aria-hidden="true" />
-                  <span className="sr-only">View details</span>
                 </Button>
                 <DialogDescription className="text-center">
                   Hết hạn sau: 09s
                 </DialogDescription>
               </div>
-              <DialogFooter className="flex items-center justify-between flex-row space-x-2">
+              <DialogFooter className="flex items-center justify-between flex-row space-x-2 w-full">
                 <DialogClose asChild>
                   <Button variant="outline" className="w-full">
                     Huỷ bỏ
