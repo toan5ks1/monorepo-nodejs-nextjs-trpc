@@ -50,7 +50,7 @@ export default function VerificationPage() {
 
   return (
     <div className="flex justify-start items-center flex-col pt-0 pb-6 xl:w-3/5 plg:w-3/4 sm:w-3/4 w-full">
-      <CardHeader className="w-full px-0">
+      <CardHeader className="w-full px-4 sm:px-0">
         <CardTitle className="text-2xl text-left">{title}</CardTitle>
         <Progress className="h-1" value={(step / totalStep) * 100} />
       </CardHeader>

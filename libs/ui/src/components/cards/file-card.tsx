@@ -2,34 +2,24 @@
 
 import Image from 'next/image'
 import { Cross2Icon } from '@radix-ui/react-icons'
-
-// import { formatBytes } from '@/lib/utils'
 import { Button } from '@ui/components/ui/button'
-// import { Progress } from '@ui/components/ui/progress'
 
 interface FileCardProps {
-  file: string | undefined | null
+  file: string
   onRemove: () => void
-  side?: string
 }
 
-export function FileCard({ file, onRemove, side }: FileCardProps) {
+export function FileCard({ file, onRemove }: FileCardProps) {
   return (
     <div className="relative flex w-full">
-      {file ? (
-        <Image
-          src={file}
-          alt={'test'}
-          width={48}
-          height={48}
-          loading="lazy"
-          className="w-full aspect-[15/9] shrink-0 rounded-md object-cover"
-        />
-      ) : (
-        <div className="w-full aspect-[15/9] bg-slate-100 border-white border-2 border-dashed rounded-md flex justify-center items-center">
-          {side}
-        </div>
-      )}
+      <Image
+        src={file}
+        alt="id-card"
+        width={48}
+        height={48}
+        loading="lazy"
+        className="w-full aspect-[15/9] shrink-0 rounded-md object-cover"
+      />
       {file && (
         <div className="flex items-start gap-2">
           <Button
@@ -46,7 +36,3 @@ export function FileCard({ file, onRemove, side }: FileCardProps) {
     </div>
   )
 }
-
-// function isFileWithPreview(file: File): file is File & { preview: string } {
-//   return 'preview' in file && typeof file.preview === 'string'
-// }

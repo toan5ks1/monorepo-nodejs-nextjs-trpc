@@ -84,6 +84,9 @@ module.exports = {
         '15/9': '15 / 9',
         '16/9': '16 / 9',
       },
+      blur: {
+        xs: '2px',
+      },
     },
   },
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],

@@ -8,6 +8,8 @@ import { IdVerifyDrawer } from '@/components/modals/verify-id-drawer'
 import { CardContent } from '@ui/components/ui/card'
 import { useGlobalState } from '../../providers/global-context'
 import { VerifyIDStepTitle } from '@/utils/config'
+import IDPlaceHolder from '@/components/cards/id-place-holder'
+import CameraMask from '@/components/overlays/camera-mask'
 
 const WebcamCapture: React.FC = () => {
   const [isPending, startTransition] = React.useTransition()
@@ -45,11 +47,13 @@ const WebcamCapture: React.FC = () => {
     updateTitle(VerifyIDStepTitle[internalStep])
   }, [internalStep])
 
-  const capture = useCallback(() => {
+  const capture = () => {
     const imageSrc = webcamRef.current?.getScreenshot()
+    // Set image
     !frontSide ? setFrontSide(imageSrc) : setBackSide(imageSrc)
-    setInternalStep((pre) => pre + 1)
-  }, [webcamRef, frontSide, setBackSide])
+    // Set step
+    !backSide ? setInternalStep((pre) => pre + 1) : setInternalStep(2)
+  }
 
   const switchCamera = () => {
     const currentIndex = devices.findIndex(
@@ -60,10 +64,20 @@ const WebcamCapture: React.FC = () => {
     setDeviceId(nextDevice.deviceId)
   }
 
+  const onFrontSideRemoved = () => {
+    setFrontSide(undefined)
+    setInternalStep(0)
+  }
+
+  const onBackSideRemoved = () => {
+    setBackSide(undefined)
+    frontSide ? setInternalStep(1) : setInternalStep(0)
+  }
+
   return (
     <div className="h-full w-full flex flex-col items-center justify-between rounded-xl sm:border sm:shadow border-0 bg-card text-card-foreground shadow-none">
       <CardContent className="w-full h-full flex flex-col justify-between xl:w-3/5 plg:w-3/5 py-6 gap-4">
-        <div className="h-3/5 w-full flex flex-col justify-start relative">
+        <div className="h-3/5 w-full flex flex-col justify-evenly relative">
           <div className="relative">
             <Webcam
               audio={false}
@@ -76,10 +90,7 @@ const WebcamCapture: React.FC = () => {
               }}
               className="rounded-2xl aspect-[15/9] shadow-lg"
             />
-            <div className="absolute rounded-tl-xl top-[-8px] left-[-8px] border-t-2 border-l-2 border-gray-500 h-4 w-4"></div>
-            <div className="absolute rounded-tr-xl top-[-8px] right-[-8px] border-t-2 border-r-2 border-gray-500 h-4 w-4"></div>
-            <div className="absolute rounded-bl-xl bottom-[-8px] left-[-8px] border-b-2 border-l-2 border-gray-500 h-4 w-4"></div>
-            <div className="absolute rounded-br-xl bottom-[-8px] right-[-8px] border-b-2 border-r-2 border-gray-500 h-4 w-4"></div>
+            <CameraMask />
             {devices.length == 1 && (
               <Button
                 className="absolute right-4 top-4"
@@ -96,18 +107,18 @@ const WebcamCapture: React.FC = () => {
           </p>
         </div>
         <div className="flex w-full gap-8">
-          <FileCard
-            onRemove={() => setFrontSide(undefined)}
-            file={frontSide}
-            side="Mặt trước"
-          />
-          <FileCard
-            onRemove={() => setBackSide(undefined)}
-            file={backSide}
-            side="Mặt sau"
-          />
+          {frontSide ? (
+            <FileCard onRemove={onFrontSideRemoved} file={frontSide} />
+          ) : (
+            <IDPlaceHolder src="/images/id-front-side.webp" alt="Mặt trước" />
+          )}
+          {backSide ? (
+            <FileCard onRemove={onBackSideRemoved} file={backSide} />
+          ) : (
+            <IDPlaceHolder src="/images/id-back-side.webp" alt="Mặt sau" />
+          )}
         </div>
-        <div className="flex flex-col items-center justify-end">
+        <div className="flex flex-col items-center justify-end min-h-16">
           {internalStep >= 2 ? (
             <Button onClick={onSubmit} className="w-full">
               {isPending && (
@@ -121,7 +132,7 @@ const WebcamCapture: React.FC = () => {
             </Button>
           ) : (
             <Button
-              className="rounded-full w-16 h-16 flex items-center justify-center border-4 border-bg-background bg-[#ff0000e8]"
+              className="rounded-full w-16 h-16 flex items-center justify-center border-4 border-bg-background bg-[#ff0000e8] hover:bg-[#ff0000c3]"
               onClick={capture}
             />
           )}
