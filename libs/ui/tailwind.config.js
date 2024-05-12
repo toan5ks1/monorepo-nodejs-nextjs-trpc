@@ -82,7 +82,6 @@ module.exports = {
       },
       aspectRatio: {
         '15/9': '15 / 9',
-        '16/9': '16 / 9',
       },
       blur: {
         xs: '2px',

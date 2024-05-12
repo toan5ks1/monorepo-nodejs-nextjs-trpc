@@ -1,69 +1,13 @@
 'use client'
 
 import * as React from 'react'
-// import { zodResolver } from "@hookform/resolvers/zod"
-// import { useForm } from "react-hook-form"
-import { toast } from 'sonner'
-
-// import { updateNotification } from "@/lib/actions/notification"
-// import { type getNotification } from "@/lib/queries/notification"
-// import {
-//   updateNotificationSchema,
-//   type UpdateNotificationSchema,
-// } from "@/lib/validations/notification"
 import { Button } from '@ui/components/ui/button'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@ui/components/ui/form'
-import { Icons } from '@ui/components/molecules/icons'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from '@ui/components/ui/card'
-// import { Icons } from "@/components/icons"
 
-// interface UpdateNotificationFormProps {
-//   notificationPromise: ReturnType<typeof getNotification>
-// }
+import { CardContent, CardDescription, CardTitle } from '@ui/components/ui/card'
+import { useGlobalState } from '@/components/providers/global-context'
 
-export function VerifyIDResultForm({ notificationPromise }: any) {
-  // const notification = React.use(notificationPromise)
-  const [loading, setLoading] = React.useState(false)
-
-  // const form = useForm<UpdateNotificationSchema>({
-  //   resolver: zodResolver(updateNotificationSchema),
-  //   defaultValues: {
-  //     token: notification?.token,
-  //     newsletter: notification?.newsletter,
-  //     marketing: notification?.marketing,
-  //   },
-  // })
-
-  // async function onSubmit(input: UpdateNotificationSchema) {
-  //   setLoading(true)
-  //   const { error } = await updateNotification({
-  //     token: input.token,
-  //     newsletter: input.newsletter,
-  //     communication: input.communication,
-  //     marketing: input.marketing,
-  //   })
-
-  //   if (error) {
-  //     toast.error(error)
-  //     return
-  //   }
-
-  //   toast.success("Preferences updated")
-  //   setLoading(false)
-  // }
+export function VerifyIDResultForm() {
+  const { nextStep, updateTitle } = useGlobalState()
 
   return (
     <CardContent className="flex w-full flex-col gap-4">
@@ -92,15 +36,9 @@ export function VerifyIDResultForm({ notificationPromise }: any) {
           </CardDescription>
         </div>
       </CardContent>
-      <Button size="sm" className="w-fit" disabled={loading}>
-        {loading && (
-          <Icons.spinner
-            className="mr-2 size-4 animate-spin"
-            aria-hidden="true"
-          />
-        )}
-        Save preferences
-        <span className="sr-only">Save preferences</span>
+      <Button size="sm" className="w-full" onClick={nextStep}>
+        Tiếp tục
+        <span className="sr-only">Tiếp tục</span>
       </Button>
     </CardContent>
   )

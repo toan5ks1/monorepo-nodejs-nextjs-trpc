@@ -36,7 +36,6 @@ export default function SignInPage() {
         <CardContent className="grid gap-4">
           <SignInForm />
         </CardContent>
-        {/* <CardFooter className="flex flex-wrap items-center justify-between gap-2"></CardFooter> */}
       </Card>
     </Shell>
   )

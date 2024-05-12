@@ -6,6 +6,7 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
@@ -25,7 +26,7 @@ import {
 
 import { cn } from '@ui/lib/utils'
 
-export function IdVerifyDrawer() {
+export function FaceVerifyDrawer() {
   const [open, setOpen] = React.useState(true)
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
@@ -37,6 +38,10 @@ export function IdVerifyDrawer() {
             <DialogTitle className="font-heading text-3xl font-bold leading-[1.1] md:text-4xl">
               Lưu ý
             </DialogTitle>
+            <DialogDescription>
+              Vui lòng để điện thoại ở ngang tầm mắt để khuôn mặt vào trọn trong
+              khung hình
+            </DialogDescription>
           </DialogHeader>
           <ProfileForm />
         </DialogContent>
@@ -51,6 +56,10 @@ export function IdVerifyDrawer() {
           <DrawerTitle className="font-heading text-3xl font-bold leading-[1.1] md:text-4xl">
             Lưu ý
           </DrawerTitle>
+          <DrawerDescription>
+            Vui lòng để điện thoại ở ngang tầm mắt để khuôn mặt vào trọn trong
+            khung hình
+          </DrawerDescription>
         </DrawerHeader>
         <ProfileForm className="px-4" />
         <DrawerFooter>
@@ -63,36 +72,9 @@ export function IdVerifyDrawer() {
   )
 }
 
-function TurtorialDecription({ children }: React.PropsWithChildren) {
-  return (
-    <div className="flex">
-      <div className="mr-1.5 pt-[6px]">
-        <Icons.checked
-          className="h-3.5 w-3.5 text-muted-foreground"
-          aria-hidden="true"
-        />
-      </div>
-      <DialogDescription className="text-lg">{children}</DialogDescription>
-    </div>
-  )
-}
-
 function ProfileForm({ className }: React.ComponentProps<'div'>) {
   return (
     <div className={cn('flex flex-col gap-2 space-y-4', className)}>
-      <TurtorialDecription>
-        Quý khách vui lòng chuẩn bị CCCD hoặc CCCD gắn chip
-      </TurtorialDecription>
-      <TurtorialDecription>
-        Sử dụng giấy tờ gốc đã đăng ký tại NCB, nguyên vẹn và còn hiệu lực
-      </TurtorialDecription>
-      <TurtorialDecription>
-        Không sử dụng giấy tờ giả mạo, không chính chủ
-      </TurtorialDecription>
-      <TurtorialDecription>
-        Không chụp lại từ bản photocopy, từ ảnh chụp hoặc bất kỳ bản sao chép
-        nào khác
-      </TurtorialDecription>
       <div className="flex w-full gap-8">
         <div className="relative flex-1 text-center space-y-1">
           <Image
@@ -104,7 +86,7 @@ function ProfileForm({ className }: React.ComponentProps<'div'>) {
             width={1600}
             priority
           />
-          <DialogDescription>Không chụp mất góc</DialogDescription>
+          <DialogDescription>Môi trường đủ sáng</DialogDescription>
         </div>
         <div className="relative flex-1 text-center space-y-1">
           <Image
@@ -116,7 +98,19 @@ function ProfileForm({ className }: React.ComponentProps<'div'>) {
             width={1600}
             priority
           />
-          <DialogDescription>Không chụp loá sáng</DialogDescription>
+          <DialogDescription>Không đeo kính râm</DialogDescription>
+        </div>
+        <div className="relative flex-1 text-center space-y-1">
+          <Image
+            src="/images/id-turtorial-2.webp"
+            alt="Hướng dẫn chụp hình p2"
+            className="object-cover rounded-sm"
+            sizes="full"
+            height={965}
+            width={1600}
+            priority
+          />
+          <DialogDescription>Không đeo khẩu trang</DialogDescription>
         </div>
       </div>
     </div>

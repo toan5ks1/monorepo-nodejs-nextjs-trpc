@@ -1,5 +1,7 @@
 import { JetBrains_Mono as FontMono, Inter as FontSans } from 'next/font/google'
 import localFont from 'next/font/local'
+export { GeistMono } from 'geist/font/mono'
+export { GeistSans } from 'geist/font/sans'
 
 export const fontSans = FontSans({
   subsets: ['latin'],

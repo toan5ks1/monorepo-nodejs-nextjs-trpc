@@ -25,10 +25,14 @@ export function FileCard({ file, onRemove }: FileCardProps) {
           <Button
             type="button"
             size="icon"
-            className="sm:size-8 size-4 ml-[-50%] mt-[-50%]"
+            className="sm:size-6 size-4 ml-[-50%] mt-[-50%]"
             onClick={onRemove}
           >
-            <Cross2Icon color="white" className="size-2" aria-hidden="true" />
+            <Cross2Icon
+              color="white"
+              className="sm:size-4 size-3"
+              aria-hidden="true"
+            />
             <span className="sr-only">Remove file</span>
           </Button>
         </div>

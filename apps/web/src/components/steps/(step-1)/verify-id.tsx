@@ -8,10 +8,11 @@ import { IdVerifyDrawer } from '@/components/modals/verify-id-drawer'
 import { CardContent } from '@ui/components/ui/card'
 import { useGlobalState } from '../../providers/global-context'
 import { VerifyIDStepTitle } from '@/utils/config'
-import IDPlaceHolder from '@/components/cards/id-place-holder'
+import IDPlaceHolderFront from '@/components/cards/id-place-holder-front'
+import IDPlaceHolderBack from '@/components/cards/id-place-holder-back'
 import CameraMask from '@/components/overlays/camera-mask'
 
-const WebcamCapture: React.FC = () => {
+const IDVerify: React.FC = () => {
   const [isPending, startTransition] = React.useTransition()
   const [deviceId, setDeviceId] = useState<string>()
   const [devices, setDevices] = useState<MediaDeviceInfo[]>([])
@@ -30,9 +31,7 @@ const WebcamCapture: React.FC = () => {
   async function onSubmit() {
     startTransition(async () => {
       try {
-        setTimeout(() => {
-          nextStep()
-        }, 1000)
+        nextStep()
       } catch (err) {
         console.log(err)
       }
@@ -76,7 +75,7 @@ const WebcamCapture: React.FC = () => {
 
   return (
     <div className="h-full w-full flex flex-col items-center justify-between rounded-xl sm:border sm:shadow border-0 bg-card text-card-foreground shadow-none">
-      <CardContent className="w-full h-full flex flex-col justify-between xl:w-3/5 plg:w-3/5 py-6 gap-4">
+      <CardContent className="w-full h-full flex flex-col justify-between 2xl:w-1/2 xl:w-3/5 plg:w-3/4 py-6 gap-4">
         <div className="h-3/5 w-full flex flex-col justify-evenly relative">
           <div className="relative">
             <Webcam
@@ -88,10 +87,10 @@ const WebcamCapture: React.FC = () => {
                 width: 1200,
                 height: 720,
               }}
-              className="rounded-2xl aspect-[15/9] shadow-lg"
+              className="rounded-2xl w-full shadow-lg"
             />
             <CameraMask />
-            {devices.length == 1 && (
+            {devices.length && (
               <Button
                 className="absolute right-4 top-4"
                 variant="outline"
@@ -110,12 +109,12 @@ const WebcamCapture: React.FC = () => {
           {frontSide ? (
             <FileCard onRemove={onFrontSideRemoved} file={frontSide} />
           ) : (
-            <IDPlaceHolder src="/images/id-front-side.webp" alt="Mặt trước" />
+            <IDPlaceHolderFront />
           )}
           {backSide ? (
             <FileCard onRemove={onBackSideRemoved} file={backSide} />
           ) : (
-            <IDPlaceHolder src="/images/id-back-side.webp" alt="Mặt sau" />
+            <IDPlaceHolderBack />
           )}
         </div>
         <div className="flex flex-col items-center justify-end min-h-16">
@@ -143,4 +142,4 @@ const WebcamCapture: React.FC = () => {
   )
 }
 
-export default WebcamCapture
+export default IDVerify

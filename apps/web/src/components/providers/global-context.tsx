@@ -32,7 +32,8 @@ export const GlobalStateProvider = ({ children }: React.PropsWithChildren) => {
   const [title, setTitle] = useState(StepTitle[0])
 
   const nextStep = () => {
-    setStep((prevCount) => prevCount + 1)
+    setStep((pre) => pre + 1)
+    setTitle(StepTitle[step + 1])
   }
 
   const updateTitle = (newTitle: string) => {

@@ -120,14 +120,14 @@ export function SignInForm() {
               Tôi cam kết thông tin cung cấp là chính xác, hợp pháp và hoàn toàn
               chịu trách nhiệm. <br />
             </label>
-            <label
+            {/* <label
               htmlFor="terms"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               Tôi đồng ý nhận các thông tin từ Maybank gửi đến số điện thoại,
               email, địa chỉ đã đăng ký và cho phép sử dụng hoặc cung cấp các
               thông tin của tôi.
-            </label>
+            </label> */}
           </div>
         </div>
         <OtpDialog>

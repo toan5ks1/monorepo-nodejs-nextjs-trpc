@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import '@pod-platform/ui/src/index.css'
 
 import { siteConfig } from '@pod-platform/util/config/site'
-import { fontHeading, fontMono, fontSans } from '@ui/lib/utils/fonts'
+import { fontHeading, GeistMono, GeistSans } from '@ui/lib/utils/fonts'
 import { Toaster } from '@ui/components/ui/toaster'
 import { Analytics } from '@ui/components/molecules/analytics'
 import { ThemeProvider } from '@ui/components/molecules/providers'
@@ -21,11 +21,11 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [
     'nextjs',
-    'react',
-    'react server components',
-    'skateshop',
-    'skateboarding',
-    'kickflip',
+    'trading',
+    'account',
+    'register',
+    'maybank',
+    'securities',
   ],
   authors: [
     {
@@ -70,8 +70,8 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <body
           className={cn(
             'min-h-screen bg-background font-sans antialiased',
-            fontSans.variable,
-            fontMono.variable,
+            GeistSans.variable,
+            GeistMono.variable,
             fontHeading.variable,
           )}
         >
