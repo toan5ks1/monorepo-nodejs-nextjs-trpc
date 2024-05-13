@@ -17,7 +17,7 @@ const FaceVerify: React.FC = () => {
   const [devices, setDevices] = useState<MediaDeviceInfo[]>([])
   const [internalStep, setInternalStep] = useState(0)
   const [images, setImages] = useState<string[]>([])
-  // const { nextStep, updateTitle } = useGlobalState()
+  const { nextStep, updateTitle } = useGlobalState()
   const [actions, setActions] = useState<string[]>([])
   const [curAction, setCurAction] = useState(0)
   const webcamRef = React.useRef<Webcam>(null)
@@ -79,9 +79,9 @@ const FaceVerify: React.FC = () => {
   // }
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-between rounded-xl sm:border sm:shadow border-0 bg-card text-card-foreground shadow-none">
+    <div className="h-full w-full flex flex-col items-center justify-between rounded-xl">
       <CardContent className="w-full h-full flex flex-col justify-between items-center 2xl:w-1/2 xl:w-3/5 plg:w-3/5 md:w-4/5 py-6 gap-4">
-        <div className="h-3/5 sm:w-full flex flex-col justify-evenly relative">
+        <div className="h-3/5 xl:w-4/5 sm:w-full flex flex-col justify-evenly relative">
           <div className="relative">
             <CircularProgress progress={progress}>
               <Webcam
@@ -127,9 +127,9 @@ const FaceVerify: React.FC = () => {
             <IDPlaceHolderBack />
           )} */}
         </div>
-        <div className="flex flex-col items-center justify-end min-h-16">
-          {internalStep >= 2 ? (
-            <Button onClick={onSubmit} className="w-full">
+        <div className="flex flex-col items-center justify-end min-h-16 w-full">
+          {curAction > 2 ? (
+            <Button onClick={nextStep} className="w-full">
               {isPending && (
                 <Icons.spinner
                   className="mr-2 h-4 w-4 animate-spin"

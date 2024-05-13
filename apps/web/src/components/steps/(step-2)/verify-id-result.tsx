@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function VerifyIDResult() {
   return (
     <Shell variant="sidebar">
-      <Card>
+      <Card className="sm:border sm:shadow border-0 text-card-foreground shadow-none">
         <CardHeader>
           <CardTitle>Email Preferences</CardTitle>
           <CardDescription>Manage your email preferences</CardDescription>

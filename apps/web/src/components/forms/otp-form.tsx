@@ -40,6 +40,10 @@ import {
 
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { useGlobalState } from '../providers/global-context'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import useCountdown from '@pod-platform/util/hooks/use-countdown'
+import { otpExpireTime } from '@/utils/config'
 
 // const FormSchema = z.object({
 //   pin: z.string().min(6, {
@@ -47,15 +51,33 @@ import { useRouter } from 'next/navigation'
 //   }),
 // })
 
-interface OtpDialogProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface OtpDialogProps {
+  isOpen: boolean
+  setIsOpenOtp: Dispatch<SetStateAction<boolean>>
+  shouldStart: boolean
+}
 
-export function OtpDialog({ children }: OtpDialogProps) {
+export function OtpDialog({
+  isOpen,
+  setIsOpenOtp,
+  shouldStart,
+}: OtpDialogProps) {
   // const form = useForm<z.infer<typeof FormSchema>>({
   //   resolver: zodResolver(FormSchema),
   //   defaultValues: {
   //     pin: "",
   //   },
   // })
+  const router = useRouter()
+  const [isPending, startTransition] = React.useTransition()
+  const { userInfo, setUserInfo } = useGlobalState()
+  const { countdown, startCountdown, restartCountdown } = useCountdown(10)
+
+  useEffect(() => {
+    if (shouldStart) {
+      startCountdown()
+    }
+  }, [shouldStart])
 
   const form = useFormOtp()
   // function onSubmit(data: FormTypeSignIn) {
@@ -63,13 +85,30 @@ export function OtpDialog({ children }: OtpDialogProps) {
   //     description: 'We sent you a verification link.',
   //   })
   // }
-  const router = useRouter()
-  const [isPending, startTransition] = React.useTransition()
+
+  const resendOtp = () => {
+    startTransition(async () => {
+      try {
+        // Call api resend here
+
+        if (true) {
+          toast.message('Successfully!', {
+            description: 'We sent you an OTP code.',
+          })
+          restartCountdown()
+        } else {
+          toast('error')
+        }
+      } catch (err) {
+        // catchError(err)
+      }
+    })
+  }
+
   async function onSubmit({ otp }: FormTypeOtp) {
     startTransition(async () => {
       try {
         if (true) {
-          console.log(otp)
           toast.message('Check your email', {
             description: 'We sent you a verification link.',
           })
@@ -85,13 +124,13 @@ export function OtpDialog({ children }: OtpDialogProps) {
   }
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={setIsOpenOtp}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="text-center">Xác thực OTP</DialogTitle>
-          <DialogDescription className="text-center">
-            Vui lòng nhập mã OTP vừa được gửi về số điện thoại 099***0373
+          <DialogDescription className="text-center pt-2">
+            Vui lòng nhập mã OTP vừa được gửi về số điện thoại{' '}
+            <span className="text-primary">{userInfo.phone}</span>
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-2 flex flex-col items-center justify-center">
@@ -122,13 +161,21 @@ export function OtpDialog({ children }: OtpDialogProps) {
                 )}
               />
               <div className="flex justify-between items-center w-full">
-                <Button variant="link" className="">
-                  Lấy lại mã
+                <Button
+                  variant="link"
+                  onClick={resendOtp}
+                  disabled={countdown > 0}
+                >
                   <Icons.reload className="mx-2 h-4 w-4" aria-hidden="true" />
+                  Lấy lại mã
                 </Button>
-                <DialogDescription className="text-center">
-                  Hết hạn sau: 09s
-                </DialogDescription>
+                {countdown ? (
+                  <DialogDescription className="text-center">
+                    Hết hạn sau: {countdown}s
+                  </DialogDescription>
+                ) : (
+                  <></>
+                )}
               </div>
               <DialogFooter className="flex items-center justify-between flex-row space-x-2 w-full">
                 <DialogClose asChild>

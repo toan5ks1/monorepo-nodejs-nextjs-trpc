@@ -6,20 +6,16 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@ui/components/ui/card'
-import { OAuthSignIn } from '@ui/components/auth/oauth-signin'
 import { SignInForm } from '@/components/forms/signin-form'
 import { Shell } from '@ui/components/shells/shell'
-import { Checkbox } from '@ui/components/ui/checkbox'
-import { Icons } from '@ui/components/molecules/icons'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: 'Sign In',
-  description: 'Sign in to your account',
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL as string),
+  title: 'Register',
+  description: 'Sign up to your account',
 }
 
 export default function SignInPage() {

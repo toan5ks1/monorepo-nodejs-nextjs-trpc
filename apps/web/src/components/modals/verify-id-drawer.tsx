@@ -79,7 +79,7 @@ function TurtorialDecription({ children }: React.PropsWithChildren) {
 
 function ProfileForm({ className }: React.ComponentProps<'div'>) {
   return (
-    <div className={cn('flex flex-col gap-2 space-y-4', className)}>
+    <div className={cn('flex flex-col space-y-4', className)}>
       <TurtorialDecription>
         Quý khách vui lòng chuẩn bị CCCD hoặc CCCD gắn chip
       </TurtorialDecription>

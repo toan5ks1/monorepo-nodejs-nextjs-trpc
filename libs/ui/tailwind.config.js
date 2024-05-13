@@ -22,6 +22,7 @@ module.exports = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        prebackground: 'hsl(var(--prebackground))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
@@ -84,6 +85,7 @@ module.exports = {
         '15/9': '15 / 9',
       },
       blur: {
+        xxs: '1px',
         xs: '2px',
       },
     },

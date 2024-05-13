@@ -1,15 +1,22 @@
 'use client'
 
-import { StepTitle } from '@/utils/config'
+import { StepTitle, otpExpireTime } from '@/utils/config'
 import React, { ReactNode, createContext, useContext, useState } from 'react'
 
 // Define your context type
+
+interface UserInfo {
+  phone?: string
+}
+
 interface GlobalStateContextType {
   // Define your state variables and functions here
   step: number
   title: string
   nextStep: () => void
   updateTitle: (newTitle: string) => void
+  setUserInfo: (info: UserInfo) => void
+  userInfo: UserInfo
 }
 
 // Create context
@@ -30,6 +37,7 @@ export const useGlobalState = () => {
 export const GlobalStateProvider = ({ children }: React.PropsWithChildren) => {
   const [step, setStep] = useState(0)
   const [title, setTitle] = useState(StepTitle[0])
+  const [userInfo, setUserInfo] = useState({})
 
   const nextStep = () => {
     setStep((pre) => pre + 1)
@@ -41,7 +49,9 @@ export const GlobalStateProvider = ({ children }: React.PropsWithChildren) => {
   }
 
   return (
-    <GlobalStateContext.Provider value={{ step, nextStep, title, updateTitle }}>
+    <GlobalStateContext.Provider
+      value={{ userInfo, setUserInfo, step, nextStep, title, updateTitle }}
+    >
       {children}
     </GlobalStateContext.Provider>
   )

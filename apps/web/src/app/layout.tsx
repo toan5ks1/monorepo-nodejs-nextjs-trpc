@@ -13,7 +13,7 @@ import { cn } from '@ui/lib/utils'
 import { env } from '@/env.mjs'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL as string),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,

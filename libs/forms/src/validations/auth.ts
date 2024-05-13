@@ -67,9 +67,17 @@ export const schemaRegister = z.object({
   image: z.string().optional(),
 })
 
-export const schemaSignIn = schemaRegister.pick({
-  email: true,
-  password: true,
+export const schemaSignIn = z.object({
+  email: z.string().email({
+    message: 'Please enter a valid email address',
+  }),
+  phone: z
+    .string()
+    .min(10, {
+      message: 'Please enter a valid phone number',
+    })
+    .max(16),
+  refCode: z.string().optional(),
 })
 
 export const schemaOtp = z.object({

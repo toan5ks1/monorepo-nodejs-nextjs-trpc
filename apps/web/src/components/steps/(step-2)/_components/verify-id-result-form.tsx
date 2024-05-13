@@ -36,6 +36,22 @@ export function VerifyIDResultForm() {
           </CardDescription>
         </div>
       </CardContent>
+      <CardContent className="flex w-full flex-row items-center justify-between space-x-2 rounded-lg border p-4">
+        <div className="space-y-0.5">
+          <CardTitle className="text-base">Marketing emails</CardTitle>
+          <CardDescription>
+            Receive marketing emails, including promotions, discounts, and more.
+          </CardDescription>
+        </div>
+      </CardContent>
+      <CardContent className="flex w-full flex-row items-center justify-between space-x-2 rounded-lg border p-4">
+        <div className="space-y-0.5">
+          <CardTitle className="text-base">Marketing emails</CardTitle>
+          <CardDescription>
+            Receive marketing emails, including promotions, discounts, and more.
+          </CardDescription>
+        </div>
+      </CardContent>
       <Button size="sm" className="w-full" onClick={nextStep}>
         Tiếp tục
         <span className="sr-only">Tiếp tục</span>

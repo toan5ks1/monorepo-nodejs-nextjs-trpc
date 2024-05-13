@@ -1,8 +1,6 @@
 'use client'
 
-import * as React from 'react'
-import { signIn } from 'next-auth/react'
-import { Button, buttonVariants } from '@ui/components/ui/button'
+import { Button } from '@ui/components/ui/button'
 import {
   Form,
   FormControl,
@@ -13,7 +11,6 @@ import {
 } from '@ui/components/ui/form'
 import { Input } from '@ui/components/ui/input'
 import { Icons } from '@ui/components/molecules/icons'
-import { PasswordInput } from '@ui/components/molecules/password-input'
 import { FormTypeSignIn, useFormSignIn } from '@pod-platform/forms/src/form'
 // import { catchError } from '../../utils'
 import { toast } from 'sonner'
@@ -24,13 +21,25 @@ import { Label } from '@ui/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@ui/components/ui/radio-group'
 import { OtpDialog } from './otp-form'
 import { Checkbox } from '@ui/components/ui/checkbox'
+import { cn } from '@ui/lib/utils'
+import { useGlobalState } from '../providers/global-context'
+import { useState, useTransition } from 'react'
 
 export function SignInForm() {
   const router = useRouter()
-  const [isPending, startTransition] = React.useTransition()
   const form = useFormSignIn()
+  const { setUserInfo } = useGlobalState()
 
-  async function onSubmit({ email, password }: FormTypeSignIn) {
+  const [isPending, startTransition] = useTransition()
+  const [hasRefCode, setHasRefCode] = useState(false)
+  const [isOpenOtp, setIsOpenOtp] = useState(false)
+  const [shouldStart, setShouldStart] = useState(false)
+
+  const handleRadioChange = (value: string) => {
+    value === 'hasRef' ? setHasRefCode(true) : setHasRefCode(false)
+  }
+
+  async function onSubmit({ email, phone, refCode }: FormTypeSignIn) {
     startTransition(async () => {
       try {
         // const res = await signIn('credentials', {
@@ -41,8 +50,9 @@ export function SignInForm() {
 
         if (true) {
           toast('Verify code successfully!')
-          router.push('/verify-id')
-          router.refresh()
+          setUserInfo({ phone })
+          setIsOpenOtp(true)
+          setShouldStart(true)
         } else {
           toast('error')
         }
@@ -51,6 +61,7 @@ export function SignInForm() {
       }
     })
   }
+
   return (
     <Form {...form}>
       <form
@@ -59,14 +70,14 @@ export function SignInForm() {
       >
         <FormField
           control={form.control}
-          name="password"
+          name="phone"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Số điện thoại</FormLabel>
               <FormControl>
                 <Input
-                  // type="number"
-                  type="text"
+                  type="number"
+                  maxLength={16}
                   placeholder="Nhập số điện thoại"
                   {...field}
                 />
@@ -88,23 +99,28 @@ export function SignInForm() {
             </FormItem>
           )}
         />
+        <FormItem>
+          <FormLabel>Gói dịch vụ quản lý tài khoản</FormLabel>
+          <FormControl>
+            <RadioGroup defaultValue="free" onValueChange={handleRadioChange}>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="free" id="r1" />
+                <Label htmlFor="r1">Khách hàng tự giao dịch</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="hasRef" id="r3" />
+                <Label htmlFor="r3">Khách hàng có chuyên viên tư vấn</Label>
+              </div>
+            </RadioGroup>
+          </FormControl>
+        </FormItem>
         <FormField
           control={form.control}
-          name="email"
+          name="refCode"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Gói dịch vụ quản lý tài khoản</FormLabel>
+            <FormItem className={cn(!hasRefCode && 'hidden')}>
               <FormControl>
-                <RadioGroup defaultValue="0">
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="0" id="r1" />
-                    <Label htmlFor="r1">Khách hàng tự giao dịch</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="1" id="r3" />
-                    <Label htmlFor="r3">Khách hàng có chuyên viên tư vấn</Label>
-                  </div>
-                </RadioGroup>
+                <Input type="text" placeholder="Mã giới thiệu" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -130,18 +146,21 @@ export function SignInForm() {
             </label> */}
           </div>
         </div>
-        <OtpDialog>
-          <Button type="submit">
-            {isPending && (
-              <Icons.spinner
-                className="mr-2 h-4 w-4 animate-spin"
-                aria-hidden="true"
-              />
-            )}
-            Đăng ký mở tài khoản
-            <span className="sr-only">Đăng ký mở tài khoản</span>
-          </Button>
-        </OtpDialog>
+        <Button type="submit">
+          {isPending && (
+            <Icons.spinner
+              className="mr-2 h-4 w-4 animate-spin"
+              aria-hidden="true"
+            />
+          )}
+          Đăng ký mở tài khoản
+          <span className="sr-only">Đăng ký mở tài khoản</span>
+        </Button>
+        <OtpDialog
+          isOpen={isOpenOtp}
+          setIsOpenOtp={setIsOpenOtp}
+          shouldStart={shouldStart}
+        />
       </form>
     </Form>
   )

@@ -39,7 +39,7 @@ export const useFormSignIn = () =>
     resolver: zodResolver(schemaSignIn),
     defaultValues: {
       email: '',
-      password: '',
+      phone: '',
     },
   })
 
