@@ -40,6 +40,8 @@ export const useFormSignIn = () =>
     defaultValues: {
       email: '',
       phone: '',
+      refCode: '',
+      // isAgree: false,
     },
   })
 

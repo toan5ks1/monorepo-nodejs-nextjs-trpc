@@ -92,8 +92,8 @@ const IDVerify: React.FC = () => {
           <CameraMask />
           {devices.length && (
             <Button
-              className="absolute right-4 top-4"
-              variant="outline"
+              className="absolute right-2 top-2 bg-muted"
+              variant="secondary"
               size="sm"
               onClick={switchCamera}
             >

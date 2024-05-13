@@ -4,7 +4,7 @@ import { Badge } from '@ui/components/ui/badge'
 
 const IDPlaceHolderFront = () => {
   return (
-    <div className="w-full relative  border-2 border-ring border-dashed rounded-md shadow-lg">
+    <div className="w-full relative border border-ring border-dashed rounded-md shadow-lg">
       <Image
         src="/images/id-front-side.webp"
         alt="Mặt trước"

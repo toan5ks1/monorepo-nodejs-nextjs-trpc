@@ -78,6 +78,9 @@ export const schemaSignIn = z.object({
     })
     .max(16),
   refCode: z.string().optional(),
+  isAgree: z.literal<boolean>(true, {
+    errorMap: () => ({ message: 'This is required' }),
+  }),
 })
 
 export const schemaOtp = z.object({

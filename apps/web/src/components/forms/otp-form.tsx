@@ -70,8 +70,9 @@ export function OtpDialog({
   // })
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
-  const { userInfo, setUserInfo } = useGlobalState()
-  const { countdown, startCountdown, restartCountdown } = useCountdown(10)
+  const { userInfo } = useGlobalState()
+  const { countdown, startCountdown, restartCountdown } =
+    useCountdown(otpExpireTime)
 
   useEffect(() => {
     if (shouldStart) {

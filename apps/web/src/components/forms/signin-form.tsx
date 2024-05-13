@@ -126,26 +126,32 @@ export function SignInForm() {
             </FormItem>
           )}
         />
-        <div className="flex items-start space-x-2 my-4">
-          <Checkbox id="terms" className="mt-1" />
-          <div>
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Tôi cam kết thông tin cung cấp là chính xác, hợp pháp và hoàn toàn
-              chịu trách nhiệm. <br />
-            </label>
-            {/* <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Tôi đồng ý nhận các thông tin từ Maybank gửi đến số điện thoại,
-              email, địa chỉ đã đăng ký và cho phép sử dụng hoặc cung cấp các
-              thông tin của tôi.
-            </label> */}
-          </div>
-        </div>
+        <FormField
+          control={form.control}
+          name="isAgree"
+          render={({ field }) => (
+            <FormItem className="flex items-start space-x-2">
+              <FormControl>
+                <Checkbox
+                  id="terms"
+                  className="mt-3"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div>
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Tôi cam kết thông tin cung cấp là chính xác, hợp pháp và hoàn
+                  toàn chịu trách nhiệm. <br />
+                </label>
+                <FormMessage />
+              </div>
+            </FormItem>
+          )}
+        />
         <Button type="submit">
           {isPending && (
             <Icons.spinner

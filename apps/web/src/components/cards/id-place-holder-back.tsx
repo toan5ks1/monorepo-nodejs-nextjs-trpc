@@ -4,7 +4,7 @@ import { Badge } from '@ui/components/ui/badge'
 
 const IDPlaceHolderBack = () => {
   return (
-    <div className="w-full relative aspect-[15/9] border-2 border-ring border-dashed rounded-md shadow-lg">
+    <div className="w-full relative aspect-[15/9] border border-ring border-dashed rounded-md shadow-lg">
       <Image
         src="/images/id-back-side.webp"
         alt="Mặt sau"
