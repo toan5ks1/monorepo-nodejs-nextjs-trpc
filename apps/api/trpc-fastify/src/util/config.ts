@@ -1,6 +1,7 @@
 import type { ServerOptions } from '../server'
 import { get } from 'env-var'
 import { config } from 'dotenv'
+import { Role } from './types'
 config()
 
 export const serverConfig: ServerOptions = {
@@ -16,3 +17,5 @@ export const authConfig = {
   secretKey: get('NEXTAUTH_SECRET').required().asString(),
   jwtExpiresIn: get('JWT_EXPIRES_IN').required().asString(),
 }
+
+export const defaultRole: Role = 'user'

@@ -4,21 +4,19 @@ import * as React from 'react'
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
 
-import { ViewVerticalIcon } from '@radix-ui/react-icons'
-
-import { siteConfig } from '@pod-platform/util/config/site'
-import { cn } from '../../util'
+import { siteConfig } from '@/libs/config/site'
+import { Icons } from '@ui/components/other/icons'
+import { MainNavItem, SidebarNavItem } from '@ui/util/types'
+import { cn } from '@ui/util'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '../ui/accordion'
-import { Button } from '../ui/button'
-import { ScrollArea } from '../ui/scroll-area'
-import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet'
-import { Icons } from '../other/icons'
-import { MainNavItem, SidebarNavItem } from '../../util/types'
+} from '@ui/components/ui/accordion'
+import { Button } from '@ui/components/ui/button'
+import { ScrollArea } from '@ui/components/ui/scroll-area'
+import { Sheet, SheetContent, SheetTrigger } from '@ui/components/ui/sheet'
 
 interface MobileNavProps {
   mainNavItems?: MainNavItem[]
@@ -52,7 +50,7 @@ export function MobileNav({ mainNavItems, sidebarNavItems }: MobileNavProps) {
           variant="ghost"
           className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden"
         >
-          <ViewVerticalIcon className="h-6 w-6" aria-hidden="true" />
+          <Icons.ViewVerticalIcon className="h-6 w-6" aria-hidden="true" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>

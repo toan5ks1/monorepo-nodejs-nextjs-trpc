@@ -44,7 +44,7 @@ export function createServer(opts: ServerOptions) {
   const stop = () => server.close()
   const start = async () => {
     try {
-      await server.listen({ port })
+      await server.listen({ host: 'localhost', port })
     } catch (err) {
       server.log.error(err)
       process.exit(1)

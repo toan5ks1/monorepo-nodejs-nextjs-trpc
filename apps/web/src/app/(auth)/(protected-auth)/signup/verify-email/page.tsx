@@ -6,10 +6,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@ui/ui/card'
-import { VerifyEmailForm } from '@ui/forms/verify-email-form'
-import { Shell } from '@ui/shells/shell'
-import { env } from '@web/src/env.mjs'
+} from '@ui/components/ui/card'
+import { VerifyEmailForm } from '@/components/forms/verify-email-form'
+import { Shell } from '@ui/components/shells/shell'
+import { env } from '@/env.mjs'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

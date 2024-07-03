@@ -1,4 +1,4 @@
-export type Role = 'admin' | 'manager'
+export type Role = 'admin' | 'manager' | 'user'
 
 export interface Result<T> {
   success: boolean

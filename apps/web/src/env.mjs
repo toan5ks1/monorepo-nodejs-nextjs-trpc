@@ -10,7 +10,6 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(['development', 'test', 'production'])
       .default('development'),
-    // DATABASE_URL: z.string().url(),
     // CLERK_SECRET_KEY: z.string().min(1),
     // RESEND_API_KEY: z.string().min(1),
     // EMAIL_FROM_ADDRESS: z.string().email(),
@@ -40,7 +39,6 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    DATABASE_URL: process.env.DATABASE_URL,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,

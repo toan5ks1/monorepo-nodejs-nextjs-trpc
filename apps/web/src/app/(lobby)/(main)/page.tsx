@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { Balancer } from 'react-wrap-balancer'
 import { Icons } from '@pod-platform/ui/src/components/other/icons'
 
-import { buttonVariants } from '@ui/ui/button'
-import { ProductCard } from '@ui/cards/product-card'
-import { StoreCard } from '@ui/cards/store-card'
-import { Shell } from '@ui/shells/shell'
-import { ProductCardSkeleton } from '@ui/skeletons/product-card-skeleton'
-import { StoreCardSkeleton } from '@ui/skeletons/store-card-skeleton'
+import { buttonVariants } from '@ui/components/ui/button'
+import { ProductCard } from '@ui/components/cards/product-card'
+import { StoreCard } from '@ui/components/cards/store-card'
+import { Shell } from '@ui/components/shells/shell'
+import { ProductCardSkeleton } from '@ui/components/skeletons/product-card-skeleton'
+import { StoreCardSkeleton } from '@ui/components/skeletons/store-card-skeleton'
 import { cn } from '@pod-platform/ui/src/util'
 
 export default async function IndexPage() {
@@ -71,7 +71,7 @@ export default async function IndexPage() {
             )}
           >
             View all products
-            <Icons.arrowRightIcon className="ml-2 h-4 w-4" aria-hidden="true" />
+            <Icons.ArrowRightIcon className="ml-2 h-4 w-4" aria-hidden="true" />
             <span className="sr-only">View all products</span>
           </Link>
         </div>
@@ -97,7 +97,7 @@ export default async function IndexPage() {
             )}
           >
             View all products
-            <Icons.arrowRightIcon className="ml-2 h-4 w-4" aria-hidden="true" />
+            <Icons.ArrowRightIcon className="ml-2 h-4 w-4" aria-hidden="true" />
             <span className="sr-only">View all products</span>
           </Link>
         </div>
@@ -126,7 +126,7 @@ export default async function IndexPage() {
             )}
           >
             View all stores
-            <Icons.arrowRightIcon className="ml-2 h-4 w-4" aria-hidden="true" />
+            <Icons.ArrowRightIcon className="ml-2 h-4 w-4" aria-hidden="true" />
             <span className="sr-only">View all stores</span>
           </Link>
         </div>
@@ -156,7 +156,7 @@ export default async function IndexPage() {
             )}
           >
             View all stores
-            <Icons.arrowRightIcon className="ml-2 h-4 w-4" aria-hidden="true" />
+            <Icons.ArrowRightIcon className="ml-2 h-4 w-4" aria-hidden="true" />
             <span className="sr-only">View all stores</span>
           </Link>
         </div>

@@ -1,6 +1,6 @@
 import { type Metadata } from 'next'
 import Link from 'next/link'
-import { env } from '@web/src/env.mjs'
+import { env } from '@/env.mjs'
 
 import {
   Card,
@@ -9,10 +9,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@ui/ui/card'
-import { OAuthSignIn } from '@ui/auth/oauth-signin'
-import { SignInForm } from '@ui/forms/signin-form'
-import { Shell } from '@ui/shells/shell'
+} from '@ui/components/ui/card'
+import { OAuthSignIn } from '@ui/components/auth/oauth-signin'
+import { Shell } from '@ui/components/shells/shell'
+import { SignInForm } from '@/components/forms/signin-form'
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

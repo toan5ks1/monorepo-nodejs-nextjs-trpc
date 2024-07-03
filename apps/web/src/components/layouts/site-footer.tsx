@@ -1,12 +1,11 @@
 import Link from 'next/link'
 
-import { siteConfig } from '@pod-platform/util/config/site'
-import { cn } from '../../util'
-import { buttonVariants } from '../ui/button'
-import { Shell } from '../shells/shell'
-import { Icons } from '../other/icons'
-import { ModeToggle } from './mode-toggle'
-import { JoinNewsletterForm } from '../forms/join-newsletter-form'
+import { Icons } from '@ui/components/other/icons'
+import { cn } from '@ui/util'
+import { buttonVariants } from '@ui/components/ui/button'
+import { Shell } from '@ui/components/shells/shell'
+import { ModeToggle } from '@pod-platform/ui/src/components/other/mode-toggle'
+import { siteConfig } from '@/libs/config/site'
 
 export function SiteFooter() {
   return (
@@ -61,7 +60,7 @@ export function SiteFooter() {
             <h4 className="text-base font-medium">
               Subscribe to our newsletter
             </h4>
-            <JoinNewsletterForm />
+            {/* <JoinNewsletterForm /> */}
           </section>
         </section>
         <section

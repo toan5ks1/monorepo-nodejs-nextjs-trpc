@@ -1,9 +1,6 @@
 import Link from 'next/link'
-import { DashboardIcon, ExitIcon, GearIcon } from '@radix-ui/react-icons'
-
 import { dashboardConfig } from '@pod-platform/util/config/dashboard'
-import { siteConfig } from '@pod-platform/util/config/site'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@ui/components/ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,27 +10,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from '../ui/dropdown-menu'
-import { CartSheet } from '../checkout/cart-sheet'
-import { Icons } from '../other/icons'
-import { MainNav } from '../layouts/main-nav'
+} from '@ui/components/ui/dropdown-menu'
+import { CartSheet } from '@ui/components/checkout/cart-sheet'
+import { Icons } from '@ui/components/other/icons'
 import { MobileNav } from '../layouts/mobile-nav'
-import { Button } from '../ui/button'
-import { trpc } from '@pod-platform/trpc-client-resource/src'
-import { generateMenuTree } from '../../util'
-import { User } from '../../util/types'
+import { Button } from '@ui/components/ui/button'
+import { User } from '@ui/util/types'
+import { MainNav } from './main-nav'
+import { siteConfig } from '@/libs/config/site'
 
 interface SiteHeaderProps {
-  user: User
+  user?: User
 }
 
 export async function SiteHeader({ user }: SiteHeaderProps) {
-  const categories = await trpc.resource.categories.query()
-
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-16 items-center">
-        <MainNav categories={generateMenuTree(categories, null)} />
+        <MainNav />
         <MobileNav
           mainNavItems={siteConfig.mainNav}
           sidebarNavItems={dashboardConfig.sidebarNav}
@@ -73,7 +67,7 @@ export async function SiteHeader({ user }: SiteHeaderProps) {
                   <DropdownMenuGroup>
                     <DropdownMenuItem asChild>
                       <Link href="/dashboard/stores">
-                        <DashboardIcon
+                        <Icons.DashboardIcon
                           className="mr-2 size-4"
                           aria-hidden="true"
                         />
@@ -93,7 +87,10 @@ export async function SiteHeader({ user }: SiteHeaderProps) {
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link href="/dashboard/account">
-                        <GearIcon className="mr-2 size-4" aria-hidden="true" />
+                        <Icons.GearIcon
+                          className="mr-2 size-4"
+                          aria-hidden="true"
+                        />
                         Settings
                         <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                       </Link>
@@ -102,7 +99,10 @@ export async function SiteHeader({ user }: SiteHeaderProps) {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
                     <Link href="/signout">
-                      <ExitIcon className="mr-2 size-4" aria-hidden="true" />
+                      <Icons.ExitIcon
+                        className="mr-2 size-4"
+                        aria-hidden="true"
+                      />
                       Log out
                       <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                     </Link>

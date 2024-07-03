@@ -1,13 +1,9 @@
-'use client'
-
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
-import { ChevronLeftIcon } from '@radix-ui/react-icons'
 
-import { cn } from '../../util'
-
-import { Icons } from '../other/icons'
-import { SidebarNavItem } from '../../util/types'
+import { Icons } from '@ui/components/other/icons'
+import { cn } from '@ui/util'
+import { SidebarNavItem } from '@ui/util/types'
 
 export interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {
   items: SidebarNavItem[]
@@ -21,7 +17,7 @@ export function SidebarNav({ items, className, ...props }: SidebarNavProps) {
   return (
     <div className={cn('flex w-full flex-col gap-2', className)} {...props}>
       {items.map((item, index) => {
-        const Icon = item.icon ? Icons[item.icon] : ChevronLeftIcon
+        const Icon = item.icon ? Icons[item.icon] : Icons.ChevronLeftIcon
 
         return item.href ? (
           <Link

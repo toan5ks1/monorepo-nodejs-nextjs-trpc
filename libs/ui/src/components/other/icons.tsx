@@ -1,8 +1,10 @@
-import { AvatarIcon, ImageIcon, ArrowRightIcon } from '@radix-ui/react-icons'
+// eslint-disable-next-line react-refresh/only-export-components
+import * as RadixIcons from '@radix-ui/react-icons'
 
 type IconProps = React.HTMLAttributes<SVGElement>
 
 export const Icons = {
+  ...RadixIcons,
   logo: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +246,4 @@ export const Icons = {
       <line x1="16" x2="16" y1="16" y2="16" />
     </svg>
   ),
-  avatar: AvatarIcon,
-  arrowRightIcon: ArrowRightIcon,
-  placeholder: ImageIcon,
 }

@@ -3,7 +3,6 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-import { siteConfig } from '@pod-platform/util/config/site'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,22 +10,27 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '../ui/navigation-menu'
-import { Icons } from '../other/icons'
-import { cn, slugify } from '../../util'
-import { MenuItem } from '../../util/types'
+} from '@ui/components/ui/navigation-menu'
 
-interface MainNavProps {
-  categories?: MenuItem[]
-}
+import { siteConfig } from '@/libs/config/site'
+import { Icons } from '@ui/components/other/icons'
+import { cn, generateMenuTree, slugify } from '@ui/util'
+import { trpcClient } from '@pod-platform/trpc-client/src/client'
+import { useEffect, useMemo } from 'react'
 
-export function MainNav({ categories }: MainNavProps) {
-  const mainNav = {
-    title: 'Catalog',
-    items: categories,
-  }
+export function MainNav() {
+  const lobby = siteConfig.mainNav[0]
+  const { data, isLoading, isError } = trpcClient.resource.categories.useQuery()
 
-  const lobby = siteConfig.mainNav[0]!
+  useEffect(() => {
+    console.log('isLoading:', isLoading)
+    console.log('isError:', isError)
+    console.log('data:', data)
+  }, [data, isLoading, isError])
+  const categories = useMemo(() => {
+    console.log(isLoading, data)
+    return data?.length ? generateMenuTree(data, null) : []
+  }, [data, isLoading])
 
   return (
     <div className="hidden gap-6 lg:flex">
@@ -39,14 +43,13 @@ export function MainNav({ categories }: MainNavProps) {
       </Link>
       <NavigationMenu>
         <NavigationMenuList>
-          {/* Catalog */}
-          <NavigationMenuItem key={mainNav.title}>
+          <NavigationMenuItem key="catalog">
             <NavigationMenuTrigger className="h-auto capitalize">
-              {mainNav.title}
+              Catalog
             </NavigationMenuTrigger>
             <NavigationMenuContent asChild>
               <ul className="flex w-screen gap-3 p-4">
-                {mainNav.items?.map((item) => (
+                {categories.map((item) => (
                   <li key={item.title}>
                     <ul className="flex w-[180px] flex-col gap-3">
                       <ListItem

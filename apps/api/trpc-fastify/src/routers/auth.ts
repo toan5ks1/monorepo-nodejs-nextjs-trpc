@@ -9,19 +9,19 @@ import {
   schemaToken,
 } from '@pod-platform/forms/src/validations/auth'
 
-import { prisma } from '../db/identity/index'
+import { prisma } from '../db/index'
 import { TRPCError } from '@trpc/server'
 import * as bcrypt from 'bcryptjs'
 import { v4 as uuid } from 'uuid'
 import { sign } from 'jsonwebtoken'
 import { sendVerificationEmail } from './email'
-import { type Result, AuthProviderType } from '../util/types'
+import { authConfig, defaultRole } from '../util/config'
 
 export const authRoutes = router({
   users: adminProcedure.query(() => {
     return prisma.user.findMany()
   }),
-  user: publicProcedure.input(schemaUser).query(({ input: { uid }, ctx }) => {
+  user: publicProcedure.input(schemaUser).query(({ input: { uid } }) => {
     return prisma.user.findUnique({ where: { uid } })
   }),
   signIn: publicProcedure
@@ -41,8 +41,9 @@ export const authRoutes = router({
       }
 
       const token = sign(
-        { uid: credentials.uid },
-        process.env.NEXTAUTH_SECRET || '',
+        { uid: credentials.uid, roles: credentials.user.role },
+        authConfig.secretKey,
+        { expiresIn: authConfig.jwtExpiresIn },
       )
 
       return {
@@ -71,12 +72,13 @@ export const authRoutes = router({
           uid: uuid(),
           name,
           image,
+          role: defaultRole,
           Credentials: { create: { email, passwordHash } },
-          AuthProvider: { create: { type: AuthProviderType.CREDENTIALS } },
+          AuthProvider: { create: { type: 'CREDENTIALS' } },
         },
       })
 
-      const token = sign({ uid: user.uid }, process.env.NEXTAUTH_SECRET || '')
+      const token = sign({ uid: user.uid }, authConfig.secretKey)
       return { user, token }
     }),
   registerWithProvider: publicProcedure
@@ -88,6 +90,7 @@ export const authRoutes = router({
           uid,
           image,
           name,
+          role: defaultRole,
           AuthProvider: {
             create: {
               type,
@@ -95,7 +98,7 @@ export const authRoutes = router({
           },
         },
       })
-      const token = sign({ uid: user.uid }, process.env.NEXTAUTH_SECRET || '')
+      const token = sign({ uid: user.uid }, authConfig.secretKey)
       return { user, token }
     }),
   generatePasswordResetToken: publicProcedure

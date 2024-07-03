@@ -14,7 +14,7 @@ async function decodeAndVerifyJwtToken(token: string): Promise<User> {
 }
 
 export async function createContext({ req, res }: CreateFastifyContextOptions) {
-  if (req.headers.authorization) {
+  if (req.headers.authorization && req.headers.authorization.split(' ')[1]) {
     try {
       const user = await decodeAndVerifyJwtToken(
         req.headers.authorization.split(' ')[1],

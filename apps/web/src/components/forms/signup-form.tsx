@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Button } from '@ui/ui/button'
+import { Button } from '@ui/components/ui/button'
 import {
   Form,
   FormControl,
@@ -9,15 +9,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@ui/ui/form'
-import { Input } from '@ui/ui/input'
-import { Icons } from '@pod-platform/ui/src/components/other/icons'
-import { PasswordInput } from '@ui/password-input'
+} from '@ui/components/ui/form'
+import { Input } from '@ui/components/ui/input'
+import { Icons } from '@ui/components/other/icons'
+import { PasswordInput } from '@ui/components/other/password-input'
 import { FormTypeRegister, useFormRegister } from '@pod-platform/forms/src/form'
-import { trpcClient } from '@pod-platform/trpc-client-identity/src/client'
 import { useRouter } from 'next/navigation'
 import { catchError } from '@/libs/util'
 import { toast } from 'sonner'
+import { trpcClient } from '@pod-platform/trpc-client/src/client'
 
 export function SignUpForm() {
   const [isPending, startTransition] = React.useTransition()

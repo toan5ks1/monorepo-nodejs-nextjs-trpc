@@ -9,7 +9,8 @@ export const trpc = createTRPCProxyClient<AppRouter>({
       url: process.env.NEXT_PUBLIC_API_URL + '/trpc',
       async headers() {
         const getCookies = cookies()
-        const token = getCookies.get('next-auth.session-token')?.value || ''
+        const token =
+          getCookies.get('next-auth.session-token')?.value || undefined
 
         return {
           authorization: `Bearer ${token}`,

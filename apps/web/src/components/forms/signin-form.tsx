@@ -1,8 +1,7 @@
 'use client'
 
-import * as React from 'react'
 import { signIn } from 'next-auth/react'
-import { Button } from '../ui/button'
+import { Button } from '@ui/components/ui/button'
 import {
   Form,
   FormControl,
@@ -10,18 +9,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '../ui/form'
-import { Input } from '../ui/input'
-import { Icons } from '../icons'
-import { PasswordInput } from '../password-input'
+} from '@ui/components/ui/form'
+import { Input } from '@ui/components/ui/input'
+import { Icons } from '@ui/components/other/icons'
+import { PasswordInput } from '@ui/components/other/password-input'
 import { FormTypeSignIn, useFormSignIn } from '@pod-platform/forms/src/form'
-import { catchError } from '../../util'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { catchError } from '@/libs/util'
+import { useTransition } from 'react'
 
 export function SignInForm() {
+  const [isPending, startTransition] = useTransition()
   const router = useRouter()
-  const [isPending, startTransition] = React.useTransition()
   const form = useFormSignIn()
 
   async function onSubmit({ email, password }: FormTypeSignIn) {
@@ -37,6 +37,7 @@ export function SignInForm() {
           router.push('/')
           router.refresh()
         } else {
+          console.log(res)
           toast(res?.error)
         }
       } catch (err) {

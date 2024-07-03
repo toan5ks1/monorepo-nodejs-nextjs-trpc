@@ -15,7 +15,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@ui/*": ["../../libs/ui/src/components/*"],
+      "@ui/*": ["../../libs/ui/src/*"],
     },
     "plugins": [
       {
@@ -31,6 +31,7 @@
     "**/*.cjs",
     "**/*.mjs",
     ".next/types/**/*.ts",
+    "../../libs/ui/src/components/other/mode-toggle.tsx",
   ],
   "exclude": ["node_modules"],
 }
