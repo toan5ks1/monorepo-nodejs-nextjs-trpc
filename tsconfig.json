@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
-    "strict": true
+    "target": "esnext",
+    "module": "commonJS",
+    "strict": true,
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }

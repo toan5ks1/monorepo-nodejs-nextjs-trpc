@@ -6,9 +6,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@cmp/ui/card'
-import { VerifyEmailForm } from '@cmp/forms/verify-email-form'
-import { Shell } from '@cmp/shells/shell'
+} from '@ui/ui/card'
+import { VerifyEmailForm } from '@ui/forms/verify-email-form'
+import { Shell } from '@ui/shells/shell'
 import { env } from '@web/src/env.mjs'
 
 export const metadata: Metadata = {

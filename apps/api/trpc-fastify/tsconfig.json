@@ -1,0 +1,18 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "lib": ["esnext"],
+    "declaration": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "target": "esnext",
+    "module": "commonJS",
+    "allowJs": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+  },
+  "include": ["src", "src/server.ts"],
+  "exclude": ["node_modules"],
+}

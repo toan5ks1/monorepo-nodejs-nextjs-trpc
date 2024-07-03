@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 
-import { LogOutButtons } from '@cmp/auth/logout-buttons'
+import { LogOutButtons } from '@ui/auth/logout-buttons'
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from '@cmp/page-header'
-import { Shell } from '@cmp/shells/shell'
+} from '@ui/page-header'
+import { Shell } from '@ui/shells/shell'
 import { env } from '@web/src/env.mjs'
 
 export const metadata: Metadata = {

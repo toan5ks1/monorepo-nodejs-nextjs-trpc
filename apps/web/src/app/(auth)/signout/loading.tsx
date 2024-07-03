@@ -1,10 +1,10 @@
-import { Skeleton } from '@cmp/ui/skeleton'
+import { Skeleton } from '@ui/ui/skeleton'
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from '@cmp/page-header'
-import { Shell } from '@cmp/shells/shell'
+} from '@ui/page-header'
+import { Shell } from '@ui/shells/shell'
 
 export default function SignOutLoading() {
   return (

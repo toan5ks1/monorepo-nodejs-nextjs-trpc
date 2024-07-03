@@ -2,8 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { siteConfig } from '@pod-platform/util/config/site'
-import { AspectRatio } from '@cmp/ui/aspect-ratio'
-import { Icons } from '@cmp/icons'
+import { AspectRatio } from '@ui/ui/aspect-ratio'
+import { Icons } from '@pod-platform/ui/src/components/other/icons'
 
 export default function AuthLayout({ children }: React.PropsWithChildren) {
   return (

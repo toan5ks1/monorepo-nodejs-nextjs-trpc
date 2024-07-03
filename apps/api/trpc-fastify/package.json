@@ -1,0 +1,52 @@
+{
+  "name": "@pod-platform/trpc-fastify",
+  "version": "9.12.2",
+  "private": true,
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "start": "node dist/index.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.215.0",
+    "@fastify/cors": "^8.4.0",
+    "@pod-platform/forms": "workspace:^",
+    "@prisma/client": "^5.5.2",
+    "@trpc/client": "^10.45.0",
+    "@trpc/server": "^10.45.0",
+    "@types/node-fetch": "^2.5.11",
+    "abort-controller": "^3.0.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "env-var": "^7.4.1",
+    "fastify": "^4.24.3",
+    "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^2.6.1",
+    "nodemailer": "^6.9.4",
+    "pino-pretty": "^10.2.3",
+    "prisma": "^5.8.1",
+    "superjson": "^2.2.0",
+    "typescript": "4.4.4",
+    "uuid": "^9.0.1",
+    "ws": "^8.0.0",
+    "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.4",
+    "@types/nodemailer": "^6.4.9",
+    "@types/uuid": "^9.0.8",
+    "@types/ws": "^8.2.0",
+    "@prisma/client": "5.8.1",
+    "fastify-cli": "^6.2.1",
+    "nodemon": "^2.0.12",
+    "npm-run-all": "^4.1.5",
+    "tsx": "^4.7.0",
+    "ts-node": "^10.3.0",
+    "wait-on": "^6.0.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
